@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/iphone1p"
+    android:background="@drawable/immagine"
     tools:context=".MainActivity">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
-        android:layout_width="274dp"
-        android:layout_height="359dp"
-        android:layout_marginBottom="20dp"
+        android:layout_width="351dp"
+        android:layout_height="439dp"
+        android:layout_marginBottom="15dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,14 +20,14 @@
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tab_layout"
-        android:layout_width="274dp"
-        android:layout_height="65dp"
-        android:background="@color/Vverde"
+        android:layout_width="351dp"
+        android:layout_height="68dp"
+        android:background="#C84CAF50"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintBottom_toTopOf="@+id/pager"
         app:layout_constraintEnd_toEndOf="@+id/pager"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/pager">
+        app:layout_constraintStart_toStartOf="@+id/pager"
+        app:tabIndicatorColor="@android:color/background_light">
 
 
     </android.support.design.widget.TabLayout>
