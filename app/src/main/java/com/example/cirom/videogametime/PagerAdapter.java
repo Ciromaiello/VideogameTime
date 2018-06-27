@@ -49,22 +49,4 @@ public class PagerAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return numeroDiTab;
     }
-
-    /**
-     * Restituisce l'id della risorsa con il nome del tab da mettere nel menu
-     * @param position indice della posizione
-     * @return id della stringa da mostrare nel tab
-     */
-    public int getItemTabNameResourceId(int position) {
-        switch (position) {
-            case 0:
-                return R.string.tab_piattaforme;
-
-            case 1:
-                return R.string.tab_generi;
-
-            default:
-                return R.string.tab_unknown;
-        }
-    }
 }
