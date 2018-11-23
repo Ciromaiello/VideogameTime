@@ -2,5 +2,6 @@
     <string name="app_name">VideogameTime</string>
     <string name="tab_piattaforme">Piattaforme</string>
     <string name="tab_generi">Generi</string>
-    <string name="tab_unknown">EEEE</string>
+    <string name="OK">OK</string>
+    <string name="Generi">Seleziona i generi</string>
 </resources>

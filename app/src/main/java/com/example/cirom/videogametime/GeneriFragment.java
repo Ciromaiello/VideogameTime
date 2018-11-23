@@ -1,21 +1,75 @@
 package com.example.cirom.videogametime;
 
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class GeneriFragment extends Fragment{
 
+    ArrayList<Generi> generi;
+    private RecyclerView list;
+    private Button btnGetSelected;
+
     public GeneriFragment(){
-        //Costruttore
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_generi, container, false);
     }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        btnGetSelected = (Button) view.findViewById(R.id.btnGetSelected);
+        list = (RecyclerView) view.findViewById(R.id.list);
+        list.setLayoutManager(new LinearLayoutManager(getActivity()));
+        list.setHasFixedSize(true);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        generi = new ArrayList<>();
+        String parole[] = {"Action", "Avventura", "Casual", "Free-to-play", "Hack and slash","Sportivo", "Erotico", "Gestionale", "MMORPG", "Picchiaduro", "RPG", "Sparatutto"};
+        for (int i = 0; i <= 11; i++) {
+            Generi gen = new Generi();
+            gen.setTextparole(parole[i]);
+            this.generi.add(gen);
+        }
+
+        GeneriAdapter adapter = new GeneriAdapter(this.generi);
+        list.setAdapter(adapter);
+
+        btnGetSelected.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StringBuilder stringBuilder = new StringBuilder();
+                for (Generi gen : generi) {
+                    if (gen.isSelected()) {
+                        if (stringBuilder.length() > 0)
+                            stringBuilder.append(", ");
+                        stringBuilder.append(gen.getTextparole());
+                    }
+                }
+                /*
+                 **Toast.makeText(getActivity(), stringBuilder.toString(), Toast.LENGTH_LONG).show();
+                 * Se vogliamo un pop-up di quelli selezionati. Errore se non sono selezionati
+                  */
+            }
+        });
+    }
+
 }

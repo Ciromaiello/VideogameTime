@@ -8,12 +8,10 @@ import android.support.v4.app.FragmentPagerAdapter;
  * Adapter per la navigazione tra i fragment dell'activity principale
  */
 public class PagerAdapter extends FragmentPagerAdapter {
-
     /**
      * Numero di tab e quindi di fragment da visualizzare
      */
     private int numeroDiTab = 2;
-
     /**
      * Costruttore
      * @param fm
@@ -21,7 +19,6 @@ public class PagerAdapter extends FragmentPagerAdapter {
     public PagerAdapter(FragmentManager fm) {
         super(fm);
     }
-
     /**
      * Restituisce l'elemento corrispondente alla posizione passata
      * @param position posizione
@@ -40,7 +37,6 @@ public class PagerAdapter extends FragmentPagerAdapter {
                 return null;
         }
     }
-
     /**
      * Restituisce il numero di fragment totali
      * @return numero di fragment
