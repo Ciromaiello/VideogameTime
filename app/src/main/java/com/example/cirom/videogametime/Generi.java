@@ -4,15 +4,15 @@ package com.example.cirom.videogametime;
  * Classe dei get e set dei generi
  */
 public class Generi {
-    private String textparole;
+    private String textgeneri;
     private boolean isSelected;
 
-    public String getTextparole() {
-        return textparole;
+    public String getTextgeneri() {
+        return textgeneri;
     }
 
-    public void setTextparole(String textparole) {
-        this.textparole = textparole;
+    public void setTextgeneri(String textparole) {
+        this.textgeneri = textparole;
     }
 
     public boolean isSelected() {

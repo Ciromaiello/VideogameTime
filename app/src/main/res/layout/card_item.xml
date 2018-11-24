@@ -16,31 +16,37 @@
         card_view:cardBackgroundColor="@color/Vverde"
         card_view:cardCornerRadius="4dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="5dp"
-            android:weightSum="2">
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageConsole"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:clickable="true"
+                android:scaleType="fitXY" />
 
             <TextView
-                android:id="@+id/textgeneri"
+                android:id="@+id/textpiattaforme"
                 android:layout_width="282dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_below="@id/imageConsole"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="4dp"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
                 android:textColor="@color/verde2" />
 
             <CheckBox
-                android:id="@+id/checkbox1"
+                android:id="@+id/checkbox2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.2"
-                android:background="@color/Trasparente"
-                android:buttonTint="@color/verde2"
-                android:checked="false"
-                android:shadowColor="@color/verde2"
-                android:textColorLink="@color/verde2" />
-        </LinearLayout>
+                android:layout_below="@id/imageConsole"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_toEndOf="@+id/textpiattaforme"
+                android:buttonTint="@color/verde2" />
+        </RelativeLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>

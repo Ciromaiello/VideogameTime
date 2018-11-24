@@ -46,7 +46,7 @@ public class GeneriFragment extends Fragment{
         String parole[] = {"Action", "Avventura", "Casual", "Free-to-play", "Hack and slash","Sportivo", "Erotico", "Gestionale", "MMORPG", "Picchiaduro", "RPG", "Sparatutto"};
         for (int i = 0; i <= 11; i++) {
             Generi gen = new Generi();
-            gen.setTextparole(parole[i]);
+            gen.setTextgeneri(parole[i]);
             this.generi.add(gen);
         }
 
@@ -61,7 +61,7 @@ public class GeneriFragment extends Fragment{
                     if (gen.isSelected()) {
                         if (stringBuilder.length() > 0)
                             stringBuilder.append(", ");
-                        stringBuilder.append(gen.getTextparole());
+                        stringBuilder.append(gen.getTextgeneri());
                     }
                 }
                 /*
