@@ -15,11 +15,12 @@ import java.util.List;
 
 public class PiattaformeAdapter extends RecyclerView.Adapter<PiattaformeAdapter.ViewHolder> {
 
-    private Context mContext;
+    Context mContext;
     ArrayList<Piattaforme> piattaforme;
 
-    public PiattaformeAdapter(List<Piattaforme> piattaforme) {
+    public PiattaformeAdapter(List<Piattaforme> piattaforme, Context mContext) {
         this.piattaforme= new ArrayList<>(piattaforme);
+        this.mContext = mContext;
     }
 
     @Override
@@ -33,10 +34,8 @@ public class PiattaformeAdapter extends RecyclerView.Adapter<PiattaformeAdapter.
         Piattaforme console = piattaforme.get(position);
         holder.bindData(piattaforme.get(position));
 
-        //in some cases, it will prevent unwanted situations
         holder.checkbox2.setOnCheckedChangeListener(null);
 
-        //if true, your checkbox will be selected, else unselected
         holder.checkbox2.setChecked(piattaforme.get(position).isSelected1());
 
         holder.checkbox2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -45,7 +44,7 @@ public class PiattaformeAdapter extends RecyclerView.Adapter<PiattaformeAdapter.
                 piattaforme.get(holder.getAdapterPosition()).setSelected1(isChecked);
             }
         });
-        //Glide.with(mContext).load(console.getImage()).into(holder.imageConsole);
+        //GlideApp.with(mContext).load(console.getImage()).into(holder.imageConsole);
     }
 
     @Override
@@ -53,9 +52,6 @@ public class PiattaformeAdapter extends RecyclerView.Adapter<PiattaformeAdapter.
         return piattaforme.size();
     }
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         private TextView textpiattaforme;
@@ -71,6 +67,7 @@ public class PiattaformeAdapter extends RecyclerView.Adapter<PiattaformeAdapter.
 
         public void bindData(Piattaforme console) {
             textpiattaforme.setText(console.getTextpiattaforme());
+            imageConsole.setImageResource(console.getImage());
         }
     }
 }
