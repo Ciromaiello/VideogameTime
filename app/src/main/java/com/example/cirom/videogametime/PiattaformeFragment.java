@@ -41,8 +41,8 @@ public class PiattaformeFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         piattaforme = new ArrayList<>();
-        int immagini[] = {R.drawable.ps4, R.drawable.one, R.drawable.ciao, R.drawable.psvita, R.drawable.ds3,R.drawable.wiiu, R.drawable.ps3, R.drawable.xbox360, R.drawable.wii, R.drawable.ds, R.drawable.psp} ;
-        String parole[] = {"PlayStation 4", "XBOX ONE", "Nintendo SWITCH", "PS VITA", "Nintendo 3DS", "Wii U", "PlayStation 3", "XBOX 360", "Wii", "Nintendo DS", "PSP"};
+        int immagini[] = {R.drawable.ps4, R.drawable.one, R.drawable.ciao, R.drawable.msi, R.drawable.psvita, R.drawable.ds3,R.drawable.wiiu, R.drawable.ps3, R.drawable.xbox360, R.drawable.wii, R.drawable.ds, R.drawable.psp} ;
+        String parole[] = {"PlayStation 4", "XBOX ONE", "Nintendo SWITCH", "PC", "PS VITA", "Nintendo 3DS", "Wii U", "PlayStation 3", "XBOX 360", "Wii", "Nintendo DS", "PSP"};
         int k = parole.length;
         for (int i = 0; i <= k-1; i++) {
             Piattaforme console = new Piattaforme();

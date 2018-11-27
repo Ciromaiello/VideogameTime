@@ -42,7 +42,7 @@ public class GeneriFragment extends Fragment{
         super.onActivityCreated(savedInstanceState);
 
         generi = new ArrayList<>();
-        String parole[] = {"Action", "Avventura", "Erotico", "Free-to-play", "Gestionale", "Hack and slash", "Indie", "MMORPG", "Party game", "Picchiaduro", "RPG", "Simulatore", "Sparatutto", "Sportivo","Strategico", "Visual novel"};
+        String parole[] = {"Action", "Avventura", "Erotico", "Free-to-play", "Gestionale", "Hack and slash", "Indie", "MMORPG", "Party game", "Picchiaduro", "Platform", "RPG", "Simulatore", "Sparatutto", "Sportivo","Strategico", "Visual novel"};
         int k = parole.length;
         for (int i = 0; i <= k-1; i++) {
             Generi gen = new Generi();
@@ -55,8 +55,7 @@ public class GeneriFragment extends Fragment{
 
         btnGetSelected.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                StringBuilder stringBuilder = new StringBuilder();
+            public void onClick(View v) {               StringBuilder stringBuilder = new StringBuilder();
                 for (Generi gen : generi) {
                     if (gen.isSelected()) {
                         if (stringBuilder.length() > 0)
