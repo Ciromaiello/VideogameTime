@@ -25,14 +25,13 @@ public class PiattaformeFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_piattaforme, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         card = (RecyclerView) view.findViewById(R.id.card);
         card.setLayoutManager(new LinearLayoutManager(getActivity()));
         card.setHasFixedSize(true);
@@ -42,9 +41,10 @@ public class PiattaformeFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         piattaforme = new ArrayList<>();
-        int immagini[] = {R.drawable.ps4, R.drawable.one, R.drawable.ciao, R.drawable.psvita, R.drawable.ds3, R.drawable.ps3, R.drawable.xbox360, R.drawable.ds, R.drawable.psp} ;
-        String parole[] = {"PlayStation 4", "XBOX ONE", "Nintendo SWITCH", "PS VITA", "Nintendo 3DS", "PlayStation 3", "XBOX 360", "Nintendo DS", "PSP"};
-        for (int i = 0; i <= 8; i++) {
+        int immagini[] = {R.drawable.ps4, R.drawable.one, R.drawable.ciao, R.drawable.psvita, R.drawable.ds3,R.drawable.wiiu, R.drawable.ps3, R.drawable.xbox360, R.drawable.wii, R.drawable.ds, R.drawable.psp} ;
+        String parole[] = {"PlayStation 4", "XBOX ONE", "Nintendo SWITCH", "PS VITA", "Nintendo 3DS", "Wii U", "PlayStation 3", "XBOX 360", "Wii", "Nintendo DS", "PSP"};
+        int k = parole.length;
+        for (int i = 0; i <= k-1; i++) {
             Piattaforme console = new Piattaforme();
             console.setTextpiattaforme(parole[i]);
             console.setImage(immagini[i]);

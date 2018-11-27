@@ -24,7 +24,6 @@ public class GeneriFragment extends Fragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_generi, container, false);
     }
 
@@ -43,8 +42,9 @@ public class GeneriFragment extends Fragment{
         super.onActivityCreated(savedInstanceState);
 
         generi = new ArrayList<>();
-        String parole[] = {"Action", "Avventura", "Casual", "Free-to-play", "Hack and slash","Sportivo", "Erotico", "Gestionale", "MMORPG", "Picchiaduro", "RPG", "Sparatutto"};
-        for (int i = 0; i <= 11; i++) {
+        String parole[] = {"Action", "Avventura", "Erotico", "Free-to-play", "Gestionale", "Hack and slash", "Indie", "MMORPG", "Party game", "Picchiaduro", "RPG", "Simulatore", "Sparatutto", "Sportivo","Strategico", "Visual novel"};
+        int k = parole.length;
+        for (int i = 0; i <= k-1; i++) {
             Generi gen = new Generi();
             gen.setTextgeneri(parole[i]);
             this.generi.add(gen);
@@ -64,10 +64,10 @@ public class GeneriFragment extends Fragment{
                         stringBuilder.append(gen.getTextgeneri());
                     }
                 }
-                /*
-                 **Toast.makeText(getActivity(), stringBuilder.toString(), Toast.LENGTH_LONG).show();
-                 * Se vogliamo un pop-up di quelli selezionati. Errore se non sono selezionati
-                  */
+                /**
+                 * Toast.makeText(getActivity(), stringBuilder.toString(), Toast.LENGTH_LONG).show();
+                 * Se vogliamo un pop-up di quelli selezionati. Errore se non sono selezionati.
+                 */
             }
         });
     }

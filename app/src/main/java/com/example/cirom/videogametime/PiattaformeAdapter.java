@@ -31,20 +31,20 @@ public class PiattaformeAdapter extends RecyclerView.Adapter<PiattaformeAdapter.
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        Piattaforme console = piattaforme.get(position);
+        //Piattaforme console = piattaforme.get(position); per utilizzare glide
         holder.bindData(piattaforme.get(position));
-
         holder.checkbox2.setOnCheckedChangeListener(null);
-
         holder.checkbox2.setChecked(piattaforme.get(position).isSelected1());
-
         holder.checkbox2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 piattaforme.get(holder.getAdapterPosition()).setSelected1(isChecked);
             }
         });
-        //GlideApp.with(mContext).load(console.getImage()).into(holder.imageConsole);
+        /**
+         * GlideApp.with(mContext).load(console.getImage()).into(holder.imageConsole);
+         * per utilizzare la libreria glide.
+         */
     }
 
     @Override
@@ -53,7 +53,6 @@ public class PiattaformeAdapter extends RecyclerView.Adapter<PiattaformeAdapter.
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
         private TextView textpiattaforme;
         private CheckBox checkbox2;
         private ImageView imageConsole;

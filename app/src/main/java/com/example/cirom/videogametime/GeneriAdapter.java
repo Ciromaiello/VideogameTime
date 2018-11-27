@@ -16,6 +16,7 @@ public class GeneriAdapter extends RecyclerView.Adapter<GeneriAdapter.ViewHolder
     ArrayList<Generi> generi;
 
     public GeneriAdapter(List<Generi> generi) {
+
         this.generi= new ArrayList<>(generi);
     }
 
@@ -28,13 +29,8 @@ public class GeneriAdapter extends RecyclerView.Adapter<GeneriAdapter.ViewHolder
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.bindData(generi.get(position));
-
-        //in some cases, it will prevent unwanted situations
         holder.checkbox1.setOnCheckedChangeListener(null);
-
-        //if true, your checkbox will be selected, else unselected
         holder.checkbox1.setChecked(generi.get(position).isSelected());
-
         holder.checkbox1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -48,11 +44,7 @@ public class GeneriAdapter extends RecyclerView.Adapter<GeneriAdapter.ViewHolder
         return generi.size();
     }
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
         private TextView textgeneri;
         private CheckBox checkbox1;
 
