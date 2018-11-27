@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "767339064527",
+    "firebase_url": "https://videogametime-4005e.firebaseio.com",
+    "project_id": "videogametime-4005e",
+    "storage_bucket": "videogametime-4005e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:767339064527:android:ac342698a0da4473",
+        "android_client_info": {
+          "package_name": "com.example.cirom.videogametime"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "767339064527-4qnctssnm121gdd8nbrbiisc8md4tmqm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cirom.videogametime",
+            "certificate_hash": "a3141a6c8159b9aafbbba1d28929ca300fb7f9ad"
+          }
+        },
+        {
+          "client_id": "767339064527-v764aghon1vokeqiusbfv98o58mqdf8b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAq_BUtxZz1FTedNOIb7AFzAzyBSmu_tn4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "767339064527-v764aghon1vokeqiusbfv98o58mqdf8b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
