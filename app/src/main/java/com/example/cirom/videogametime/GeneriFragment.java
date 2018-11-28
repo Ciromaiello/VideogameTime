@@ -1,5 +1,6 @@
 package com.example.cirom.videogametime;
 
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -61,6 +62,8 @@ public class GeneriFragment extends Fragment{
                         if (stringBuilder.length() > 0)
                             stringBuilder.append(", ");
                         stringBuilder.append(gen.getTextgeneri());
+                        Intent intent = new Intent(getContext(),AccessoUtentiActivity.class);
+                        startActivity(intent);
                     }
                 }
                 /**
