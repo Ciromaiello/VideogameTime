@@ -44,6 +44,7 @@
         android:layout_weight="0.1"
         android:background="@color/Vverde"
         android:text="@string/OK"
+        android:textAllCaps="true"
         android:textColor="@color/verde2"
         android:textSize="18sp"
         android:visibility="visible"
