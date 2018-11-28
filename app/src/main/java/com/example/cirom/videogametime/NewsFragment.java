@@ -7,13 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class Comment extends Fragment {
-    public Comment() {
+public class NewsFragment extends Fragment {
+    public NewsFragment() {
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_comment, container, false);
+    public View onCreateView(LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_news, container, false);
     }
 }

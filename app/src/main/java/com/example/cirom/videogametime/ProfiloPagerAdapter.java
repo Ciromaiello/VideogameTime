@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 /**
  * Adapter per la navigazione tra i fragment dell'activity principale
  */
-public class PagerAdapterAccesso extends FragmentPagerAdapter {
+public class ProfiloPagerAdapter extends FragmentPagerAdapter {
 
     /**
      * Numero di tab e quindi di fragment da visualizzare
@@ -18,7 +18,7 @@ public class PagerAdapterAccesso extends FragmentPagerAdapter {
      * Costruttore
      * @param fm
      */
-    public PagerAdapterAccesso(FragmentManager fm) {
+    public ProfiloPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
@@ -31,13 +31,13 @@ public class PagerAdapterAccesso extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new News();
+                return new NewsFragment();
 
             case 1:
-                return new Home();
+                return new HomeFragment();
 
             case 2:
-                return new Comment();
+                return new CommentFragment();
 
             default:
                 return null;

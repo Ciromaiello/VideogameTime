@@ -10,14 +10,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class AccessoUtentiActivity extends AppCompatActivity {
+public class ProfiloActivity extends AppCompatActivity {
 
     private final String TAG = "DEMO_MISC";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.accessoutenti_activity);
+        setContentView(R.layout.activity_profilo);
 
         // Abilita l'action bar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -82,7 +82,7 @@ public class AccessoUtentiActivity extends AppCompatActivity {
         final ViewPager viewPager = findViewById(R.id.pager);
 
         // Creo l'adapter
-        final PagerAdapterAccesso pagerAdapter1 = new PagerAdapterAccesso(getSupportFragmentManager());
+        final ProfiloPagerAdapter pagerAdapter1 = new ProfiloPagerAdapter(getSupportFragmentManager());
 
         // Imposto l'adapter per il pager
         viewPager.setAdapter(pagerAdapter1);
