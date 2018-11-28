@@ -62,8 +62,8 @@ public class GeneriFragment extends Fragment{
                         if (stringBuilder.length() > 0)
                             stringBuilder.append(", ");
                         stringBuilder.append(gen.getTextgeneri());
-                        Intent intent = new Intent(getContext(),AccessoUtentiActivity.class);
-                        startActivity(intent);
+                       // Intent intent = new Intent(getContext(),LoginActivity.class);
+                       // startActivity(intent);   Non serve per ora
                     }
                 }
                 /**
