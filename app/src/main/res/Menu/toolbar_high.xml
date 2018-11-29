@@ -14,4 +14,9 @@
     <item
         android:id="@+id/action_logout"
         android:title="@string/logout" />
+
+    <android.support.v7.widget.Toolbar
+        android:navigationIcon="@drawable/back_arrow"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"/>
 </menu>

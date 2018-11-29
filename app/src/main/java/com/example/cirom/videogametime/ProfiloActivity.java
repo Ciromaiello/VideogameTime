@@ -27,6 +27,8 @@ public class ProfiloActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+
         // Imposta il Pager
         impostaPager();
 
