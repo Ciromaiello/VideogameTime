@@ -1,6 +1,7 @@
 package com.example.cirom.videogametime;
 
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -9,10 +10,13 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class ProfiloActivity extends AppCompatActivity {
 
     private final String TAG = "DEMO_MISC";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,7 @@ public class ProfiloActivity extends AppCompatActivity {
         // Imposta il Pager
         impostaPager();
 
+
     }
 
     /**
@@ -38,6 +43,7 @@ public class ProfiloActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_high, menu);
         return super.onCreateOptionsMenu(menu);
+
     }
 
 
@@ -59,6 +65,8 @@ public class ProfiloActivity extends AppCompatActivity {
             case R.id.action_settings:
                 // L'utente ha scelto "impostazioni"
                 Log.v(TAG, "Menu-> Impostazioni");
+                Intent i = new Intent(this,ImpostazioniActivity.class);
+                startActivity(i);
                 return true;
 
             case R.id.action_logout:

@@ -16,4 +16,15 @@
     <string name="hello_news">Hello News</string>
     <string name="hello_comment">Enjoy</string>
     <string name="hello_home">Your Home</string>
+
+
+    <string-array name="info">
+        <item>Profilo</item>
+        <item>Info</item>
+        <item>Forum</item>
+    </string-array>
+
+
+
+
 </resources>
