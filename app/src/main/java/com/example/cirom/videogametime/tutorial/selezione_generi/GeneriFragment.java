@@ -1,4 +1,4 @@
-package com.example.cirom.videogametime;
+package com.example.cirom.videogametime.tutorial.selezione_generi;
 
 import android.content.Intent;
 import android.support.annotation.Nullable;
@@ -10,7 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
+
+import com.example.cirom.videogametime.R;
+import com.example.cirom.videogametime.tutorial.selezione_giochi.GiochiActivity;
 
 import java.util.ArrayList;
 
@@ -31,7 +33,6 @@ public class GeneriFragment extends Fragment{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         btnGetSelected = (Button) view.findViewById(R.id.btnGetSelected);
         list = (RecyclerView) view.findViewById(R.id.list);
         list.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -56,7 +57,8 @@ public class GeneriFragment extends Fragment{
 
         btnGetSelected.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {               StringBuilder stringBuilder = new StringBuilder();
+            public void onClick(View v) {
+                StringBuilder stringBuilder = new StringBuilder();
                 for (Generi gen : generi) {
                     if (gen.isSelected()) {
                         if (stringBuilder.length() > 0)
@@ -67,11 +69,10 @@ public class GeneriFragment extends Fragment{
                     }
                 }
                 /**
-                 * Toast.makeText(getActivity(), stringBuilder.toString(), Toast.LENGTH_LONG).show();
-                 * Se vogliamo un pop-up di quelli selezionati. Errore se non sono selezionati.
+                  Toast.makeText(getActivity(), stringBuilder.toString(), Toast.LENGTH_LONG).show();
+                  Se vogliamo un pop-up di quelli selezionati. Errore se non sono selezionati.
                  */
             }
         });
     }
-
 }

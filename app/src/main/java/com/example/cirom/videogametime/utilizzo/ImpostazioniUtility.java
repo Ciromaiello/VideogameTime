@@ -1,6 +1,8 @@
-package com.example.cirom.videogametime;
+package com.example.cirom.videogametime.utilizzo;
 
 import android.content.Context;
+
+import com.example.cirom.videogametime.R;
 
 import java.util.ArrayList;
 import java.util.List;

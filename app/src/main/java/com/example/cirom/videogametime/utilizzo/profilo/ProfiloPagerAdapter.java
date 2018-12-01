@@ -1,8 +1,10 @@
-package com.example.cirom.videogametime;
+package com.example.cirom.videogametime.utilizzo.profilo;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.example.cirom.videogametime.R;
 
 /**
  * Adapter per la navigazione tra i fragment dell'activity principale

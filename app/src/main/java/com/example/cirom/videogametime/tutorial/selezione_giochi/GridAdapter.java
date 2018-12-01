@@ -1,4 +1,4 @@
-package com.example.cirom.videogametime;
+package com.example.cirom.videogametime.tutorial.selezione_giochi;
 
 import android.content.Context;
 import android.widget.BaseAdapter;

@@ -1,4 +1,4 @@
-package com.example.cirom.videogametime;
+package com.example.cirom.videogametime.utilizzo;
 
 public class Impostazioni {
     private String info;

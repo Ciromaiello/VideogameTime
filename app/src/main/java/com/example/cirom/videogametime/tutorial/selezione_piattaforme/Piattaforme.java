@@ -1,4 +1,4 @@
-package com.example.cirom.videogametime;
+package com.example.cirom.videogametime.tutorial.selezione_piattaforme;
 
 /**
 * Classe dei get e dei set delle piattaforme

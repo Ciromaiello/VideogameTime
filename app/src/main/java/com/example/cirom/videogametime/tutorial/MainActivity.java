@@ -1,9 +1,11 @@
-package com.example.cirom.videogametime;
+package com.example.cirom.videogametime.tutorial;
 
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.cirom.videogametime.R;
+import com.example.cirom.videogametime.tutorial.selezione_piattaforme.CustomViewPager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,10 +19,10 @@ public class MainActivity extends AppCompatActivity {
     private void impostaPager() {
 
         // Riferimento al pager
-        final ViewPager viewPager = findViewById(R.id.pager);
+        final CustomViewPager viewPager = findViewById(R.id.pager);
 
         // Creo l'adapter
-        final PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager());
+        final PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(),viewPager);
 
         // Imposto l'adapter per il pager
         viewPager.setAdapter(pagerAdapter);

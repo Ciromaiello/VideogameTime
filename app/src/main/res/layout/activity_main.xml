@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_tutorial"
-    tools:context=".MainActivity">
+    tools:context=".tutorial.MainActivity">
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tab_layout"
@@ -25,15 +25,14 @@
 
     </android.support.design.widget.TabLayout>
 
-    <android.support.v4.view.ViewPager
+    <com.example.cirom.videogametime.tutorial.selezione_piattaforme.CustomViewPager
         android:id="@+id/pager"
         android:layout_width="wrap_content"
         android:layout_height="537dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-    </android.support.v4.view.ViewPager>
+    </com.example.cirom.videogametime.tutorial.selezione_piattaforme.CustomViewPager>
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline2"

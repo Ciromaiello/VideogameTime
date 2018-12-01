@@ -1,4 +1,4 @@
-package com.example.cirom.videogametime;
+package com.example.cirom.videogametime.utilizzo;
 
 
 import android.content.Intent;
@@ -10,8 +10,9 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+
+import com.example.cirom.videogametime.R;
+import com.example.cirom.videogametime.utilizzo.profilo.ProfiloPagerAdapter;
 
 public class ProfiloActivity extends AppCompatActivity {
 
