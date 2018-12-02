@@ -1,47 +1,60 @@
 package com.example.cirom.videogametime.utilizzo;
 
-
+import android.support.v4.app.Fragment;
 import android.content.Intent;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import com.example.cirom.videogametime.R;
-import com.example.cirom.videogametime.utilizzo.profilo.ProfiloPagerAdapter;
+
+
 
 public class ProfiloActivity extends AppCompatActivity {
 
     private final String TAG = "DEMO_MISC";
-
+    private BottomNavigationView navigation;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profilo);
-
-        // Abilita l'action bar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        navigation = findViewById(R.id.navigation);
 
 
-        // Imposta il Pager
-        impostaPager();
+        getSupportFragmentManager().beginTransaction().replace(R.id.profilo_activity,new NewsFragment()).commit();
+        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment selectedFragment= null;
+                switch (item.getItemId()) {
+                    case R.id.menu_account:
+                        selectedFragment = new ProfiloFragment();
 
+                        break;
 
+                    case R.id.menu_home:
+                        selectedFragment = new NewsFragment();
+                        break;
+                }
+                getSupportFragmentManager().beginTransaction().replace(R.id.profilo_activity,selectedFragment).commit();
+
+                return true;
+            }
+
+        });
     }
 
-    /**
-     * Evento generato per la creazione del menu
-     * Consente l'associazione del menu alla toolbar
-     * @param menu Riferimento al menu
-     * @return esito della creazione
-     */
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_high, menu);
@@ -49,12 +62,6 @@ public class ProfiloActivity extends AppCompatActivity {
 
     }
 
-
-    /**
-     * L'utente ha effettuato una scelta nel menu
-     * @param item rappresenta l'elemento scelto
-     * @return true in caso di elaborazione evento
-     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -83,44 +90,4 @@ public class ProfiloActivity extends AppCompatActivity {
         }
     }
 
-
-    /**
-     * Imposta la gestione della paginazione
-     */
-    private void impostaPager() {
-
-        // Riferimento al pager
-        final ViewPager viewPager = findViewById(R.id.pager);
-
-        // Creo l'adapter
-        final ProfiloPagerAdapter pagerAdapter1 = new ProfiloPagerAdapter(getSupportFragmentManager());
-
-        // Imposto l'adapter per il pager
-        viewPager.setAdapter(pagerAdapter1);
-
-        // Creazione dei tab ed aggiunta alla toolbar
-        TabLayout tabLayout = findViewById(R.id.tab_layout);
-        for (int i = 0; i < pagerAdapter1.getCount(); i++)
-            tabLayout.addTab(tabLayout.newTab().setText(pagerAdapter1.getItemTabNameResourceId(i)));
-
-        // Listner delle selezioni dei tab
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-
-    }
 }

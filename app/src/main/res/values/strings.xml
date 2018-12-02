@@ -17,6 +17,9 @@
     <string name="hello_comment">Enjoy</string>
     <string name="hello_home">Your Home</string>
     <string name="giochi">Seleziona i giochi</string>
+    <string name="tab_profilo">Profilo</string>
+    <string name="menu_news">News</string>
+    <string name="menu_account">Account</string>
 
 
     <string-array name="info">

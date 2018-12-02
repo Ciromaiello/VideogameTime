@@ -1,4 +1,4 @@
-package com.example.cirom.videogametime.utilizzo.profilo;
+package com.example.cirom.videogametime.utilizzo;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -33,7 +33,7 @@ public class ProfiloPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new NewsFragment();
+                return new GestioneProfiloFragment();
 
             case 1:
                 return new HomeFragment();
@@ -51,7 +51,7 @@ public class ProfiloPagerAdapter extends FragmentPagerAdapter {
      * @return numero di fragment
      */
     @Override
-    public int getCount() {
+    public  int getCount() {
         return numeroDiTab;
     }
 
@@ -63,7 +63,7 @@ public class ProfiloPagerAdapter extends FragmentPagerAdapter {
     public int getItemTabNameResourceId(int position) {
         switch (position) {
             case 0:
-                return R.string.tab_news;
+                return R.string.tab_profilo;
             case 1:
                 return R.string.tab_home;
             case 2:
