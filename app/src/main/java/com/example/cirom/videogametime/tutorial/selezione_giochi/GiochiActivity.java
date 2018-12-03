@@ -3,27 +3,39 @@ package com.example.cirom.videogametime.tutorial.selezione_giochi;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
-
-import com.example.cirom.videogametime.utilizzo.ProfiloActivity;
+import android.widget.ImageView;
+import android.widget.TextView;
 import com.example.cirom.videogametime.R;
 
 public class GiochiActivity extends AppCompatActivity {
 
-    private Button btnScelta;
+    private TextView title,description,generi,piattaforme;
+    private ImageView img;
 
     @Override
-     protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_giochi);
-        btnScelta = findViewById(R.id.btnGiochi);
-        btnScelta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(GiochiActivity.this,ProfiloActivity.class);
-                startActivity(intent);
-            }
-        });
+
+        title = (TextView) findViewById(R.id.title);
+        description = (TextView) findViewById(R.id.description);
+        generi = (TextView) findViewById(R.id.generi);
+        piattaforme = (TextView) findViewById(R.id.piattaforme);
+        img = (ImageView) findViewById(R.id.gameimg);
+
+        // Recieve data
+        Intent intent = getIntent();
+        String Title = intent.getExtras().getString("Title");
+        String Generi = intent.getExtras().getString("Generi");
+        String Piattaforme = intent.getExtras().getString("Piattaforme");
+        String Description = intent.getExtras().getString("Description");
+        int image = intent.getExtras().getInt("Image") ;
+
+        // Setting values
+        title.setText(Title);
+        generi.setText(Generi);
+        piattaforme.setText(Piattaforme);
+        description.setText(Description);
+        img.setImageResource(image);
     }
 }

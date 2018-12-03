@@ -10,7 +10,6 @@ public class CustomViewPager extends ViewPager {
 
     private PiattaformeFragment mFragment;
     private final ViewPager myself = this;
-    private int oldPage;
     final int item = 0;
 
     public void setFragment(PiattaformeFragment mFragment) {

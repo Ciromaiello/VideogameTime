@@ -10,9 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.cirom.videogametime.R;
-import com.example.cirom.videogametime.tutorial.selezione_giochi.GiochiActivity;
+import com.example.cirom.videogametime.tutorial.selezione_giochi.SelectionGiochiActivity;
 
 import java.util.ArrayList;
 
@@ -44,7 +45,7 @@ public class GeneriFragment extends Fragment{
         super.onActivityCreated(savedInstanceState);
 
         generi = new ArrayList<>();
-        String parole[] = {"Action", "Avventura", "Free-to-play", "Gestionale", "Hack and slash", "Indie", "MMORPG", "Party game", "Picchiaduro", "Platform", "RPG", "Simulatore", "Sparatutto", "Sportivo","Strategico", "Visual novel"};
+        String parole[] = {"Action", "Avventura", "Free-to-play", "Gestionale", "Hack and slash", "Indie", "MMORPG", "Musicale", "Party game", "Picchiaduro", "Platform", "RPG", "Simulatore", "Sparatutto", "Sportivo", "Strategico", "Visual novel"};
         int k = parole.length;
         for (int i = 0; i <= k-1; i++) {
             Generi gen = new Generi();
@@ -64,9 +65,12 @@ public class GeneriFragment extends Fragment{
                         if (stringBuilder.length() > 0)
                             stringBuilder.append(", ");
                         stringBuilder.append(gen.getTextgeneri());
-                        Intent intent = new Intent(getContext(),GiochiActivity.class);
+                        Intent intent = new Intent(getContext(),SelectionGiochiActivity.class);
                         startActivity(intent);
                     }
+                    /**else {
+                        Toast.makeText(getActivity(),"Seleziona almeno un genere", Toast.LENGTH_SHORT).show();
+                    }*/
                 }
                 /**
                   Toast.makeText(getActivity(), stringBuilder.toString(), Toast.LENGTH_LONG).show();
