@@ -50,4 +50,12 @@
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="@+id/list"
         app:layout_constraintTop_toBottomOf="@+id/list" />
+
+    <TextView
+        android:id="@+id/mName"
+        android:layout_width="138dp"
+        android:layout_height="69dp"
+        android:text="mName"
+        tools:layout_editor_absoluteX="87dp"
+        tools:layout_editor_absoluteY="493dp" />
 </android.support.constraint.ConstraintLayout>

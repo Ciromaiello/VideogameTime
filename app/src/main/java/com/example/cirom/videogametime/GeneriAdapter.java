@@ -58,4 +58,6 @@ public class GeneriAdapter extends RecyclerView.Adapter<GeneriAdapter.ViewHolder
             textgeneri.setText(gen.getTextgeneri());
         }
     }
+
+
 }

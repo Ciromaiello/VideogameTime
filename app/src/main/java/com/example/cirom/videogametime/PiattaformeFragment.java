@@ -23,6 +23,8 @@ public class PiattaformeFragment extends Fragment {
         //Costruttore
     }
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -53,4 +55,5 @@ public class PiattaformeFragment extends Fragment {
         PiattaformeAdapter adapter = new PiattaformeAdapter(this.piattaforme,this.mContext);
         card.setAdapter(adapter);
     }
+
 }

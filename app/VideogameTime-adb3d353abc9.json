@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "videogametime-4005e",
+  "private_key_id": "adb3d353abc91b35af3ad876ef664f0ecb3381b1",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDV4tjhg+XOwFO4\n4PkfMAleZmhJRHQaBO6tDn1Bv/Fjj5/RtILjmKCwUuujFMKTp4An9V6n76g2qcvJ\nsLjykyE9+00jccqJznpA7NPaWr5isGt4GZQkZ0vhyPT4uy8GgA2BCxUdf2MK4Kez\nlbdnefjJwrs2LAnWu5EKa4lbcKwUdd5mmlYf9jK/eHOvNz8g7k2HjAcu4LgM3ltq\njZwxlCwwVOXSk4bAbI2xRAb2ODtxrFn2vX2o//u3nK8vM6gXIHUl9iTbLs3bIeCH\niUKDHFbqpfWw+VajquwnpSNM+OmhqYf8ImiqQf3a6JTU1FCXPf/6JcWGYzW2r0Sf\nDMCgOLmFAgMBAAECggEAEfHi5WTWEpcjTxcc/6ddmdx4snD6VraEOePF0Y7jl0lV\nDNiaxLKpBLIoT/nta0r53yBgjTF3yQJM9UKM+dkrSFJ9wdQJvK8kpa7ZBXBomcoY\nci6fNcCu5qYgG4BE7UQwHdwKrPtjmWWI3HHaveVHYNIkN+LQ/oGlJR0pnJDi9yJX\nPaOErrp8IZoo96BMxUggT/ZPKQdf7ra//bRmU7HWkmZBm3i1tPABv2rgS67A/et5\nCMDgtGm++RpoV8tFWOBysa0ox3lmFyaZ/2jW9D/yt6oIlif5B7hfPTedMIMIfegb\nKTJNQ/S6tM2rvtSTXFD//L4NfDJ6MBENeZtDF6L1EQKBgQDuGi0zO/ujhQw5CBc+\nn/Tv0vVZugkMcaxnm9ijKfbDcgYYbcohJWnIi336ZvY3hW6gZI7BZkihhSvpf826\negjENWF5RuQ6XpGhUyNH1VwDWblxxwAV5bhANuWiftFfEwUWOP5iwHUQ2pJixTmJ\nDRoWVshJlOyjiFvuxE7xXPkDrQKBgQDl9q1rC1AGBGzOz5JUj401Am2bigBjImQ5\nw2AGpMOk7pi8gXmcd6nJ8lIz1CNrIlfkiJ50IOTeRClUy6dV94ScVP1/e4ObWkOy\nyOc1LMQ3LwYQZPRJKPdmMTD+NC0gx6X0Ug19oCVPExUDCYOJvRrL4E7UvcMYPjy6\nvRKnEH+IOQKBgQDZFbSwSbgcVmnWdbH7vwsqvURFEoC9f8aYkFbsLI53k7ZK/46S\nufHAjq3FZ6qE5HsAca5WVlNSMIDg201O/4SOn7zHPgNH1IEifRJlo/nIdD3HppBF\nZrSel262wLlT3Zt9r2j/0EjrnNxqgTb75Z4rT+Q8cjNuxhxLjWAMX6AJ4QKBgFET\nsXymFmaotLwNjuflXMGtw3stIonRHEkJSxfMi3Xg8VS0yW2S+vfKSZUgXARvrVFT\noZoL5uU+XtwYmTzD8as0g9OodnQVVPz5vBqRV/SkzZyGG2KX4PHUshNNzgNaoHYN\nX9hE2CKS9buGZSvw0jvDL8ftx5UKjFrCQotIU85xAoGAImkfMwfa11k52w3SvelN\nSqOPH1k/aznO8KVcL6CtlIS9nhApUUr2Cy6ONhd9x3VeUZld5g88U0z7NKMPe/KJ\nWJnGHpHXj92Nsp691woSGhGP3Api+TF7NCaqHxRX4ly+/czvfHFS/FPFowhoqO0K\nlcY+i+cCJjXY7tJaFNMwIks=\n-----END PRIVATE KEY-----\n",
+  "client_email": "giuseppe-cacace10@videogametime-4005e.iam.gserviceaccount.com",
+  "client_id": "106174629196059655210",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/giuseppe-cacace10%40videogametime-4005e.iam.gserviceaccount.com"
+}
