@@ -14,11 +14,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.cirom.videogametime.R;
+import com.squareup.picasso.Picasso;
 
 public class ProfiloFragment extends Fragment {
 
+    private ImageView imgProfilo;
 
     public ProfiloFragment() {
     }
@@ -27,7 +30,15 @@ public class ProfiloFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater,@Nullable ViewGroup container,@Nullable Bundle savedInstanceState) {
+
+
         View view = inflater.inflate(R.layout.fragment_profilo, container, false);
+        imgProfilo = view.findViewById(R.id.profiloimg);
+
+
+
+        Picasso.with(getContext()).load(Account.personPhoto).into(imgProfilo);
+
       TabLayout  tabLayout = view.findViewById(R.id.tab_layout);
       final ViewPager viewPager = view.findViewById(R.id.pager);
       final ProfiloPagerAdapter vpagerAdapter = new ProfiloPagerAdapter(getChildFragmentManager());
@@ -62,7 +73,5 @@ public class ProfiloFragment extends Fragment {
 
      return view;
     }
-
-
 
 }

@@ -1,6 +1,8 @@
 package com.example.cirom.videogametime.login;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,10 +14,13 @@ import android.widget.Button;
 
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.tutorial.MainActivity;
+import com.example.cirom.videogametime.utilizzo.Account;
 import com.example.cirom.videogametime.utilizzo.ProfiloActivity;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInApi;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.api.ApiException;
@@ -27,14 +32,22 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import static com.example.cirom.videogametime.utilizzo.Account.Accesso;
+import static com.example.cirom.videogametime.utilizzo.Account.mGoogleApiClient;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private GoogleApiClient mGoogleApiClient;
+
     private Button btnOspite;
     private Button button;
     private static final int RC_SIGN_IN = 3456;
     private FirebaseAuth mAuth;
+    SharedPreferences mSettings = getBaseContext().getSharedPreferences("Settings", Context.MODE_PRIVATE);
+    SharedPreferences.Editor editor = mSettings.edit();
+    boolean NuovoAccesso;
 
 
     @Override
@@ -49,10 +62,16 @@ public class LoginActivity extends AppCompatActivity {
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
+
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 //   .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
+
+        Account.setmGoogleApiClient(mGoogleApiClient);
+
+        editor.putBoolean("NuovoAccesso",false);
+        editor.apply();
 
         /*istanziamo un nuovo oggetto GoogleSignInOptions con il parametro di default
         DEFAULT_SIGN_IN che permette di ottenere le informazioni di base dell’utente
@@ -77,12 +96,15 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         mAuth = FirebaseAuth.getInstance();
+
+
     }
 
     //metodo che gestisce l'autenticazione corretta o meno
     private void handleSignInResult(GoogleSignInResult result) {
         if (result.isSuccess()) {
             GoogleSignInAccount acct = result.getSignInAccount();
+
             // updateUI(true);
      /*   } else {
             updateUI(false);
@@ -91,15 +113,19 @@ public class LoginActivity extends AppCompatActivity {
     }
     //metodo che gestisce l'accesso vero e proprio
     private void signIn() {
-        Log.d("signIn", "start");
-        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-        Log.d("signIn", "finish");
+        if (mSettings.getBoolean("NuovoAccesso", false)) {
+            {
+                startActivity(new Intent(this, MainActivity.class));
+                editor.putBoolean("NuovoAccesso", true);
+            }
+            Log.d("signIn", "start");
+            Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(Account.mGoogleApiClient);
+            startActivityForResult(signInIntent, RC_SIGN_IN);
+            Log.d("signIn", "finish");
 
-        Intent intent = new Intent(this, ProfiloActivity.class);
-        startActivity(intent);
+
+        }
     }
-
 
     //metodo che all'accesso nasconde il bottone e alla disconnessione lo fa apparire
     /*
@@ -122,6 +148,10 @@ public class LoginActivity extends AppCompatActivity {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account);
+                Accesso=true;
+                Intent intent = new Intent(this, ProfiloActivity.class);
+                startActivity(intent);
+
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
                 Log.w("signIn", "Google sign in failed", e);

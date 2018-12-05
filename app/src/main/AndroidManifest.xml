@@ -11,9 +11,7 @@
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         <activity android:name=".login.LoginActivity" android:configChanges="keyboardHidden|orientation" android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name=".tutorial.MainActivity" android:configChanges="keyboardHidden|orientation" android:screenOrientation="portrait">
@@ -33,7 +31,10 @@
         </activity>
         <activity android:name=".utilizzo.ProfiloActivity" android:configChanges="keyboardHidden|orientation" android:screenOrientation="portrait">
             <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
+
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".utilizzo.ImpostazioniActivity" android:configChanges="keyboardHidden|orientation" android:screenOrientation="portrait">

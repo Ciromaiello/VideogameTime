@@ -4,6 +4,7 @@ package com.example.cirom.videogametime.utilizzo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,11 +13,25 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.cirom.videogametime.R;
+import com.example.cirom.videogametime.login.LoginActivity;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+
+import static com.example.cirom.videogametime.utilizzo.Account.Accesso;
+import static com.example.cirom.videogametime.utilizzo.Account.acct;
+import static com.example.cirom.videogametime.utilizzo.Account.mGoogleApiClient;
 
 public class GestioneProfiloFragment extends Fragment {
     private final String TAG = "DEMO_MISC";
+
+
+
     public GestioneProfiloFragment() {
     }
 
@@ -24,12 +39,14 @@ public class GestioneProfiloFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_gestioneprofilo, container, false);
+
     }
 
     @Override
@@ -59,12 +76,23 @@ public class GestioneProfiloFragment extends Fragment {
             case R.id.action_logout:
                 // L'utente ha scelto "logout"
                 Log.v(TAG, "Menu-> Logout");
+                signOut();
                 return true;
 
             default:
                 // Scelta non riconosciuta, passo il controllo al metodo della classe base
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+
+
+    private void signOut()
+    {
+        FirebaseAuth.getInstance().signOut();
+        Accesso=false;
+        Intent intent = new Intent(getContext(),LoginActivity.class);
+        startActivity(intent);
     }
 
 }
