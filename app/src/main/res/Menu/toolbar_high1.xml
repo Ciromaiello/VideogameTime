@@ -7,12 +7,5 @@
         android:icon="@drawable/ic_search_white_24dp"
         android:title="@string/search"
         app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/action_settings"
-        android:title="@string/settings"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_logout"
-        android:title="@string/logout" />
 
 </menu>

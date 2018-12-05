@@ -31,7 +31,8 @@ public class ProfiloActivity extends AppCompatActivity {
         navigation = findViewById(R.id.navigation);
 
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.profilo_activity,new NewsFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.profilo_activity,new ProfiloFragment()).commit();
+        navigation.setSelectedItemId(R.id.menu_account);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -55,39 +56,5 @@ public class ProfiloActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar_high, menu);
-        return super.onCreateOptionsMenu(menu);
-
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        // Switch per individuare la voce di menu scelta
-        switch (item.getItemId()) {
-            case R.id.action_search:
-                // L'utente ha scelto "Cerca"
-                Log.v(TAG, "Menu-> Cerca");
-                return true;
-
-            case R.id.action_settings:
-                // L'utente ha scelto "impostazioni"
-                Log.v(TAG, "Menu-> Impostazioni");
-                Intent i = new Intent(this,ImpostazioniActivity.class);
-                startActivity(i);
-                return true;
-
-            case R.id.action_logout:
-                // L'utente ha scelto "logout"
-                Log.v(TAG, "Menu-> Logout");
-                return true;
-
-            default:
-                // Scelta non riconosciuta, passo il controllo al metodo della classe base
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
 }

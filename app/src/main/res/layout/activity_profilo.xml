@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/profilo_activity">
 
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -14,7 +15,8 @@
         android:minHeight="?attr/actionBarSize"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        />
 
 
     <android.support.design.widget.BottomNavigationView
