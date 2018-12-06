@@ -4,17 +4,15 @@ package com.example.cirom.videogametime.tutorial.selezione_generi;
  * Classe dei get e set dei generi
  */
 public class Generi {
-    private String textgeneri;
+    private String genere;
     private boolean isSelected;
 
-    public String getTextgeneri() {
-
-        return textgeneri;
+    public String getGenere() {
+        return genere;
     }
 
-    public void setTextgeneri(String textparole) {
-
-        this.textgeneri = textparole;
+    public void setGenere(String genere) {
+        this.genere = genere;
     }
 
     public boolean isSelected() {

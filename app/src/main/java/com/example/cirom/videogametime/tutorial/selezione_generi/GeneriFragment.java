@@ -1,6 +1,7 @@
 package com.example.cirom.videogametime.tutorial.selezione_generi;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.SelectionGiochiActivity;
+import com.example.cirom.videogametime.tutorial.selezione_piattaforme.Piattaforme;
+import com.example.cirom.videogametime.tutorial.selezione_piattaforme.PiattaformeAdapter;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -51,22 +55,33 @@ public class GeneriFragment extends Fragment{
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("generi").child("nomi_generi").addValueEventListener(new ValueEventListener() {
+        generi = new ArrayList<>();
+        mDatabase.child("generi").addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                generi = new ArrayList<>();
-                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    String value = postSnapshot.getValue(String.class);
-                    Generi gen = new Generi();
-                    gen.setTextgeneri(value);
-                    generi.add(gen);
-                }
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                Generi gen = dataSnapshot.getValue(Generi.class);
+                generi.add(gen);
                 GeneriAdapter adapter = new GeneriAdapter(generi);
                 list.setAdapter(adapter);
             }
 
             @Override
-            public void onCancelled(DatabaseError error) {
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
@@ -79,7 +94,7 @@ public class GeneriFragment extends Fragment{
                     if (gen.isSelected()) {
                         if (stringBuilder.length() > 0)
                             stringBuilder.append(", ");
-                        stringBuilder.append(gen.getTextgeneri());
+                        stringBuilder.append(gen.getGenere());
                         Intent intent = new Intent(getContext(),SelectionGiochiActivity.class);
                         startActivity(intent);
                     }

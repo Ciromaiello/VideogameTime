@@ -9,7 +9,7 @@ import com.example.cirom.videogametime.R;
 
 public class GiochiActivity extends AppCompatActivity {
 
-    private TextView title,description,generi,piattaforme;
+    private TextView nome,descrizione,generi,piattaforme;
     private ImageView img;
 
     @Override
@@ -17,8 +17,8 @@ public class GiochiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_giochi);
 
-        title = (TextView) findViewById(R.id.title);
-        description = (TextView) findViewById(R.id.description);
+        nome = (TextView) findViewById(R.id.title);
+        descrizione = (TextView) findViewById(R.id.description);
         generi = (TextView) findViewById(R.id.generi);
         piattaforme = (TextView) findViewById(R.id.piattaforme);
         img = (ImageView) findViewById(R.id.gameimg);
@@ -32,10 +32,10 @@ public class GiochiActivity extends AppCompatActivity {
         int image = intent.getExtras().getInt("Image") ;
 
         // Setting values
-        title.setText(Title);
+        nome.setText(Title);
         generi.setText(Generi);
         piattaforme.setText(Piattaforme);
-        description.setText(Description);
+        descrizione.setText(Description);
         img.setImageResource(image);
     }
 }

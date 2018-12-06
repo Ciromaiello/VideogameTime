@@ -89,7 +89,7 @@ public class PiattaformeFragment extends Fragment {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         piattaforme = new ArrayList<>();
-        mDatabase.child("piattaforme").child("nomi_piattaforme").addChildEventListener(new ChildEventListener() {
+        mDatabase.child("piattaforme").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Piattaforme console = dataSnapshot.getValue(Piattaforme.class);

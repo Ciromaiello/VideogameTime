@@ -37,7 +37,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
         holder.game_title.setText(mData.get(position).getNome());
-        holder.game_img.setImageResource(mData.get(position).getGameImage());
+        holder.game_img.setImageResource(mData.get(position).getImmagine());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,10 +45,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
                 // passing data to the game activity
                 intent.putExtra("Title",mData.get(position).getNome());
-                intent.putExtra("Description",mData.get(position).getDescription());
-                intent.putExtra("Generi",mData.get(position).getPiattaforma());
-                intent.putExtra("Piattaforme",mData.get(position).getGenere());
-                intent.putExtra("Image",mData.get(position).getGameImage());
+                intent.putExtra("Description",mData.get(position).getDescrizione());
+                intent.putExtra("Generi",mData.get(position).getPiattaforme());
+                intent.putExtra("Piattaforme",mData.get(position).getGeneri());
+                intent.putExtra("Image",mData.get(position).getImmagine());
                 // start the activity
                 mContext.startActivity(intent);
             }
@@ -75,4 +75,3 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
     }
 }
-

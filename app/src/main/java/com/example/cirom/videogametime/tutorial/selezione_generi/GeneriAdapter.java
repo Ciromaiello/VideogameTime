@@ -56,7 +56,8 @@ public class GeneriAdapter extends RecyclerView.Adapter<GeneriAdapter.ViewHolder
         }
 
         public void bindData(Generi gen) {
-            textgeneri.setText(gen.getTextgeneri());
+
+            textgeneri.setText(gen.getGenere());
         }
     }
 }

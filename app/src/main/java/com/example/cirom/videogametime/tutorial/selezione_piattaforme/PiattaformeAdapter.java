@@ -63,7 +63,7 @@ public class PiattaformeAdapter extends RecyclerView.Adapter<PiattaformeAdapter.
 
         public void bindData(Piattaforme console) {
             textpiattaforme.setText(console.getNome());
-            //Picasso.with(getContext()).load(console.getImage()).into(imageConsole);
+            Glide.with(itemView.getContext()).load(console.getImage()).into(imageConsole);
         }
     }
 }

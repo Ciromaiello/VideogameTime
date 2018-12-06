@@ -9,28 +9,20 @@ public class Giochi {
     //piattaforme = {"PlayStation 4", "XBOX ONE", "Nintendo SWITCH", "PS VITA", "Nintendo 3DS", "PlayStation 3", "XBOX 360", "Nintendo DS", "PSP"};
 
     private String nome;
-    private String genere;
-    private String piattaforma;
+    private String generi;
+    private String piattaforme;
     private String id_gioco;
-    private String description;
-    private int gameImage;
+    private String descrizione;
+    private int immagine;
     //per ora salvo ciò che ci serve per salvare i giochi, successivamente si salveranno i commenti etc
 
 
-    public int getGameImage() {
-        return gameImage;
+    public int getImmagine() {
+        return immagine;
     }
 
-    public void setGameImage(int gameImage) {
-        this.gameImage = gameImage;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setImmagine(int immagine) {
+        this.immagine = immagine;
     }
 
     public String getNome() {
@@ -43,24 +35,28 @@ public class Giochi {
         this.nome = nome;
     }
 
-    public String getGenere() {
-
-        return genere;
+    public String getGeneri() {
+        return generi;
     }
 
-    public void setGenere(String genere) {
-
-        this.genere = genere;
+    public void setGeneri(String generi) {
+        this.generi = generi;
     }
 
-    public String getPiattaforma() {
-
-        return piattaforma;
+    public String getPiattaforme() {
+        return piattaforme;
     }
 
-    public void setPiattaforma(String piattaforma) {
+    public void setPiattaforme(String piattaforme) {
+        this.piattaforme = piattaforme;
+    }
 
-        this.piattaforma = piattaforma;
+    public String getDescrizione() {
+        return descrizione;
+    }
+
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
     }
 
     public String getId_gioco() {
@@ -73,16 +69,11 @@ public class Giochi {
         this.id_gioco = id_gioco;
     }
 
-    public Giochi(String nome, String genere, String piattaforma, String description, int gameImage) {
+    public Giochi(String nome, String generi, String piattaforme, String descrizione, int immagine) {
         this.nome = nome;
-        this.genere = genere;
-        this.piattaforma = piattaforma;
-        this.description = description;
-        this.gameImage = gameImage;
+        this.generi = generi;
+        this.piattaforme = piattaforme;
+        this.descrizione = descrizione;
+        this.immagine = immagine;
     }
-
-
-
-
-
 }
