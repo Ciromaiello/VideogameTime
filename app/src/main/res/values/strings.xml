@@ -3,8 +3,8 @@
     <string name="tab_piattaforme">Piattaforme</string>
     <string name="tab_generi">Generi</string>
     <string name="OK">OK</string>
-    <string name="Generi">Seleziona i generi</string>
-    <string name="Console">Seleziona le piattaforme</string>
+    <string name="Generi">Seleziona i tuoi generi</string>
+    <string name="Console">Seleziona le tue piattaforme</string>
     <string name="Ospite">Accedi come ospite</string>
     <string name="tab_news">News</string>
     <string name="tab_comment">Commenti</string>
@@ -16,12 +16,10 @@
     <string name="hello_news">Hello News</string>
     <string name="hello_comment">Enjoy</string>
     <string name="hello_home">Your Home</string>
-    <string name="giochi">Seleziona i giochi</string>
+    <string name="giochi">Seleziona i giochi consigliati</string>
     <string name="tab_profilo">Profilo</string>
     <string name="menu_news">News</string>
     <string name="menu_account">Account</string>
-
-
     <string-array name="info">
         <item>Profilo</item>
         <item>Info</item>

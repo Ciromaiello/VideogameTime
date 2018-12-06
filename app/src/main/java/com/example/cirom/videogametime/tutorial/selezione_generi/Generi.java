@@ -26,4 +26,5 @@ public class Generi {
 
         isSelected = selected;
     }
+
 }

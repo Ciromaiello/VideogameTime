@@ -45,8 +45,8 @@ public class LoginActivity extends AppCompatActivity {
     private Button button;
     private static final int RC_SIGN_IN = 3456;
     private FirebaseAuth mAuth;
-    SharedPreferences mSettings = getBaseContext().getSharedPreferences("Settings", Context.MODE_PRIVATE);
-    SharedPreferences.Editor editor = mSettings.edit();
+    //SharedPreferences mSettings = getBaseContext().getSharedPreferences("Settings", Context.MODE_PRIVATE);
+    //SharedPreferences.Editor editor = mSettings.edit();
     boolean NuovoAccesso;
 
 
@@ -70,8 +70,8 @@ public class LoginActivity extends AppCompatActivity {
 
         Account.setmGoogleApiClient(mGoogleApiClient);
 
-        editor.putBoolean("NuovoAccesso",false);
-        editor.apply();
+        //editor.putBoolean("NuovoAccesso",false);
+        //editor.apply();
 
         /*istanziamo un nuovo oggetto GoogleSignInOptions con il parametro di default
         DEFAULT_SIGN_IN che permette di ottenere le informazioni di base dell’utente
@@ -113,18 +113,15 @@ public class LoginActivity extends AppCompatActivity {
     }
     //metodo che gestisce l'accesso vero e proprio
     private void signIn() {
-        if (mSettings.getBoolean("NuovoAccesso", false)) {
+        /*if (mSettings.getBoolean("NuovoAccesso", false)) {
             {
                 startActivity(new Intent(this, MainActivity.class));
                 editor.putBoolean("NuovoAccesso", true);
-            }
+            }*/
             Log.d("signIn", "start");
             Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(Account.mGoogleApiClient);
             startActivityForResult(signInIntent, RC_SIGN_IN);
             Log.d("signIn", "finish");
-
-
-        }
     }
 
     //metodo che all'accesso nasconde il bottone e alla disconnessione lo fa apparire

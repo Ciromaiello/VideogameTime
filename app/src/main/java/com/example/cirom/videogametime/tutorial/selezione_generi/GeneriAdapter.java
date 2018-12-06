@@ -18,7 +18,6 @@ public class GeneriAdapter extends RecyclerView.Adapter<GeneriAdapter.ViewHolder
     ArrayList<Generi> generi;
 
     public GeneriAdapter(List<Generi> generi) {
-
         this.generi= new ArrayList<>(generi);
     }
 

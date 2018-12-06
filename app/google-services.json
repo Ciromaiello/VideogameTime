@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "767339064527-k4jpo8bvdd0istg2is3f9n6k0vn6vl66.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cirom.videogametime",
+            "certificate_hash": "57d7058ab23ed344dee0a2135392eb397faf3623"
+          }
+        },
+        {
           "client_id": "767339064527-v764aghon1vokeqiusbfv98o58mqdf8b.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -40,7 +48,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "767339064527-v764aghon1vokeqiusbfv98o58mqdf8b.apps.googleusercontent.com",
+              "client_id": "767339064527-usn84oqnki2f4p0u0haqq4lkcdt1h2au.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

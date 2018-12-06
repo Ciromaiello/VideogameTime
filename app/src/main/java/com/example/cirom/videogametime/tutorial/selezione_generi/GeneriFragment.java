@@ -2,26 +2,33 @@ package com.example.cirom.videogametime.tutorial.selezione_generi;
 
 import android.content.Intent;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
-
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.SelectionGiochiActivity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+
+import static android.support.constraint.Constraints.TAG;
 
 public class GeneriFragment extends Fragment{
 
     ArrayList<Generi> generi;
     private RecyclerView list;
-    private Button btnGetSelected;
+    private FloatingActionButton btnGetSelected;
+    private DatabaseReference mDatabase;
 
     public GeneriFragment(){
     }
@@ -34,7 +41,7 @@ public class GeneriFragment extends Fragment{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        btnGetSelected = (Button) view.findViewById(R.id.btnGetSelected);
+        btnGetSelected = (FloatingActionButton) view.findViewById(R.id.btnGetSelected);
         list = (RecyclerView) view.findViewById(R.id.list);
         list.setLayoutManager(new LinearLayoutManager(getActivity()));
         list.setHasFixedSize(true);
@@ -43,18 +50,26 @@ public class GeneriFragment extends Fragment{
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("generi").child("nomi_generi").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                generi = new ArrayList<>();
+                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    String value = postSnapshot.getValue(String.class);
+                    Generi gen = new Generi();
+                    gen.setTextgeneri(value);
+                    generi.add(gen);
+                }
+                GeneriAdapter adapter = new GeneriAdapter(generi);
+                list.setAdapter(adapter);
+            }
 
-        generi = new ArrayList<>();
-        String parole[] = {"Action", "Avventura", "Free-to-play", "Gestionale", "Hack and slash", "Indie", "MMORPG", "Musicale", "Party game", "Picchiaduro", "Platform", "RPG", "Simulatore", "Sparatutto", "Sportivo", "Strategico", "Visual novel"};
-        int k = parole.length;
-        for (int i = 0; i <= k-1; i++) {
-            Generi gen = new Generi();
-            gen.setTextgeneri(parole[i]);
-            this.generi.add(gen);
-        }
+            @Override
+            public void onCancelled(DatabaseError error) {
 
-        GeneriAdapter adapter = new GeneriAdapter(this.generi);
-        list.setAdapter(adapter);
+            }
+        });
 
         btnGetSelected.setOnClickListener(new View.OnClickListener() {
             @Override

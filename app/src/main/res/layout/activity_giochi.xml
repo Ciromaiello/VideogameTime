@@ -28,7 +28,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Book Title"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -38,8 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="#edecec"
-                android:padding="8dp"
-                android:text="Generi" />
+                android:padding="8dp" />
 
             <TextView
                 android:id="@+id/piattaforme"
@@ -47,15 +45,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="#edecec"
-                android:padding="8dp"
-                android:text="Piattaforme" />
+                android:padding="8dp" />
 
             <TextView
                 android:id="@+id/description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Description"
                 android:textSize="18sp" />
 
 

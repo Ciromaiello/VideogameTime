@@ -39,12 +39,7 @@ public class ProfiloActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profilo);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         navigation = findViewById(R.id.navigation);
-
-
-
-
         getSupportFragmentManager().beginTransaction().replace(R.id.profilo_activity, new ProfiloFragment()).commit();
         navigation.setSelectedItemId(R.id.menu_account);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -54,29 +49,21 @@ public class ProfiloActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.menu_account:
                         selectedFragment = new ProfiloFragment();
-
                         break;
-
                     case R.id.menu_home:
                         selectedFragment = new NewsFragment();
                         break;
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.profilo_activity, selectedFragment).commit();
-
                 return true;
-
-
             }
-
         });
-
         Credenziali();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-
         if(FirebaseAuth.getInstance().getCurrentUser()==null && Accesso==false)
         {
             startActivity(new Intent(this,LoginActivity.class));

@@ -1,5 +1,6 @@
 package com.example.cirom.videogametime.tutorial.selezione_piattaforme;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,9 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.cirom.videogametime.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +21,7 @@ public class PiattaformeAdapter extends RecyclerView.Adapter<PiattaformeAdapter.
 
     ArrayList<Piattaforme> piattaforme;
 
-    public PiattaformeAdapter(List<Piattaforme> piattaforme) {
+    public PiattaformeAdapter(Context context, List<Piattaforme> piattaforme) {
         this.piattaforme= new ArrayList<>(piattaforme);
     }
 
@@ -59,8 +62,8 @@ public class PiattaformeAdapter extends RecyclerView.Adapter<PiattaformeAdapter.
         }
 
         public void bindData(Piattaforme console) {
-            textpiattaforme.setText(console.getTextpiattaforme());
-            imageConsole.setImageResource(console.getImage());
+            textpiattaforme.setText(console.getNome());
+            //Picasso.with(getContext()).load(console.getImage()).into(imageConsole);
         }
     }
 }

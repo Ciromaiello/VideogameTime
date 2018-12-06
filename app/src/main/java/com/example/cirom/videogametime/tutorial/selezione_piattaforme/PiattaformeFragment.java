@@ -1,25 +1,38 @@
 package com.example.cirom.videogametime.tutorial.selezione_piattaforme;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.cirom.videogametime.R;
+import com.example.cirom.videogametime.tutorial.selezione_generi.Generi;
+import com.example.cirom.videogametime.tutorial.selezione_generi.GeneriAdapter;
 import com.example.cirom.videogametime.tutorial.selezione_piattaforme.Piattaforme;
 import com.example.cirom.videogametime.tutorial.selezione_piattaforme.PiattaformeAdapter;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+
+import static android.support.constraint.Constraints.TAG;
 
 public class PiattaformeFragment extends Fragment {
 
     ArrayList<Piattaforme> piattaforme;
     private RecyclerView card;
     boolean Selezionato = false;
+    private DatabaseReference mDatabase;
 
     public PiattaformeFragment() {
         //Costruttore
@@ -73,18 +86,38 @@ public class PiattaformeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         piattaforme = new ArrayList<>();
-        int immagini[] = {R.drawable.ps4, R.drawable.one, R.drawable.ciao, R.drawable.msi, R.drawable.psvita, R.drawable.ds3, R.drawable.wiiu, R.drawable.ps3, R.drawable.xbox360, R.drawable.wii, R.drawable.ds, R.drawable.psp} ;
-        String parole[] = {"PlayStation 4", "XBOX ONE", "Nintendo SWITCH", "PC", "PS VITA", "Nintendo 3DS", "Wii U", "PlayStation 3", "XBOX 360", "Wii", "Nintendo DS", "PSP"};
-        int k = parole.length;
-        for (int i = 0; i <= k-1; i++) {
-            Piattaforme console = new Piattaforme();
-            console.setTextpiattaforme(parole[i]);
-            console.setImage(immagini[i]);
-            this.piattaforme.add(console);
-        }
-        PiattaformeAdapter adapter = new PiattaformeAdapter(this.piattaforme);
-        card.setAdapter(adapter);
+        mDatabase.child("piattaforme").child("nomi_piattaforme").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                Piattaforme console = dataSnapshot.getValue(Piattaforme.class);
+                piattaforme.add(console);
+                PiattaformeAdapter adapter = new PiattaformeAdapter(getContext(), piattaforme);
+                card.setAdapter(adapter);
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public boolean canSwipe() {
@@ -96,5 +129,4 @@ public class PiattaformeFragment extends Fragment {
         }
         return false;
     }
-
 }
