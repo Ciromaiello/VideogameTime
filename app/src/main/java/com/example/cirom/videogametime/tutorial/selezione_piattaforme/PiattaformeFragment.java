@@ -41,38 +41,6 @@ public class PiattaformeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_piattaforme, container, false);
-        /**final MainActivity mainActivity = (MainActivity) getActivity();
-
-        piattaformeView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_DOWN) {
-                    View Pager = mainActivity.findViewById(R.id.pager);
-                    CustomViewPager viewPager = (CustomViewPager) Pager.findViewById(R.id.pager);
-                    if (!Selezionato) {
-                        viewPager.setEnabled(false);
-                    } else {
-                        viewPager.setEnabled(true);
-                    }
-                    return false;
-                }
-                int x = (int) event.getX();
-                int y = (int) event.getY();
-
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        Log.d("TAG", "touched down");
-                        break;
-                    case MotionEvent.ACTION_MOVE:
-                        Log.d("TAG", "moving: (" + x + ", " + y + ")");
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        Log.d("TAG", "touched up");
-                        break;
-                }
-                return true;
-            }
-        });*/
     }
 
     @Override
@@ -86,7 +54,7 @@ public class PiattaformeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         piattaforme = new ArrayList<>();
         mDatabase.child("piattaforme").addChildEventListener(new ChildEventListener() {
