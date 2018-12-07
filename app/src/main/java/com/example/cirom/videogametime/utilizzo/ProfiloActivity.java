@@ -67,7 +67,7 @@ public class ProfiloActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if(FirebaseAuth.getInstance().getCurrentUser()==null && Accesso==false)
+        if(FirebaseAuth.getInstance().getCurrentUser()==null && !Accesso)
         {
             startActivity(new Intent(this,LoginActivity.class));
         }

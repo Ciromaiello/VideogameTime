@@ -2,6 +2,7 @@ package com.example.cirom.videogametime.tutorial.selezione_piattaforme;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.tutorial.selezione_generi.Generi;
 import com.example.cirom.videogametime.tutorial.selezione_generi.GeneriAdapter;
+import com.example.cirom.videogametime.tutorial.selezione_generi.GeneriFragment;
 import com.example.cirom.videogametime.tutorial.selezione_piattaforme.Piattaforme;
 import com.example.cirom.videogametime.tutorial.selezione_piattaforme.PiattaformeAdapter;
 import com.google.firebase.database.ChildEventListener;
@@ -30,8 +32,8 @@ import static android.support.constraint.Constraints.TAG;
 public class PiattaformeFragment extends Fragment {
 
     ArrayList<Piattaforme> piattaforme;
+    private FloatingActionButton btnForGeneri;
     private RecyclerView card;
-    boolean Selezionato = false;
     private DatabaseReference mDatabase;
 
     public PiattaformeFragment() {
@@ -46,6 +48,7 @@ public class PiattaformeFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        btnForGeneri = (FloatingActionButton) view.findViewById(R.id.btnForGeneri);
         card = (RecyclerView) view.findViewById(R.id.card);
         card.setLayoutManager(new LinearLayoutManager(getActivity()));
         card.setHasFixedSize(true);
@@ -54,7 +57,6 @@ public class PiattaformeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         piattaforme = new ArrayList<>();
         mDatabase.child("piattaforme").addChildEventListener(new ChildEventListener() {
@@ -86,15 +88,20 @@ public class PiattaformeFragment extends Fragment {
 
             }
         });
-    }
 
-    public boolean canSwipe() {
-        for(Piattaforme console : piattaforme)
-        {
-            if(console.isSelected1()) {
-                return true;
+        btnForGeneri.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StringBuilder stringBuilder = new StringBuilder();
+                for (Piattaforme console : piattaforme) {
+                    if (console.isSelected1()) {
+                        if (stringBuilder.length() > 0)
+                            stringBuilder.append(", ");
+                        stringBuilder.append(console.getNome());
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.layout_main, new GeneriFragment()).commit();
+                    }
+                }
             }
-        }
-        return false;
+        });
     }
 }

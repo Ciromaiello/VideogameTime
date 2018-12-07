@@ -3,8 +3,8 @@
     <string name="tab_piattaforme">Piattaforme</string>
     <string name="tab_generi">Generi</string>
     <string name="OK">OK</string>
-    <string name="Generi">Seleziona i tuoi generi</string>
-    <string name="Console">Seleziona le tue piattaforme</string>
+    <string name="Generi">Seleziona i generi</string>
+    <string name="Console">Seleziona le piattaforme</string>
     <string name="Ospite">Accedi come ospite</string>
     <string name="tab_news">News</string>
     <string name="tab_comment">Commenti</string>

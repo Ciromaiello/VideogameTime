@@ -16,6 +16,7 @@ import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.SelectionGiochiActivity;
 import com.example.cirom.videogametime.tutorial.selezione_piattaforme.Piattaforme;
 import com.example.cirom.videogametime.tutorial.selezione_piattaforme.PiattaformeAdapter;
+import com.example.cirom.videogametime.tutorial.selezione_piattaforme.PiattaformeFragment;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,6 +33,7 @@ public class GeneriFragment extends Fragment{
     ArrayList<Generi> generi;
     private RecyclerView list;
     private FloatingActionButton btnGetSelected;
+    private FloatingActionButton btnForPiattaforme;
     private DatabaseReference mDatabase;
 
     public GeneriFragment(){
@@ -45,6 +47,7 @@ public class GeneriFragment extends Fragment{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        btnForPiattaforme = (FloatingActionButton) view.findViewById(R.id.btnForPiattaforme);
         btnGetSelected = (FloatingActionButton) view.findViewById(R.id.btnGetSelected);
         list = (RecyclerView) view.findViewById(R.id.list);
         list.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -106,6 +109,12 @@ public class GeneriFragment extends Fragment{
                   Toast.makeText(getActivity(), stringBuilder.toString(), Toast.LENGTH_LONG).show();
                   Se vogliamo un pop-up di quelli selezionati. Errore se non sono selezionati.
                  */
+            }
+        });
+        btnForPiattaforme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.layout_main, new PiattaformeFragment()).commit();
             }
         });
     }

@@ -16,18 +16,16 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="32dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="11dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_toStartOf="@+id/btnGetSelected"
+            android:layout_toEndOf="@+id/btnForPiattaforme"
             android:text="@string/Generi"
-            android:textAlignment="viewStart"
+            android:textAlignment="center"
             android:textColor="@android:color/background_dark"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -45,6 +43,21 @@
             app:backgroundTint="@color/Trasparente"
             app:rippleColor="@color/Trasparente"
             app:srcCompat="@drawable/checkedf" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btnForPiattaforme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp"
+            android:clickable="true"
+            android:foregroundTint="@color/Trasparente"
+            android:tint="@color/Trasparente"
+            app:backgroundTint="@color/Trasparente"
+            app:rippleColor="@color/Trasparente"
+            app:srcCompat="@drawable/back_arrow"
+            tools:foregroundTint="@color/Trasparente" />
 
     </RelativeLayout>
 
