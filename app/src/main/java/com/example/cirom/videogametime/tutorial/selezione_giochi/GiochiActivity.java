@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.cirom.videogametime.R;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class GiochiActivity extends AppCompatActivity {
 
@@ -26,16 +29,30 @@ public class GiochiActivity extends AppCompatActivity {
         // Recieve data
         Intent intent = getIntent();
         String Title = intent.getExtras().getString("Title");
-        String Generi = intent.getExtras().getString("Generi");
-        String Piattaforme = intent.getExtras().getString("Piattaforme");
+        ArrayList<String> Generi = intent.getExtras().getStringArrayList("Generi");
+        ArrayList<String> Piattaforme = intent.getExtras().getStringArrayList("Piattaforme");
         String Description = intent.getExtras().getString("Description");
-        int image = intent.getExtras().getInt("Image") ;
+        String image = intent.getExtras().getString("Image") ;
 
         // Setting values
         nome.setText(Title);
-        generi.setText(Generi);
-        piattaforme.setText(Piattaforme);
+        String output1 = "";
+        for (int i = 0; i < Generi.size(); i++) {
+            if(i>0) {
+                output1 += ", ";
+            }
+            output1 += Generi.get(i);
+        }
+        generi.setText(output1);
+        String output2 = "";
+        for (int j = 0; j < Piattaforme.size(); j++) {
+            if(j>0) {
+                output2 += ", ";
+            }
+            output2 += Piattaforme.get(j);
+        }
+        piattaforme.setText(output2);
         descrizione.setText(Description);
-        img.setImageResource(image);
+        Picasso.with(getApplicationContext()).load(image).into(img);
     }
 }

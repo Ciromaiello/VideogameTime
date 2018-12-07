@@ -11,45 +11,38 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.cirom.videogametime.R;
+import com.squareup.picasso.Picasso;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
-    private Context mContext ;
-    private List<Giochi> mData ;
+    private ArrayList<Giochi> giochi ;
+    private Context mContext;
 
-
-    public RecyclerViewAdapter(Context mContext, List<Giochi> mData) {
+    public RecyclerViewAdapter(Context mContext, ArrayList<Giochi> giochi) {
+        this.giochi = giochi;
         this.mContext = mContext;
-        this.mData = mData;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view ;
-        LayoutInflater mInflater = LayoutInflater.from(mContext);
-        view = mInflater.inflate(R.layout.item_game, parent,false);
-        return new MyViewHolder(view);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_game, parent, false);
+        return new MyViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
-
-        holder.game_title.setText(mData.get(position).getNome());
-        holder.game_img.setImageResource(mData.get(position).getImmagine());
+        holder.bindData(giochi.get(position));
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext,GiochiActivity.class);
-
-                // passing data to the game activity
-                intent.putExtra("Title",mData.get(position).getNome());
-                intent.putExtra("Description",mData.get(position).getDescrizione());
-                intent.putExtra("Generi",mData.get(position).getPiattaforme());
-                intent.putExtra("Piattaforme",mData.get(position).getGeneri());
-                intent.putExtra("Image",mData.get(position).getImmagine());
-                // start the activity
+                intent.putExtra("Title",giochi.get(position).getNome());
+                intent.putExtra("Description",giochi.get(position).getDescrizione());
+                intent.putExtra("Generi",giochi.get(position).getGeneri());
+                intent.putExtra("Piattaforme",giochi.get(position).getPiattaforme());
+                intent.putExtra("Image",giochi.get(position).getImmagine());
                 mContext.startActivity(intent);
             }
         });
@@ -57,21 +50,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public int getItemCount() {
-        return mData.size();
+        return giochi.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-
         TextView game_title;
         ImageView game_img;
         CardView cardView ;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-
             game_title = (TextView) itemView.findViewById(R.id.game_title) ;
             game_img = (ImageView) itemView.findViewById(R.id.game_img);
             cardView = (CardView) itemView.findViewById(R.id.cardview_id);
+        }
+
+        public void bindData(Giochi game) {
+            game_title.setText(game.getNome());
+            Picasso.with(itemView.getContext()).load(game.getImmagine()).into(game_img);
         }
     }
 }

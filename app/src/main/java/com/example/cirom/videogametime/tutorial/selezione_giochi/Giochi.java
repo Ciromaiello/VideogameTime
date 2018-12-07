@@ -1,6 +1,8 @@
 package com.example.cirom.videogametime.tutorial.selezione_giochi;
 
 
+import java.util.ArrayList;
+
 public class Giochi {
 
 
@@ -9,19 +11,19 @@ public class Giochi {
     //piattaforme = {"PlayStation 4", "XBOX ONE", "Nintendo SWITCH", "PS VITA", "Nintendo 3DS", "PlayStation 3", "XBOX 360", "Nintendo DS", "PSP"};
 
     private String nome;
-    private String generi;
-    private String piattaforme;
+    private ArrayList<String> generi;
+    private ArrayList<String> piattaforme;
     private String id_gioco;
     private String descrizione;
-    private int immagine;
+    private String immagine;
     //per ora salvo ciò che ci serve per salvare i giochi, successivamente si salveranno i commenti etc
 
 
-    public int getImmagine() {
+    public String getImmagine() {
         return immagine;
     }
 
-    public void setImmagine(int immagine) {
+    public void setImmagine(String immagine) {
         this.immagine = immagine;
     }
 
@@ -35,19 +37,19 @@ public class Giochi {
         this.nome = nome;
     }
 
-    public String getGeneri() {
+    public ArrayList<String> getGeneri() {
         return generi;
     }
 
-    public void setGeneri(String generi) {
+    public void setGeneri(ArrayList<String> generi) {
         this.generi = generi;
     }
 
-    public String getPiattaforme() {
+    public ArrayList<String> getPiattaforme() {
         return piattaforme;
     }
 
-    public void setPiattaforme(String piattaforme) {
+    public void setPiattaforme(ArrayList<String> piattaforme) {
         this.piattaforme = piattaforme;
     }
 
@@ -69,11 +71,11 @@ public class Giochi {
         this.id_gioco = id_gioco;
     }
 
-    public Giochi(String nome, String generi, String piattaforme, String descrizione, int immagine) {
+    /**public Giochi(String nome, String generi, String piattaforme, String descrizione, int immagine) {
         this.nome = nome;
         this.generi = generi;
         this.piattaforme = piattaforme;
         this.descrizione = descrizione;
         this.immagine = immagine;
-    }
+    }*/
 }
