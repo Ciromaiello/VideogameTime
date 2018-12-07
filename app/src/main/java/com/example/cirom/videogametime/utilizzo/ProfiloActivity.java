@@ -1,5 +1,6 @@
 package com.example.cirom.videogametime.utilizzo;
 
+import android.content.Context;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.content.Intent;
@@ -25,6 +26,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import static com.example.cirom.videogametime.utilizzo.Account.Accesso;
 import static com.example.cirom.videogametime.utilizzo.Account.acct;
+import static com.example.cirom.videogametime.utilizzo.Account.mSettings;
 
 
 public class ProfiloActivity extends AppCompatActivity {
@@ -59,6 +61,7 @@ public class ProfiloActivity extends AppCompatActivity {
             }
         });
         Credenziali();
+        mSettings = getBaseContext().getSharedPreferences("Settings", Context.MODE_PRIVATE);
     }
 
     @Override

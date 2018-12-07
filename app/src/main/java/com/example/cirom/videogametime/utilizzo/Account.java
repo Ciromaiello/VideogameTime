@@ -18,6 +18,7 @@ public class Account {
     public static Uri personPhoto;
     public static GoogleSignInAccount acct;
     public static boolean Accesso=false;
+    public static SharedPreferences mSettings;
 
 
 
