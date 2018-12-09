@@ -44,6 +44,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import static com.example.cirom.videogametime.utilizzo.Account.Accesso;
+import static com.example.cirom.videogametime.utilizzo.Account.check;
+import static com.example.cirom.videogametime.utilizzo.Account.isAccesso;
 import static com.example.cirom.videogametime.utilizzo.Account.mGoogleApiClient;
 import static com.example.cirom.videogametime.utilizzo.Account.mSettings;
 
@@ -90,9 +92,11 @@ public class LoginActivity extends AppCompatActivity {
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Accesso = true;
+                check = true;
             }
+
         });
+
 
 
 
@@ -161,7 +165,7 @@ public class LoginActivity extends AppCompatActivity {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account);
-                FirstLogin();
+
 
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
@@ -190,6 +194,8 @@ if (acct != null) {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         //updateUI(currentUser);
+        if(isAccesso()){signOut();}
+        check=false;
 
     }
 
@@ -206,6 +212,7 @@ if (acct != null) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("signIn", "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            FirstLogin();
                             // updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
@@ -220,7 +227,7 @@ if (acct != null) {
     }
 
 
-      /*  private void signOut(){
+       private void signOut(){
             mGoogleSignInClient.signOut()
                     .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                         @Override
@@ -229,18 +236,19 @@ if (acct != null) {
                         }
                     });
 
-    } era la parte di codice AGGIUNTA*/
+
+    }
 
     public void FirstLogin()
     {//FTI se è true significa che è il primo login, false significa che non è il primo login
-
-        if(mSettings.getBoolean("FTI",true))
+        if(mSettings.getBoolean(mAuth.getUid(),true))
         {
-            mSettings.edit().putBoolean("FTI",false).apply();
+            mSettings.edit().putBoolean(mAuth.getUid(),false).apply();
             startActivity(new Intent(this,MainActivity.class));
         }
         else
         {
+
 
             startActivity(new Intent(this,ProfiloActivity.class));
         }

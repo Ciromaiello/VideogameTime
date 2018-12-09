@@ -17,11 +17,19 @@ public class Account {
     public static String personId;
     public static Uri personPhoto;
     public static GoogleSignInAccount acct;
-    public static boolean Accesso;
+    public static boolean Accesso=false;
     public static SharedPreferences mSettings;
+    public static boolean check=false;
 
 
 
+    public static boolean isCheck() {
+        return check;
+    }
+
+    public static void setCheck(boolean check) {
+        Account.check = check;
+    }
 
     public static String getPersonName() {
         return personName;
