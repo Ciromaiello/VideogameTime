@@ -18,10 +18,13 @@ import android.widget.ImageView;
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.login.LoginActivity;
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthRegistrar;
+import com.google.firebase.auth.FirebaseUser;
 
 import static com.example.cirom.videogametime.utilizzo.Account.Accesso;
 import static com.example.cirom.videogametime.utilizzo.Account.acct;
@@ -89,8 +92,8 @@ public class GestioneProfiloFragment extends Fragment {
 
     private void signOut()
     {
+
         FirebaseAuth.getInstance().signOut();
-        Accesso=false;
         Intent intent = new Intent(getContext(),LoginActivity.class);
         startActivity(intent);
     }

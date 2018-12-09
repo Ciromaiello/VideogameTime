@@ -20,6 +20,7 @@
     <string name="tab_profilo">Profilo</string>
     <string name="menu_news">News</string>
     <string name="menu_account">Account</string>
+    <string name="Remember_me">Remember me</string>
     <string-array name="info">
         <item>Profilo</item>
         <item>Info</item>
