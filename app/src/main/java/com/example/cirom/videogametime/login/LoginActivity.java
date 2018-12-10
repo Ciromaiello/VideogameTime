@@ -60,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
     boolean NuovoAccesso;
     public GoogleSignInClient mGoogleSignInClient;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
         btnOspite = findViewById(R.id.ospite_btn);
         button = findViewById(R.id.button);
         checkBox = findViewById(R.id.checkBox_login);
+
         //tutto il codice seguente serve per l'accesso con google
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -93,6 +95,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 check = true;
+                mSettings.edit().putBoolean("Checked",!mSettings.getBoolean("Checked",false)).apply();
             }
 
         });
@@ -195,7 +198,18 @@ if (acct != null) {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         //updateUI(currentUser);
         if(isAccesso()){signOut();}
-        check=false;
+        else{check=false;}
+
+        if(!mSettings.getBoolean("Checked",false))
+        {
+            checkBox.setChecked(true);
+
+        }
+        else
+        {
+            checkBox.setChecked(false);
+            check=false;
+        }
 
     }
 
