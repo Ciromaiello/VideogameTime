@@ -25,10 +25,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthRegistrar;
 import com.google.firebase.auth.FirebaseUser;
-
+import static com.example.cirom.videogametime.utilizzo.Account.mSettings;
 import static com.example.cirom.videogametime.utilizzo.Account.Accesso;
 import static com.example.cirom.videogametime.utilizzo.Account.acct;
-import static com.example.cirom.videogametime.utilizzo.Account.check;
 import static com.example.cirom.videogametime.utilizzo.Account.mGoogleApiClient;
 
 public class GestioneProfiloFragment extends Fragment {
@@ -94,11 +93,12 @@ public class GestioneProfiloFragment extends Fragment {
     private void signOut()
     {
 
-        if(check){Accesso=false;}
+
+        if(mSettings.getBoolean("Checked",true)){Accesso=false;}
         else{Accesso=true;
             FirebaseAuth.getInstance().signOut();}
-        Intent intent = new Intent(getContext(),LoginActivity.class);
-        startActivity(intent);
+            Intent intent = new Intent(getContext(),LoginActivity.class);
+            startActivity(intent);
 
     }
 

@@ -44,7 +44,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import static com.example.cirom.videogametime.utilizzo.Account.Accesso;
-import static com.example.cirom.videogametime.utilizzo.Account.check;
 import static com.example.cirom.videogametime.utilizzo.Account.isAccesso;
 import static com.example.cirom.videogametime.utilizzo.Account.mGoogleApiClient;
 import static com.example.cirom.videogametime.utilizzo.Account.mSettings;
@@ -90,12 +89,13 @@ public class LoginActivity extends AppCompatActivity {
         e passiamo questo oggetto al metodo addAPI() per la creazione di un nuovo oggetto
         GoogleApiClient che permetterà di accedere.
         */
+        mSettings.edit().putBoolean("Checked",false);
 
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                check = true;
-                mSettings.edit().putBoolean("Checked",!mSettings.getBoolean("Checked",false)).apply();
+                mSettings.edit().putBoolean("Checked",!mSettings.getBoolean("Checked",true)).apply();
+
             }
 
         });
@@ -198,17 +198,12 @@ if (acct != null) {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         //updateUI(currentUser);
         if(isAccesso()){signOut();}
-        else{check=false;}
-
-        if(!mSettings.getBoolean("Checked",false))
-        {
+        if(mSettings.getBoolean("Checked",true)){
             checkBox.setChecked(true);
-
         }
         else
         {
             checkBox.setChecked(false);
-            check=false;
         }
 
     }
