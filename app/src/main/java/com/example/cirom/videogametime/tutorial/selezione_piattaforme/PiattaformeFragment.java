@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.tutorial.selezione_generi.Generi;
@@ -93,14 +94,18 @@ public class PiattaformeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 StringBuilder stringBuilder = new StringBuilder();
+                boolean checkato = false;
                 for (Piattaforme console : piattaforme) {
                     if (console.isSelected1()) {
+                        checkato = true;
                         if (stringBuilder.length() > 0)
                             stringBuilder.append(", ");
                         stringBuilder.append(console.getNome());
                         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.layout_main, new GeneriFragment()).commit();
                     }
                 }
+                if (!checkato)
+                    Toast.makeText(getActivity(),"Seleziona almeno una piattaforma", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -18,13 +18,11 @@ public class ImpostazioniActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_impostazioni);
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null){
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
@@ -33,16 +31,12 @@ public class ImpostazioniActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listView);
         namesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, impUtility.getInfo());
         listView.setAdapter(namesAdapter);
-
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-
-       if(item.getItemId() == android.R.id.home)
-           {
-           finish();
-           }
+        if(item.getItemId() == android.R.id.home) {
+            finish();
+        }
         return super.onOptionsItemSelected(item);
-      }
-
+    }
 }

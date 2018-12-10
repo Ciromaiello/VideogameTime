@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.SelectionGiochiActivity;
 import com.example.cirom.videogametime.tutorial.selezione_piattaforme.Piattaforme;
@@ -93,22 +95,19 @@ public class GeneriFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 StringBuilder stringBuilder = new StringBuilder();
+                boolean checkato = false;
                 for (Generi gen : generi) {
                     if (gen.isSelected()) {
+                        checkato = true;
                         if (stringBuilder.length() > 0)
                             stringBuilder.append(", ");
                         stringBuilder.append(gen.getGenere());
                         Intent intent = new Intent(getContext(),SelectionGiochiActivity.class);
                         startActivity(intent);
                     }
-                    /**else {
-                        Toast.makeText(getActivity(),"Seleziona almeno un genere", Toast.LENGTH_SHORT).show();
-                    }*/
                 }
-                /**
-                  Toast.makeText(getActivity(), stringBuilder.toString(), Toast.LENGTH_LONG).show();
-                  Se vogliamo un pop-up di quelli selezionati. Errore se non sono selezionati.
-                 */
+                if (!checkato)
+                    Toast.makeText(getActivity(),"Seleziona almeno un genere", Toast.LENGTH_SHORT).show();
             }
         });
         btnForPiattaforme.setOnClickListener(new View.OnClickListener() {
