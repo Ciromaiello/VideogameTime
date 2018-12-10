@@ -25,7 +25,7 @@ public class ProfiloFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_profilo, container, false);
         imgProfilo = view.findViewById(R.id.profiloimg);
-        Picasso.with(getContext()).load(Account.personPhoto).into(imgProfilo);
+        Picasso.with(getContext()).load(Account.personPhoto).transform(new CircleTransform(35,10)).into(imgProfilo);
         TabLayout  tabLayout = view.findViewById(R.id.tab_layout);
         final ViewPager viewPager = view.findViewById(R.id.pager);
         final ProfiloPagerAdapter vpagerAdapter = new ProfiloPagerAdapter(getChildFragmentManager());
