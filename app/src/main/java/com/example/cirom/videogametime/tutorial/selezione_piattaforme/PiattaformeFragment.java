@@ -19,6 +19,7 @@ import com.example.cirom.videogametime.tutorial.selezione_generi.GeneriAdapter;
 import com.example.cirom.videogametime.tutorial.selezione_generi.GeneriFragment;
 import com.example.cirom.videogametime.tutorial.selezione_piattaforme.Piattaforme;
 import com.example.cirom.videogametime.tutorial.selezione_piattaforme.PiattaformeAdapter;
+import com.example.cirom.videogametime.utilizzo.Account;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,6 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import static android.support.constraint.Constraints.TAG;
+import static com.example.cirom.videogametime.utilizzo.Account.consoleQuery;
 
 public class PiattaformeFragment extends Fragment {
 
@@ -60,7 +62,7 @@ public class PiattaformeFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         piattaforme = new ArrayList<>();
-        mDatabase.child("piattaforme").addChildEventListener(new ChildEventListener() {
+        mDatabase.child("piattaforme").orderByChild("nome").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Piattaforme console = dataSnapshot.getValue(Piattaforme.class);
@@ -93,14 +95,12 @@ public class PiattaformeFragment extends Fragment {
         btnForGeneri.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                StringBuilder stringBuilder = new StringBuilder();
                 boolean checkato = false;
+                consoleQuery = new ArrayList<>();
                 for (Piattaforme console : piattaforme) {
                     if (console.isSelected1()) {
                         checkato = true;
-                        if (stringBuilder.length() > 0)
-                            stringBuilder.append(", ");
-                        stringBuilder.append(console.getNome());
+                        consoleQuery.add(console.getNome());
                         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.layout_main, new GeneriFragment()).commit();
                     }
                 }

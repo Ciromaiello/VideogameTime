@@ -7,6 +7,8 @@ import android.net.Uri;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.util.ArrayList;
+
 public class Account {
 
     public static GoogleApiClient mGoogleApiClient;
@@ -17,10 +19,17 @@ public class Account {
     public static String personId;
     public static Uri personPhoto;
     public static GoogleSignInAccount acct;
+    public static ArrayList<String> consoleQuery;
     public static boolean Accesso=false;
     public static SharedPreferences mSettings;
 
+    public static ArrayList<String> getConsoleQuery() {
+        return consoleQuery;
+    }
 
+    public static void setConsoleQuery(ArrayList<String> consoleQuery) {
+        Account.consoleQuery = consoleQuery;
+    }
 
     public static String getPersonName() {
         return personName;

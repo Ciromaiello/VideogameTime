@@ -27,13 +27,12 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/tab_layout" />
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tab_layout"
@@ -50,16 +49,14 @@
         android:id="@+id/profiloimg"
         android:layout_width="105dp"
         android:layout_height="105dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="55dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="133dp"
         android:background="@color/Trasparente"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toTopOf="@+id/pager"
-        app:layout_constraintEnd_toEndOf="@+id/toolbar"
-        app:layout_constraintHorizontal_bias="0.515"
-        app:layout_constraintStart_toStartOf="@+id/toolbar"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.338" />
+        app:layout_constraintBottom_toTopOf="@+id/tab_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
