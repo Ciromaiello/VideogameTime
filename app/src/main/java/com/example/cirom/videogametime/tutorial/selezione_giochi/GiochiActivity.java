@@ -2,7 +2,10 @@ package com.example.cirom.videogametime.tutorial.selezione_giochi;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.cirom.videogametime.R;
@@ -12,8 +15,9 @@ import java.util.ArrayList;
 
 public class GiochiActivity extends AppCompatActivity {
 
-    private TextView nome,descrizione,generi,piattaforme;
+    private TextView nome;
     private ImageView img;
+    static String Description, output1, output2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,9 +25,6 @@ public class GiochiActivity extends AppCompatActivity {
         setContentView(R.layout.activity_giochi);
 
         nome = (TextView) findViewById(R.id.title);
-        descrizione = (TextView) findViewById(R.id.description);
-        generi = (TextView) findViewById(R.id.generi);
-        piattaforme = (TextView) findViewById(R.id.piattaforme);
         img = (ImageView) findViewById(R.id.gameimg);
 
         // Recieve data
@@ -31,28 +32,71 @@ public class GiochiActivity extends AppCompatActivity {
         String Title = intent.getExtras().getString("Title");
         ArrayList<String> Generi = intent.getExtras().getStringArrayList("Generi");
         ArrayList<String> Piattaforme = intent.getExtras().getStringArrayList("Piattaforme");
-        String Description = intent.getExtras().getString("Description");
+        Description = intent.getExtras().getString("Description");
         String image = intent.getExtras().getString("Image") ;
 
         // Setting values
         nome.setText(Title);
-        String output1 = "";
+        output1 = "";
         for (int i = 0; i < Generi.size(); i++) {
             if(i>0) {
                 output1 += ", ";
             }
             output1 += Generi.get(i);
         }
-        generi.setText(output1);
-        String output2 = "";
+        Log.e("ciaogioco", "Il genere è " + output1);
+        output2 = "";
         for (int j = 0; j < Piattaforme.size(); j++) {
             if(j>0) {
                 output2 += ", ";
             }
             output2 += Piattaforme.get(j);
         }
-        piattaforme.setText(output2);
-        descrizione.setText(Description);
         Picasso.with(getApplicationContext()).load(image).into(img);
+        //Bundle per passare i dati a InfoFragment
+        /**Bundle bundle = new Bundle();
+        bundle.putString("descrizione", Description);
+        bundle.putString("piattaforme", output2);
+        bundle.putString("generi", output1);
+        InfoFragment infoFragment = new InfoFragment();
+        infoFragment.setArguments(bundle);*/
+        impostaPager();
+    }
+
+    private void impostaPager() {
+
+        // Riferimento al pager
+        final ViewPager viewPager = findViewById(R.id.pager);
+
+        // Creo l'adapter
+        final GiochiPagerAdapter pagerAdapter = new GiochiPagerAdapter(getSupportFragmentManager());
+
+        // Imposto l'adapter per il pager
+        viewPager.setAdapter(pagerAdapter);
+
+        // Creazione dei tab ed aggiunta alla toolbar
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
+        for (int i = 0; i < pagerAdapter.getCount(); i++)
+            tabLayout.addTab(tabLayout.newTab().setText(pagerAdapter.getItemTabNameResourceId(i)));
+
+        // Listner delle selezioni dei tab
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
     }
 }

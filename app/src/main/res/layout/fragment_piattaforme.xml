@@ -22,7 +22,7 @@
             android:layout_toStartOf="@+id/btnForGeneri"
             android:text="@string/Console"
             android:textAlignment="center"
-            android:textColor="@android:color/background_dark"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
             android:textSize="20sp"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="16dp"
@@ -38,7 +38,7 @@
             android:clickable="true"
             app:backgroundTint="@color/Trasparente"
             app:rippleColor="@color/Trasparente"
-            app:srcCompat="@drawable/checkedf" />
+            app:srcCompat="@drawable/checked_bianco" />
 
     </RelativeLayout>
 
