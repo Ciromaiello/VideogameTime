@@ -16,13 +16,27 @@ import android.view.Menu;
 import android.view.MenuItem;
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.login.LoginActivity;
+import com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi;
+import com.example.cirom.videogametime.tutorial.selezione_giochi.Gioco;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import static com.example.cirom.videogametime.utilizzo.Account.Accesso;
 import static com.example.cirom.videogametime.utilizzo.Account.acct;
@@ -34,6 +48,10 @@ public class ProfiloActivity extends AppCompatActivity {
     private final String TAG = "DEMO_MISC";
     private BottomNavigationView navigation;
     private FirebaseAuth firebaseAuth;
+    private FirebaseFirestore db;
+    private CollectionReference giochiref;
+    private HashMap<String,Object> giochi;
+    ArrayList<String> gg;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,6 +78,66 @@ public class ProfiloActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        db=FirebaseFirestore.getInstance();     //prende il database firestore
+        giochiref = db.collection("Giochi");        //si sta riferendo alla collezione Giochi, se qualcosa vedi sul sito com'è strutturato
+
+        /*ArrayList<String> ge =new ArrayList<>();
+        ge.add("Gestionale");
+        ge.add("Sportivo");
+
+        ArrayList<String> pi =new ArrayList<>();
+        pi.add("PS4");
+        pi.add("XBOX ONE");*/
+
+        gg =new ArrayList<>();
+
+        // aggiungiGioco("football manager 2019", ge, pi); metodo che mi aggiunge un gioco al database
+
+
+        //tutto il codice seguente è la query
+        giochiref.whereArrayContains("piattaforme","PS4")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                        int i=0;
+
+                        for(QueryDocumentSnapshot documentSnapshot: queryDocumentSnapshots)
+                        {
+                            Gioco g= documentSnapshot.toObject(Gioco.class);
+                            String fifa = g.getNome();
+                            gg.add(i,fifa);
+                            i++;
+
+                        }
+
+                        for(i=0 ;i<gg.size();i++)
+                        {
+                            Log.e("TAG","gioco: "+ gg.get(i)); //così ho provato che li prende uno alla volta
+                        }
+                    }
+                });
+
+
+
+        /*db.collection("Giochi").document("1")
+                .set(giochi)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.e("TAG","TUTTO OK");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e("TAG",e.getMessage());
+                    }
+                });*/
+
+
         Credenziali();
         mSettings = getBaseContext().getSharedPreferences("Settings", Context.MODE_PRIVATE);
     }
@@ -86,5 +164,11 @@ public class ProfiloActivity extends AppCompatActivity {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
+    }
+
+    private void aggiungiGioco(String nome,ArrayList<String> generi, ArrayList<String> piattaforme)
+    {
+        Gioco g=new Gioco(nome,generi,piattaforme);
+        giochiref.add(g);
     }
 }

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.cirom.videogametime.R;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class GiochiActivity extends AppCompatActivity {
     private ImageView img;
     static String Description, output1, output2;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +28,8 @@ public class GiochiActivity extends AppCompatActivity {
 
         nome = (TextView) findViewById(R.id.title);
         img = (ImageView) findViewById(R.id.gameimg);
+
+
 
         // Recieve data
         Intent intent = getIntent();
