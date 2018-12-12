@@ -41,6 +41,7 @@ public class GestioneProfiloFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setHasOptionsMenu(true);
 
     }
@@ -80,6 +81,7 @@ public class GestioneProfiloFragment extends Fragment {
                 // L'utente ha scelto "logout"
                 Log.v(TAG, "Menu-> Logout");
                 signOut();
+
                 return true;
 
             default:

@@ -197,7 +197,9 @@ if (acct != null) {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         //updateUI(currentUser);
+
         if(isAccesso()){signOut();}
+        mSettings.edit().putBoolean("cont",true).apply();
         if(mSettings.getBoolean("Checked",true)){
             checkBox.setChecked(true);
         }
@@ -205,7 +207,6 @@ if (acct != null) {
         {
             checkBox.setChecked(false);
         }
-
     }
 
 
@@ -250,15 +251,17 @@ if (acct != null) {
 
     public void FirstLogin()
     {//FTI se è true significa che è il primo login, false significa che non è il primo login
+
         if(mSettings.getBoolean(mAuth.getUid(),true))
         {
             mSettings.edit().putBoolean(mAuth.getUid(),false).apply();
+            mSettings.edit().putBoolean("cont",false).apply();
             startActivity(new Intent(this,MainActivity.class));
         }
         else
         {
 
-
+            mSettings.edit().putBoolean("cont",false).apply();
             startActivity(new Intent(this,ProfiloActivity.class));
         }
     }

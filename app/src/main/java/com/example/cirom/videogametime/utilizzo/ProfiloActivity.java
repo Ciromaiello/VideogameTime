@@ -76,6 +76,7 @@ public class ProfiloActivity extends AppCompatActivity {
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.profilo_activity, selectedFragment).commit();
                 return true;
+
             }
         });
 
@@ -140,15 +141,23 @@ public class ProfiloActivity extends AppCompatActivity {
 
         Credenziali();
         mSettings = getBaseContext().getSharedPreferences("Settings", Context.MODE_PRIVATE);
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        if(FirebaseAuth.getInstance().getCurrentUser()==null && !Accesso)
+        if(FirebaseAuth.getInstance().getCurrentUser()==null)
         {
+            mSettings.edit().putBoolean("cont",false).apply();
             startActivity(new Intent(this,LoginActivity.class));
         }
+    else if(FirebaseAuth.getInstance().getCurrentUser() != null && mSettings.getBoolean("cont",true)){
+            startActivity(new Intent(this,LoginActivity.class));
+
+
+        }
+
     }
 
     private void Credenziali() {
