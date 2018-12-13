@@ -36,10 +36,10 @@ public class ProfiloPagerAdapter extends FragmentPagerAdapter {
                 return new GestioneProfiloFragment();
 
             case 1:
-                return new HomeFragment();
+                return new StatisticheFragment();
 
             case 2:
-                return new CommentFragment();
+                return new RecensioneFragment();
 
             default:
                 return null;
