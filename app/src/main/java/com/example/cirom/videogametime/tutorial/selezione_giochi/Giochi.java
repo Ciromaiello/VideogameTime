@@ -16,6 +16,15 @@ public class Giochi {
     //private String id_gioco;
     private String descrizione;
     private String immagine;
+
+    public static ArrayList<String> nomi;
+    public static ArrayList<String> nomige;
+    public static ArrayList<String> nomipi;
+
+    public static ArrayList<Giochi> giochi;
+    public static ArrayList<Giochi> giochipi;
+    public static ArrayList<Giochi> giochige;
+    public static boolean checkato;
     //per ora salvo ciò che ci serve per salvare i giochi, successivamente si salveranno i commenti etc
 
 
@@ -60,6 +69,22 @@ public class Giochi {
 
     public void setDescrizione(String descrizione) {
         this.descrizione = descrizione;
+    }
+
+    public ArrayList<String> getNomi() {
+        return nomi;
+    }
+
+    public void setNomi(ArrayList<String> nomi) {
+        this.nomi = nomi;
+    }
+
+    public ArrayList<Giochi> getGiochi() {
+        return giochi;
+    }
+
+    public void setGiochi(ArrayList<Giochi> giochi) {
+        this.giochi = giochi;
     }
 
     /**public String getId_gioco() {

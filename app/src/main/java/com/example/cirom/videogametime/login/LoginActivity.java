@@ -89,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
         e passiamo questo oggetto al metodo addAPI() per la creazione di un nuovo oggetto
         GoogleApiClient che permetterà di accedere.
         */
-        mSettings.edit().putBoolean("Checked",false);
+        mSettings.edit().putBoolean("Checked",false).apply();
 
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override

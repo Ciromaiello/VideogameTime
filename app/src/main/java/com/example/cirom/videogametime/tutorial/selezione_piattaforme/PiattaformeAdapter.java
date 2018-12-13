@@ -12,14 +12,27 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.cirom.videogametime.R;
+import com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi.giochi;
+import static com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi.giochipi;
+import static com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi.nomi;
+import static com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi.nomipi;
+
 public class PiattaformeAdapter extends RecyclerView.Adapter<PiattaformeAdapter.ViewHolder> {
 
     ArrayList<Piattaforme> piattaforme;
+    private FirebaseFirestore mFirestore;
+    private CollectionReference mCollection;
 
     public PiattaformeAdapter(Context context, List<Piattaforme> piattaforme) {
         this.piattaforme= new ArrayList<>(piattaforme);
@@ -28,18 +41,51 @@ public class PiattaformeAdapter extends RecyclerView.Adapter<PiattaformeAdapter.
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_item, parent, false);
+        mFirestore=FirebaseFirestore.getInstance();
+        mCollection=mFirestore.collection("Giochi");
+        giochipi=new ArrayList<>();
+        nomipi=new ArrayList<>();
         return new ViewHolder(v);
+
+
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.bindData(piattaforme.get(position));
         holder.checkbox2.setOnCheckedChangeListener(null);
         holder.checkbox2.setChecked(piattaforme.get(position).isSelected1());
         holder.checkbox2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            public void onCheckedChanged(CompoundButton buttonView, final boolean isChecked) {
                 piattaforme.get(holder.getAdapterPosition()).setSelected1(isChecked);
+                mCollection.whereArrayContains("piattaforme",piattaforme.get(position).getNome())
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                                    Giochi game = documentSnapshot.toObject(Giochi.class);
+                                    String name = game.getNome();
+                                    if(isChecked)
+                                    {
+                                        if (!nomipi.contains(name)) {
+                                            giochipi.add(game);
+                                            nomipi.add(name);
+                                        }
+                                        }
+                                    else
+                                    {
+                                        if(nomipi.contains(name))
+                                        {
+                                            giochipi.remove(game);
+                                            nomipi.remove(name);
+                                        }
+
+                                    }
+                                }
+                            }
+                        });
             }
         });
     }

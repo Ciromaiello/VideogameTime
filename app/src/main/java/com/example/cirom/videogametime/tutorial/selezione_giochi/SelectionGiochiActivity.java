@@ -28,7 +28,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
+import com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,8 +37,6 @@ import static com.example.cirom.videogametime.utilizzo.Account.mSettings;
 public class SelectionGiochiActivity extends AppCompatActivity {
 
     private FloatingActionButton btnScelta;
-    ArrayList<Giochi> giochi;
-    ArrayList<String> nomi;
     private DatabaseReference mDatabase;
     private FirebaseFirestore mFirestore;
     private CollectionReference mCollection;
@@ -50,30 +48,42 @@ public class SelectionGiochiActivity extends AppCompatActivity {
         ArrayList<String> genQuery = intent.getExtras().getStringArrayList("Generi");
         setContentView(R.layout.activity_selection_giochi);
         btnScelta = findViewById(R.id.btnGiochi);
-        mFirestore=FirebaseFirestore.getInstance();     //prende il database firestore
-        nomi = new ArrayList<>();
-        mCollection = mFirestore.collection("Giochi");        //si sta riferendo alla collezione Giochi, se qualcosa vedi sul sito com'è strutturato
-        giochi = new ArrayList<>();
+
         //tutto il codice seguente è la query
-        for (int i = 0; i < genQuery.size(); i++) {
-            mCollection.whereArrayContains("generi", genQuery.get(i)).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                @Override
-                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                        Giochi game = documentSnapshot.toObject(Giochi.class);
-                        String name = game.getNome();
-                        if (!nomi.contains(name)) {
-                            giochi.add(game);
+        /*for(int j=0;j< Account.getConsoleQuery().size();j++) {
+            for (int i = 0; i < genQuery.size(); i++) {
+                mCollection.whereArrayContains("generi", genQuery.get(i))
+                        .whereArrayContains("piattaforme",Account.getConsoleQuery().get(j))
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                            Giochi game = documentSnapshot.toObject(Giochi.class);
+                            String name = game.getNome();
+                            if (!nomi.contains(name)) {
+                                giochi.add(game);
+                            }
+                            nomi.add(name);
+                            RecyclerView myrv = (RecyclerView) findViewById(R.id.recyclerview_id);
+                            RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(getApplicationContext(), giochi);
+                            myrv.setLayoutManager(new GridLayoutManager(getApplicationContext(), 3));
+                            myrv.setAdapter(myAdapter);
                         }
-                        nomi.add(name);
-                        RecyclerView myrv = (RecyclerView) findViewById(R.id.recyclerview_id);
-                        RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(getApplicationContext(), giochi);
-                        myrv.setLayoutManager(new GridLayoutManager(getApplicationContext(), 3));
-                        myrv.setAdapter(myAdapter);
                     }
-                }
-            });
-        }
+                });
+            }
+        }*/
+
+
+            aggGiochi();
+
+            RecyclerView myrv = (RecyclerView) findViewById(R.id.recyclerview_id);
+            RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(getApplicationContext(), Giochi.giochi);
+            myrv.setLayoutManager(new GridLayoutManager(getApplicationContext(), 3));
+            myrv.setAdapter(myAdapter);
+
+
         /**mDatabase = FirebaseDatabase.getInstance().getReference();
         giochi = new ArrayList<>();
         Query query = mDatabase.child("giochi").orderByChild("nome");
@@ -116,4 +126,19 @@ public class SelectionGiochiActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void aggGiochi()
+    {
+        for(int i=0;i<Giochi.nomipi.size();i++)
+        {
+            for(int j=0;j<Giochi.nomige.size();j++)
+            {
+                if(Giochi.nomipi.get(i).equals(Giochi.nomige.get(j)))
+                {
+                    Giochi.giochi.add(Giochi.giochipi.get(i));
+                }
+            }
+        }
+    }
+
 }
