@@ -59,14 +59,15 @@ public class ImpostazioniActivity extends AppCompatActivity {
 
                         Intent i = new Intent(view.getContext(),MainActivity.class);
                         startActivityForResult(i,0);
-
+                        Log.e("tag","sei nel caso 0 ");
+                        break;
 
                     case 1:
-                        Intent l = new Intent(view.getContext(),ProfiloActivity.class);
-                        startActivityForResult(l,1);
+                        Intent l = new Intent(view.getContext(),Info.class);
+                        startActivityForResult(l,0);
+                        Log.e("tag","sei nel caso 1 ");
+                        break;
 
-
-                    case 2:
                 }
             }
         });

@@ -24,8 +24,7 @@
     <string name="menu_account">Account</string>
     <string name="Remember_me">Remember me</string>
     <string-array name="info">
-        <item>Cambia piattaforme</item>
-        <item>Cambia generi</item>
+        <item>Cambia scelte</item>
         <item>Info</item>
     </string-array>
 
