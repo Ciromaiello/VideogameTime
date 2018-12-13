@@ -1,5 +1,6 @@
 package com.example.cirom.videogametime.tutorial.selezione_giochi;
 
+import android.content.Context;
 import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Bundle;
@@ -14,32 +15,66 @@ import android.view.View;
 
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.tutorial.selezione_generi.Generi;
+import com.example.cirom.videogametime.utilizzo.Account;
 import com.example.cirom.videogametime.utilizzo.ProfiloActivity;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.cirom.videogametime.utilizzo.Account.mSettings;
 
 public class SelectionGiochiActivity extends AppCompatActivity {
 
     private FloatingActionButton btnScelta;
     ArrayList<Giochi> giochi;
+    ArrayList<String> nomi;
     private DatabaseReference mDatabase;
+    private FirebaseFirestore mFirestore;
+    private CollectionReference mCollection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         ArrayList<String> genQuery = intent.getExtras().getStringArrayList("Generi");
-        Log.e("e", "I generi " + genQuery.toString());
         setContentView(R.layout.activity_selection_giochi);
         btnScelta = findViewById(R.id.btnGiochi);
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mFirestore=FirebaseFirestore.getInstance();     //prende il database firestore
+        nomi = new ArrayList<>();
+        mCollection = mFirestore.collection("Giochi");        //si sta riferendo alla collezione Giochi, se qualcosa vedi sul sito com'è strutturato
+        giochi = new ArrayList<>();
+        //tutto il codice seguente è la query
+        for (int i = 0; i < genQuery.size(); i++) {
+            mCollection.whereArrayContains("generi", genQuery.get(i)).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                        Giochi game = documentSnapshot.toObject(Giochi.class);
+                        String name = game.getNome();
+                        if (!nomi.contains(name)) {
+                            giochi.add(game);
+                        }
+                        nomi.add(name);
+                        RecyclerView myrv = (RecyclerView) findViewById(R.id.recyclerview_id);
+                        RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(getApplicationContext(), giochi);
+                        myrv.setLayoutManager(new GridLayoutManager(getApplicationContext(), 3));
+                        myrv.setAdapter(myAdapter);
+                    }
+                }
+            });
+        }
+        /**mDatabase = FirebaseDatabase.getInstance().getReference();
         giochi = new ArrayList<>();
         Query query = mDatabase.child("giochi").orderByChild("nome");
         query.addChildEventListener(new ChildEventListener() {
@@ -72,7 +107,7 @@ public class SelectionGiochiActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        });*/
         btnScelta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

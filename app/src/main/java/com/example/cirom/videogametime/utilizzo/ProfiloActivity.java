@@ -48,10 +48,7 @@ public class ProfiloActivity extends AppCompatActivity {
     private final String TAG = "DEMO_MISC";
     private BottomNavigationView navigation;
     private FirebaseAuth firebaseAuth;
-    private FirebaseFirestore db;
     private CollectionReference giochiref;
-    private HashMap<String,Object> giochi;
-    ArrayList<String> gg;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,85 +76,20 @@ public class ProfiloActivity extends AppCompatActivity {
 
             }
         });
-
-        db=FirebaseFirestore.getInstance();     //prende il database firestore
-        giochiref = db.collection("Giochi");        //si sta riferendo alla collezione Giochi, se qualcosa vedi sul sito com'è strutturato
-
-        /*ArrayList<String> ge =new ArrayList<>();
-        ge.add("Gestionale");
-        ge.add("Sportivo");
-
-        ArrayList<String> pi =new ArrayList<>();
-        pi.add("PS4");
-        pi.add("XBOX ONE");*/
-
-        gg =new ArrayList<>();
-
-        // aggiungiGioco("football manager 2019", ge, pi); metodo che mi aggiunge un gioco al database
-
-
-        //tutto il codice seguente è la query
-        giochiref.whereArrayContains("piattaforme","PS4")
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-
-                        int i=0;
-
-                        for(QueryDocumentSnapshot documentSnapshot: queryDocumentSnapshots)
-                        {
-                            Gioco g= documentSnapshot.toObject(Gioco.class);
-                            String fifa = g.getNome();
-                            gg.add(i,fifa);
-                            i++;
-
-                        }
-
-                        for(i=0 ;i<gg.size();i++)
-                        {
-                            Log.e("TAG","gioco: "+ gg.get(i)); //così ho provato che li prende uno alla volta
-                        }
-                    }
-                });
-
-
-
-        /*db.collection("Giochi").document("1")
-                .set(giochi)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.e("TAG","TUTTO OK");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.e("TAG",e.getMessage());
-                    }
-                });*/
-
-
         Credenziali();
         mSettings = getBaseContext().getSharedPreferences("Settings", Context.MODE_PRIVATE);
-
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        if(FirebaseAuth.getInstance().getCurrentUser()==null)
-        {
+        if(FirebaseAuth.getInstance().getCurrentUser()==null) {
             mSettings.edit().putBoolean("cont",false).apply();
             startActivity(new Intent(this,LoginActivity.class));
         }
-    else if(FirebaseAuth.getInstance().getCurrentUser() != null && mSettings.getBoolean("cont",true)){
+        else if(FirebaseAuth.getInstance().getCurrentUser() != null && mSettings.getBoolean("cont",true)){
             startActivity(new Intent(this,LoginActivity.class));
-
-
-        }
-
+            }
     }
 
     private void Credenziali() {
@@ -169,14 +101,14 @@ public class ProfiloActivity extends AppCompatActivity {
             Account.personEmail = acct.getEmail();
             Account.personId = acct.getId();
             Account.personPhoto = acct.getPhotoUrl();
-        } else {
+        }
+        else {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
     }
 
-    private void aggiungiGioco(String nome,ArrayList<String> generi, ArrayList<String> piattaforme)
-    {
+    private void aggiungiGioco(String nome, ArrayList<String> generi, ArrayList<String> piattaforme) {
         Gioco g=new Gioco(nome,generi,piattaforme);
         giochiref.add(g);
     }

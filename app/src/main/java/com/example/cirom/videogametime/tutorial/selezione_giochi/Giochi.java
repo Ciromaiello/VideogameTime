@@ -13,10 +13,11 @@ public class Giochi {
     private String nome;
     private ArrayList<String> generi;
     private ArrayList<String> piattaforme;
-    private String id_gioco;
+    //private String id_gioco;
     private String descrizione;
     private String immagine;
     //per ora salvo ciò che ci serve per salvare i giochi, successivamente si salveranno i commenti etc
+
 
 
     public String getImmagine() {
@@ -61,7 +62,7 @@ public class Giochi {
         this.descrizione = descrizione;
     }
 
-    public String getId_gioco() {
+    /**public String getId_gioco() {
 
         return id_gioco;
     }
@@ -71,7 +72,7 @@ public class Giochi {
         this.id_gioco = id_gioco;
     }
 
-    /**public Giochi(String nome, String generi, String piattaforme, String descrizione, int immagine) {
+    public Giochi(String nome, String generi, String piattaforme, String descrizione, int immagine) {
         this.nome = nome;
         this.generi = generi;
         this.piattaforme = piattaforme;
