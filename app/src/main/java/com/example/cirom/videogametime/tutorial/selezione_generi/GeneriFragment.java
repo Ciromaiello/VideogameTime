@@ -15,13 +15,10 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.cirom.videogametime.R;
-import com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.SelectionGiochiActivity;
 import com.example.cirom.videogametime.tutorial.selezione_piattaforme.Piattaforme;
 import com.example.cirom.videogametime.tutorial.selezione_piattaforme.PiattaformeAdapter;
 import com.example.cirom.videogametime.tutorial.selezione_piattaforme.PiattaformeFragment;
-import com.example.cirom.videogametime.utilizzo.Account;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,17 +26,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
 import static android.support.constraint.Constraints.TAG;
-import static com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi.giochi;
-import static com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi.nomi;
 import static com.example.cirom.videogametime.utilizzo.Account.consoleQuery;
+import static com.example.cirom.videogametime.utilizzo.Account.genQuery;
 
 public class GeneriFragment extends Fragment{
 
@@ -49,10 +41,6 @@ public class GeneriFragment extends Fragment{
     private FloatingActionButton btnGetSelected;
     private FloatingActionButton btnForPiattaforme;
     private DatabaseReference mDatabase;
-    private FirebaseFirestore mFirestore;
-    private CollectionReference mCollection;
-
-    private boolean checkato;
 
     public GeneriFragment(){
     }
@@ -70,10 +58,7 @@ public class GeneriFragment extends Fragment{
         list = (RecyclerView) view.findViewById(R.id.list);
         list.setLayoutManager(new LinearLayoutManager(getActivity()));
         list.setHasFixedSize(true);
-        mFirestore = FirebaseFirestore.getInstance();
-        mCollection = mFirestore.collection("giochi");
-        nomi=new ArrayList<>();
-        giochi=new ArrayList<>();
+        genQuery = new ArrayList<>();
     }
 
     @Override
@@ -112,26 +97,24 @@ public class GeneriFragment extends Fragment{
         });
 
         btnGetSelected.setOnClickListener(new View.OnClickListener() {
-                                              @Override
-                                              public void onClick(View v) {
-                                                  ArrayList<String> genQuery = new ArrayList<>();
-                                                  checkato = false;
-                                                  for (Generi gen : generi) {
-                                                      if (gen.isSelected()) {
-                                                          checkato = true;
-                                                          genQuery.add(gen.getGenere());
+            @Override
+            public void onClick(View v) {
+                boolean checkato = false;
+                for (Generi gen : generi) {
+                    if (gen.isSelected()) {
+                        checkato = true;
+                        genQuery.add(gen.getGenere());
+                    }
+                }
+                if (!checkato)
+                    Toast.makeText(getActivity(),"Seleziona almeno un genere", Toast.LENGTH_SHORT).show();
+                else
+                {
+                    startActivity(new Intent(getContext(), SelectionGiochiActivity.class));
+                }
 
-                                                          if (!checkato)
-                                                              Toast.makeText(getActivity(), "Seleziona almeno un genere", Toast.LENGTH_SHORT).show();
-                                                          else {
-                                                              Intent intent = new Intent(getContext(), SelectionGiochiActivity.class);
-                                                              intent.putExtra("Generi", genQuery);
-                                                              startActivity(intent);
-                                                          }
-                                                      }
-                                                  }
-                                              }
-                                          });
+            }
+        });
         btnForPiattaforme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

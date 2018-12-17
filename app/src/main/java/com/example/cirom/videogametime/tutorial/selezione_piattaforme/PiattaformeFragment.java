@@ -1,5 +1,6 @@
 package com.example.cirom.videogametime.tutorial.selezione_piattaforme;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -17,6 +18,7 @@ import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.tutorial.selezione_generi.Generi;
 import com.example.cirom.videogametime.tutorial.selezione_generi.GeneriAdapter;
 import com.example.cirom.videogametime.tutorial.selezione_generi.GeneriFragment;
+import com.example.cirom.videogametime.tutorial.selezione_giochi.SelectionGiochiActivity;
 import com.example.cirom.videogametime.tutorial.selezione_piattaforme.Piattaforme;
 import com.example.cirom.videogametime.tutorial.selezione_piattaforme.PiattaformeAdapter;
 import com.example.cirom.videogametime.utilizzo.Account;
@@ -62,6 +64,8 @@ public class PiattaformeFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         piattaforme = new ArrayList<>();
+        consoleQuery = new ArrayList<>();
+
         mDatabase.child("piattaforme").orderByChild("nome").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -106,6 +110,7 @@ public class PiattaformeFragment extends Fragment {
                 }
                 if (!checkato)
                     Toast.makeText(getActivity(),"Seleziona almeno una piattaforma", Toast.LENGTH_SHORT).show();
+
             }
         });
     }

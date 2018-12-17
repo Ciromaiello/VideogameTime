@@ -20,6 +20,7 @@ public class Account {
     public static Uri personPhoto;
     public static GoogleSignInAccount acct;
     public static ArrayList<String> consoleQuery;
+    public static ArrayList<String> genQuery;
     public static boolean Accesso=false;
     public static SharedPreferences mSettings;
 
