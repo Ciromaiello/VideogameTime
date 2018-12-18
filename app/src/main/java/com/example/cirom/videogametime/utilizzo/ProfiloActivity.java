@@ -88,9 +88,11 @@ public class ProfiloActivity extends AppCompatActivity {
         if(FirebaseAuth.getInstance().getCurrentUser()==null) {
             mSettings.edit().putBoolean("cont",false).apply();
             startActivity(new Intent(this,LoginActivity.class));
+            finish();
         }
         else if(FirebaseAuth.getInstance().getCurrentUser() != null && mSettings.getBoolean("cont",true)){
             startActivity(new Intent(this,LoginActivity.class));
+            finish();
         }
     }
 
@@ -107,6 +109,7 @@ public class ProfiloActivity extends AppCompatActivity {
         else {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
+            finish();
         }
     }
 

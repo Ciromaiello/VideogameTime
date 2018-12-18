@@ -101,6 +101,7 @@ public class GestioneProfiloFragment extends Fragment {
             FirebaseAuth.getInstance().signOut();}
             Intent intent = new Intent(getContext(),LoginActivity.class);
             startActivity(intent);
+            getActivity().finish();
 
     }
 
