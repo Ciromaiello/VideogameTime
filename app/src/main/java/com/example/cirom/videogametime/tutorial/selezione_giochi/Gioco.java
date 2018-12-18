@@ -67,5 +67,5 @@ public class Gioco
         this.piattaforme = piattaforme;
     }
 
-    public Gioco(){};
+    public Gioco(){}
 }

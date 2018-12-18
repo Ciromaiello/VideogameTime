@@ -51,7 +51,7 @@
             android:layout_toEndOf="@+id/gameimg"
             android:numStars="5"
             android:progressBackgroundTint="@color/Vverde"
-            android:progressTint="@color/verde2"
+            android:progressTint="#FF0E7C00"
             android:stepSize="1" />
     </RelativeLayout>
 
@@ -73,7 +73,9 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout4" />
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout4"
+        app:tabIndicatorColor="@color/cardview_light_background"
+        app:tabTextColor="@color/Vverde" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout3"
@@ -91,7 +93,7 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginStart="20dp"
-            android:text="VG Time"
+            android:text="@string/app_name"
             android:textAlignment="center"
             android:textColor="@color/cardview_light_background"
             android:textSize="20sp"

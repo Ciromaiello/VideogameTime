@@ -19,11 +19,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi.checkato;
-import static com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi.giochi;
-import static com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi.giochige;
-import static com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi.nomi;
-import static com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi.nomige;
 
 public class GeneriAdapter extends RecyclerView.Adapter<GeneriAdapter.ViewHolder> {
 
@@ -38,13 +33,9 @@ public class GeneriAdapter extends RecyclerView.Adapter<GeneriAdapter.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
-        mFirestore= FirebaseFirestore.getInstance();
-        mCollection=mFirestore.collection("Giochi");
-        checkato = false;
-        giochige = new ArrayList<>();
-        nomige = new ArrayList<>();
+        mFirestore = FirebaseFirestore.getInstance();
+        mCollection = mFirestore.collection("Giochi");
         return new ViewHolder(v);
-
     }
 
     @Override
@@ -56,33 +47,6 @@ public class GeneriAdapter extends RecyclerView.Adapter<GeneriAdapter.ViewHolder
             @Override
             public void onCheckedChanged(CompoundButton buttonView, final boolean isChecked) {
                 generi.get(holder.getAdapterPosition()).setSelected(isChecked);
-                mCollection.whereArrayContains("generi", generi.get(position).getGenere())
-                        .get()
-                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                            @Override
-                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                                    Giochi game = documentSnapshot.toObject(Giochi.class);
-                                    String name = game.getNome();
-                                    if(isChecked)
-                                    {
-                                    if (!nomige.contains(name)) {
-                                        giochige.add(game);
-                                        nomige.add(name);
-                                    }
-                                    }
-                                    else
-                                    {
-                                        if(nomige.contains(name))
-                                        {
-                                            giochige.remove(game);
-                                            nomige.remove(name);
-                                        }
-                                    }
-                                }
-
-                            }
-                        });
             }
         });
     }
@@ -103,10 +67,7 @@ public class GeneriAdapter extends RecyclerView.Adapter<GeneriAdapter.ViewHolder
         }
 
         public void bindData(Generi gen) {
-
             textgeneri.setText(gen.getGenere());
         }
-
-
     }
 }

@@ -21,6 +21,8 @@ public class Account {
     public static GoogleSignInAccount acct;
     public static ArrayList<String> consoleQuery;
     public static ArrayList<String> genQuery;
+    public static ArrayList<String> nomige;
+    public static ArrayList<String> nomipi;
     public static boolean Accesso=false;
     public static SharedPreferences mSettings;
 

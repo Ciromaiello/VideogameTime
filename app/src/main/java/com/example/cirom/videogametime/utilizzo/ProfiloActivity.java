@@ -49,6 +49,7 @@ public class ProfiloActivity extends AppCompatActivity {
     private BottomNavigationView navigation;
     private FirebaseAuth firebaseAuth;
     private CollectionReference giochiref;
+    private FirebaseFirestore mFirestore;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,6 +79,7 @@ public class ProfiloActivity extends AppCompatActivity {
         });
         Credenziali();
         mSettings = getBaseContext().getSharedPreferences("Settings", Context.MODE_PRIVATE);
+
     }
 
     @Override
@@ -89,7 +91,7 @@ public class ProfiloActivity extends AppCompatActivity {
         }
         else if(FirebaseAuth.getInstance().getCurrentUser() != null && mSettings.getBoolean("cont",true)){
             startActivity(new Intent(this,LoginActivity.class));
-            }
+        }
     }
 
     private void Credenziali() {
@@ -109,7 +111,7 @@ public class ProfiloActivity extends AppCompatActivity {
     }
 
     private void aggiungiGioco(String nome, ArrayList<String> generi, ArrayList<String> piattaforme) {
-        Gioco g=new Gioco(nome,generi,piattaforme);
+        Gioco g = new Gioco(nome,generi,piattaforme);
         giochiref.add(g);
     }
 }

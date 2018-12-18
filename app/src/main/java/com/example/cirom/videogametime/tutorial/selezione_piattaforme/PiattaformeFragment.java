@@ -18,21 +18,27 @@ import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.tutorial.selezione_generi.Generi;
 import com.example.cirom.videogametime.tutorial.selezione_generi.GeneriAdapter;
 import com.example.cirom.videogametime.tutorial.selezione_generi.GeneriFragment;
+import com.example.cirom.videogametime.tutorial.selezione_giochi.SceltaDalDatabase;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.SelectionGiochiActivity;
 import com.example.cirom.videogametime.tutorial.selezione_piattaforme.Piattaforme;
 import com.example.cirom.videogametime.tutorial.selezione_piattaforme.PiattaformeAdapter;
 import com.example.cirom.videogametime.utilizzo.Account;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
 import static android.support.constraint.Constraints.TAG;
 import static com.example.cirom.videogametime.utilizzo.Account.consoleQuery;
+import static com.example.cirom.videogametime.utilizzo.Account.genQuery;
 
 public class PiattaformeFragment extends Fragment {
 
@@ -40,6 +46,8 @@ public class PiattaformeFragment extends Fragment {
     private FloatingActionButton btnForGeneri;
     private RecyclerView card;
     private DatabaseReference mDatabase;
+    private FirebaseFirestore mFirestore;
+    private CollectionReference mPiattaforme;
 
     public PiattaformeFragment() {
         //Costruttore
@@ -65,7 +73,9 @@ public class PiattaformeFragment extends Fragment {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         piattaforme = new ArrayList<>();
         consoleQuery = new ArrayList<>();
-
+        Account.nomipi = new ArrayList<>();
+        mFirestore = FirebaseFirestore.getInstance();
+        mPiattaforme = mFirestore.collection("Piattaforme");
         mDatabase.child("piattaforme").orderByChild("nome").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -105,13 +115,44 @@ public class PiattaformeFragment extends Fragment {
                     if (console.isSelected1()) {
                         checkato = true;
                         consoleQuery.add(console.getNome());
-                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.layout_main, new GeneriFragment()).commit();
                     }
                 }
-                if (!checkato)
+                if (!checkato) {
                     Toast.makeText(getActivity(),"Seleziona almeno una piattaforma", Toast.LENGTH_SHORT).show();
-
+                }
+                else {
+                    int i = 0;
+                    AggiungiGiochiPiattaforme(i);
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.layout_main, new GeneriFragment()).commit();
+                }
             }
         });
+    }
+
+    private void AggiungiGiochiPiattaforme(int i) {
+        Log.e("PIATTAFORME", "Sono nell'aggiungi piattaforme");
+        if(i<consoleQuery.size())
+            QueryPiattaforme(i);
+        else {
+            Log.e("NOMIPI", "I NOMIPI SONO:"+ Account.nomipi);
+            Log.e("FRAGMENT", "Vado a generi fragment");
+        }
+    }
+
+    private void QueryPiattaforme(final int i) {
+        mPiattaforme.document(consoleQuery.get(i))
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        SceltaDalDatabase s = documentSnapshot.toObject(SceltaDalDatabase.class);
+                        ArrayList<String> S= s.getGiochi();
+                        Account.nomipi.addAll(S);
+                        int f = i;
+                        f++;
+                        AggiungiGiochiPiattaforme(f);
+                    }
+
+                });
     }
 }

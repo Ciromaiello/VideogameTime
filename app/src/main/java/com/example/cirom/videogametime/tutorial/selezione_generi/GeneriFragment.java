@@ -15,10 +15,13 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.cirom.videogametime.R;
+import com.example.cirom.videogametime.tutorial.selezione_giochi.SceltaDalDatabase;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.SelectionGiochiActivity;
 import com.example.cirom.videogametime.tutorial.selezione_piattaforme.Piattaforme;
 import com.example.cirom.videogametime.tutorial.selezione_piattaforme.PiattaformeAdapter;
 import com.example.cirom.videogametime.tutorial.selezione_piattaforme.PiattaformeFragment;
+import com.example.cirom.videogametime.utilizzo.Account;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,9 +29,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
+import static android.os.SystemClock.sleep;
 import static android.support.constraint.Constraints.TAG;
 import static com.example.cirom.videogametime.utilizzo.Account.consoleQuery;
 import static com.example.cirom.videogametime.utilizzo.Account.genQuery;
@@ -41,6 +48,8 @@ public class GeneriFragment extends Fragment{
     private FloatingActionButton btnGetSelected;
     private FloatingActionButton btnForPiattaforme;
     private DatabaseReference mDatabase;
+    private FirebaseFirestore mFirestore;
+    private CollectionReference mGeneri;
 
     public GeneriFragment(){
     }
@@ -66,6 +75,9 @@ public class GeneriFragment extends Fragment{
         super.onActivityCreated(savedInstanceState);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         generi = new ArrayList<>();
+        mFirestore = FirebaseFirestore.getInstance();
+        mGeneri = mFirestore.collection("Generi");
+        Account.nomige = new ArrayList<>();
         mDatabase.child("generi").orderByChild("genere").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -108,9 +120,9 @@ public class GeneriFragment extends Fragment{
                 }
                 if (!checkato)
                     Toast.makeText(getActivity(),"Seleziona almeno un genere", Toast.LENGTH_SHORT).show();
-                else
-                {
-                    startActivity(new Intent(getContext(), SelectionGiochiActivity.class));
+                else {
+                    int i = 0;
+                    AggiungiGiochiGeneri(i);
                 }
 
             }
@@ -121,5 +133,32 @@ public class GeneriFragment extends Fragment{
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.layout_main, new PiattaformeFragment()).commit();
             }
         });
+    }
+
+    private void AggiungiGiochiGeneri(int i) {
+        Log.e("GENERI", "Sono nell'aggiungi generi " + i+1);
+        if(i<genQuery.size())
+            Query(i);
+        else {
+            Log.e("NOMIGE", "I NOMIGE SONO:"+ Account.nomige);
+            Log.e("ACTIVITY", "Parte l'activity");
+            startActivity(new Intent(getContext(), SelectionGiochiActivity.class));
+        }
+    }
+
+    private void Query(final int i) {
+        mGeneri.document(genQuery.get(i))
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        SceltaDalDatabase s = documentSnapshot.toObject(SceltaDalDatabase.class);
+                        ArrayList<String> S = s.getGiochi();
+                        Account.nomige.addAll(S);
+                        int f = i;
+                        f++;
+                        AggiungiGiochiGeneri(f);
+                    }
+                });
     }
 }
