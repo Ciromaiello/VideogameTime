@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.login.LoginActivity;
@@ -79,6 +80,58 @@ public class ProfiloActivity extends AppCompatActivity {
         });
         Credenziali();
         mSettings = getBaseContext().getSharedPreferences("Settings", Context.MODE_PRIVATE);
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_high, menu);
+       return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        // Switch per individuare la voce di menu scelta
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                // L'utente ha scelto "Cerca"
+                Log.v("e", "Menu-> Cerca");
+
+                return true;
+
+            case R.id.action_settings:
+                // L'utente ha scelto "impostazioni"
+                Log.v("e", "Menu-> Impostazioni");
+                Intent i = new Intent(this,ImpostazioniActivity.class);
+                startActivity(i);
+                return true;
+
+            case R.id.action_logout:
+                // L'utente ha scelto "logout"
+                Log.v("e", "Menu-> Logout");
+                signOut();
+
+                return true;
+
+            default:
+                // Scelta non riconosciuta, passo il controllo al metodo della classe base
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+
+    private void signOut()
+    {
+
+
+        if(mSettings.getBoolean("Checked",true)){Accesso=false;}
+        else{Accesso=true;
+            FirebaseAuth.getInstance().signOut();}
+        Intent intent = new Intent(this,LoginActivity.class);
+        startActivity(intent);
+        finish();
 
     }
 

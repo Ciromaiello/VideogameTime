@@ -38,6 +38,7 @@ public class ProfiloPagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return new StatisticheFragment();
 
+
             case 2:
                 return new RecensioneFragment();
 
@@ -65,9 +66,9 @@ public class ProfiloPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return R.string.tab_profilo;
             case 1:
-                return R.string.tab_home;
+                return R.string.tab_statistiche;
             case 2:
-                return R.string.tab_comment;
+                return R.string.tab_rece;
             default:
                 return R.string.tab_unknown;
         }

@@ -14,43 +14,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.cirom.videogametime.R;
+import com.example.cirom.videogametime.login.LoginActivity;
+import com.google.firebase.auth.FirebaseAuth;
+
+import static com.example.cirom.videogametime.utilizzo.Account.Accesso;
+import static com.example.cirom.videogametime.utilizzo.Account.mSettings;
 
 public class NewsFragment extends Fragment {
     private final String TAG = "DEMO_MISC";
     public NewsFragment() {
     }
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_news, container, false);
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.toolbar_high1, menu);
-        super.onCreateOptionsMenu(menu,inflater);
-
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        // Switch per individuare la voce di menu scelta
-        switch (item.getItemId()) {
-            case R.id.action_search:
-                // L'utente ha scelto "Cerca"
-                Log.v(TAG, "Menu-> Cerca");
-                return true;
-
-            default:
-                // Scelta non riconosciuta, passo il controllo al metodo della classe base
-                return super.onOptionsItemSelected(item);
-        }
-    }
 }
