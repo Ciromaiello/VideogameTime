@@ -49,6 +49,12 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".utilizzo.SearchGiochiActivity" android:configChanges="keyboardHidden|orientation" android:screenOrientation="portrait">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

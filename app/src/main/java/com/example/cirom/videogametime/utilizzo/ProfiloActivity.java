@@ -97,14 +97,16 @@ public class ProfiloActivity extends AppCompatActivity {
             case R.id.action_search:
                 // L'utente ha scelto "Cerca"
                 Log.v("e", "Menu-> Cerca");
+                Intent i = new Intent(this,SearchGiochiActivity.class);
+                startActivity(i);
 
                 return true;
 
             case R.id.action_settings:
                 // L'utente ha scelto "impostazioni"
                 Log.v("e", "Menu-> Impostazioni");
-                Intent i = new Intent(this,ImpostazioniActivity.class);
-                startActivity(i);
+                Intent l = new Intent(this,ImpostazioniActivity.class);
+                startActivity(l);
                 return true;
 
             case R.id.action_logout:
