@@ -23,7 +23,8 @@ public class Account {
     public static ArrayList<String> genQuery;
     public static ArrayList<String> nomige;
     public static ArrayList<String> nomipi;
-    public static boolean Accesso=false;
+    public static boolean utente = false;
+    public static boolean Accesso = false;
     public static SharedPreferences mSettings;
 
     public static ArrayList<String> getConsoleQuery() {

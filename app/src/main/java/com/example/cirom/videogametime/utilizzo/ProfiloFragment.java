@@ -22,7 +22,6 @@ public class ProfiloFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater,@Nullable ViewGroup container,@Nullable Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_profilo, container, false);
         imgProfilo = view.findViewById(R.id.profiloimg);
         Picasso.with(getContext()).load(Account.personPhoto).transform(new CircleTransform(35,10)).into(imgProfilo);

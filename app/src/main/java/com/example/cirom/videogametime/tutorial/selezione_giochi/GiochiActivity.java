@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import com.example.cirom.videogametime.R;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -18,6 +19,7 @@ public class GiochiActivity extends AppCompatActivity {
 
     private TextView nome;
     private ImageView img;
+    private RatingBar stars;
     static String Description, output1, output2;
 
 
@@ -28,8 +30,7 @@ public class GiochiActivity extends AppCompatActivity {
 
         nome = (TextView) findViewById(R.id.title);
         img = (ImageView) findViewById(R.id.gameimg);
-
-
+        stars = (RatingBar) findViewById(R.id.gettingStar);
 
         // Recieve data
         Intent intent = getIntent();
@@ -38,6 +39,7 @@ public class GiochiActivity extends AppCompatActivity {
         ArrayList<String> Piattaforme = intent.getExtras().getStringArrayList("Piattaforme");
         Description = intent.getExtras().getString("Description");
         String image = intent.getExtras().getString("Image") ;
+        float numRating = intent.getExtras().getFloat("Rating");
 
         // Setting values
         nome.setText(Title);
@@ -57,6 +59,7 @@ public class GiochiActivity extends AppCompatActivity {
             output2 += Piattaforme.get(j);
         }
         Picasso.with(getApplicationContext()).load(image).into(img);
+        stars.setRating(numRating);
         //Bundle per passare i dati a InfoFragment
         /**Bundle bundle = new Bundle();
         bundle.putString("descrizione", Description);

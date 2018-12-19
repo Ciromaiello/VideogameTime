@@ -136,12 +136,9 @@ public class GeneriFragment extends Fragment{
     }
 
     private void AggiungiGiochiGeneri(int i) {
-        Log.e("GENERI", "Sono nell'aggiungi generi " + i+1);
         if(i<genQuery.size())
             Query(i);
         else {
-            Log.e("NOMIGE", "I NOMIGE SONO:"+ Account.nomige);
-            Log.e("ACTIVITY", "Parte l'activity");
             startActivity(new Intent(getContext(), SelectionGiochiActivity.class));
         }
     }

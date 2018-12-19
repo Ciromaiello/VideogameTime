@@ -9,8 +9,17 @@ public class Giochi {
     private ArrayList<String> piattaforme;
     private String descrizione;
     private String immagine;
+    private float stars;
     //per ora salvo ciò che ci serve per salvare i giochi, successivamente si salveranno i commenti etc
 
+
+    public float getStars() {
+        return stars;
+    }
+
+    public void setStars(float stars) {
+        this.stars = stars;
+    }
 
     public String getImmagine() {
         return immagine;

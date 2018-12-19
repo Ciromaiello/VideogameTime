@@ -42,13 +42,14 @@
             android:textStyle="bold" />
 
         <RatingBar
-            android:id="@+id/ratingBar"
+            android:id="@+id/gettingStar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/title"
             android:layout_marginStart="16dp"
             android:layout_marginTop="20dp"
             android:layout_toEndOf="@+id/gameimg"
+            android:isIndicator="true"
             android:numStars="5"
             android:progressBackgroundTint="@color/Vverde"
             android:progressTint="#FF0E7C00"

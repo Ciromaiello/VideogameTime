@@ -44,6 +44,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 intent.putExtra("Generi",giochi.get(position).getGeneri());
                 intent.putExtra("Piattaforme",giochi.get(position).getPiattaforme());
                 intent.putExtra("Image",giochi.get(position).getImmagine());
+                intent.putExtra("Rating",giochi.get(position).getStars());
                 mContext.startActivity(intent);
             }
         });

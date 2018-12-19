@@ -237,6 +237,7 @@ if (acct != null) {
 
 
        private void signOut(){
+           Account.utente = false;
             mGoogleSignInClient.signOut()
                     .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                         @Override
@@ -253,6 +254,7 @@ if (acct != null) {
 
         if(mSettings.getBoolean(mAuth.getUid(),true))
         {
+            Account.utente = true;
             mSettings.edit().putBoolean(mAuth.getUid(),false).apply();
             mSettings.edit().putBoolean("cont",false).apply();
             startActivity(new Intent(this,MainActivity.class));
@@ -260,7 +262,7 @@ if (acct != null) {
         }
         else
         {
-
+            Account.utente = true;
             mSettings.edit().putBoolean("cont",false).apply();
             startActivity(new Intent(this,ProfiloActivity.class));
             finish();

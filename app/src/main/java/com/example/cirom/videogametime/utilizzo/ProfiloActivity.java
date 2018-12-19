@@ -149,6 +149,7 @@ public class ProfiloActivity extends AppCompatActivity {
             startActivity(new Intent(this,LoginActivity.class));
             finish();
         }
+        Account.utente = true;
     }
 
     private void Credenziali() {

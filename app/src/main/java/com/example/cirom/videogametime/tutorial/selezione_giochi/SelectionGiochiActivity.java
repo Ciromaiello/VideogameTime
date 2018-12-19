@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.tutorial.selezione_generi.Generi;
@@ -64,8 +65,13 @@ public class SelectionGiochiActivity extends AppCompatActivity {
         btnScelta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SelectionGiochiActivity.this, ProfiloActivity.class);
-                startActivity(intent);
+                if(Account.utente) {
+                    Intent intent = new Intent(SelectionGiochiActivity.this, ProfiloActivity.class);
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(getApplication(),"Non puoi accedere al profilo come ospite", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

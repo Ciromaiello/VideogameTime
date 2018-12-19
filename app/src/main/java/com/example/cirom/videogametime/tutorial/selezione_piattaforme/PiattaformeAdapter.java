@@ -10,14 +10,9 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.cirom.videogametime.R;
-import com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -66,9 +61,9 @@ public class PiattaformeAdapter extends RecyclerView.Adapter<PiattaformeAdapter.
 
         public ViewHolder(View v) {
             super(v);
-            textpiattaforme= (TextView) v.findViewById(R.id.textpiattaforme);
+            textpiattaforme= (TextView) v.findViewById(R.id.textTitleRec);
             checkbox2 = (CheckBox) v.findViewById(R.id.checkbox2);
-            imageConsole = (ImageView) v.findViewById(R.id.imageConsole);
+            imageConsole = (ImageView) v.findViewById(R.id.imageAccountRec);
         }
 
         public void bindData(Piattaforme console) {
