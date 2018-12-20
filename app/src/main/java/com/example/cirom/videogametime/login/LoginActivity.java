@@ -196,7 +196,6 @@ if (acct != null) {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         //updateUI(currentUser);
-
         if(isAccesso()){signOut();}
         mSettings.edit().putBoolean("cont",true).apply();
         if(mSettings.getBoolean("Checked",true)){

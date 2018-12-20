@@ -112,7 +112,8 @@ public class ProfiloActivity extends AppCompatActivity {
             case R.id.action_logout:
                 // L'utente ha scelto "logout"
                 Log.v("e", "Menu-> Logout");
-                signOut();
+                LogoutDialog newFragment = new LogoutDialog();
+                newFragment.show(getSupportFragmentManager(), "Scelta");
 
                 return true;
 
@@ -122,20 +123,6 @@ public class ProfiloActivity extends AppCompatActivity {
         }
     }
 
-
-
-    private void signOut()
-    {
-
-
-        if(mSettings.getBoolean("Checked",true)){Accesso=false;}
-        else{Accesso=true;
-            FirebaseAuth.getInstance().signOut();}
-        Intent intent = new Intent(this,LoginActivity.class);
-        startActivity(intent);
-        finish();
-
-    }
 
     @Override
     protected void onStart() {
