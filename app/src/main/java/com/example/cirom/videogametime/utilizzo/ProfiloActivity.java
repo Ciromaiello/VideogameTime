@@ -17,8 +17,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.login.LoginActivity;
+import com.example.cirom.videogametime.tutorial.selezione_giochi.Accounts;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.Gioco;
+import com.example.cirom.videogametime.tutorial.selezione_giochi.SceltaDalDatabase;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,6 +32,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -37,7 +41,10 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 import static com.example.cirom.videogametime.utilizzo.Account.Accesso;
 import static com.example.cirom.videogametime.utilizzo.Account.acct;
@@ -46,10 +53,11 @@ import static com.example.cirom.videogametime.utilizzo.Account.mSettings;
 
 public class ProfiloActivity extends AppCompatActivity {
 
+    private Account account;
     private final String TAG = "DEMO_MISC";
     private BottomNavigationView navigation;
     private FirebaseAuth firebaseAuth;
-    private CollectionReference giochiref;
+    private CollectionReference mAccount;
     private FirebaseFirestore mFirestore;
 
     @Override
@@ -60,6 +68,8 @@ public class ProfiloActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         navigation = findViewById(R.id.navigation);
         getSupportFragmentManager().beginTransaction().replace(R.id.profilo_activity, new ProfiloFragment()).commit();
+        mFirestore = FirebaseFirestore.getInstance();
+        mAccount = mFirestore.collection("Account");
         navigation.setSelectedItemId(R.id.menu_account);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -142,12 +152,12 @@ public class ProfiloActivity extends AppCompatActivity {
     private void Credenziali() {
         acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
         if (acct != null) {
-            Account.personName = acct.getDisplayName();
+            account = new Account(acct.getDisplayName(),acct.getId(), acct.getPhotoUrl().toString());
             Account.personGivenName = acct.getGivenName();
             Account.personFamilyName = acct.getFamilyName();
             Account.personEmail = acct.getEmail();
-            Account.personId = acct.getId();
-            Account.personPhoto = acct.getPhotoUrl();
+            int i = 0;
+            prendiIdAccount(i);
         }
         else {
             Intent intent = new Intent(this, LoginActivity.class);
@@ -158,6 +168,41 @@ public class ProfiloActivity extends AppCompatActivity {
 
     private void aggiungiGioco(String nome, ArrayList<String> generi, ArrayList<String> piattaforme) {
         Gioco g = new Gioco(nome,generi,piattaforme);
-        giochiref.add(g);
+        //giochiref.add(g);
+    }
+
+    private void prendiIdAccount(final int i){
+        mAccount.document("id_account").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Accounts s = documentSnapshot.toObject(Accounts.class);
+                Log.e("FFF", "la stringa è " + s.getAccounts());
+                ArrayList<String> S = s.getAccounts();
+                Controllo(S,i);
+            }
+        });
+    }
+
+    private void Controllo(final ArrayList<String> S, final int i) {
+        Log.e("FFF", "Sono i = " + i);
+        if(i<S.size()) {
+            mAccount.document(S.get(i)).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    Account a = documentSnapshot.toObject(Account.class);
+                    String id = a.getPersonId();
+                    Log.e("FFF", id);
+                    if(!id.equals(acct.getId())) {
+                        int f = i;
+                        f++;
+                        Controllo(S,f);
+                    }
+                }
+            });
+        }
+        else {
+            mAccount.document(acct.getId()).set(account);
+            mAccount.document("id_account").update("accounts", FieldValue.arrayUnion(acct.getId()));
+        }
     }
 }

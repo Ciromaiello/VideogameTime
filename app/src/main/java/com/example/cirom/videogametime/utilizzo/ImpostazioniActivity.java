@@ -18,7 +18,10 @@ import android.widget.TextView;
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.login.LoginActivity;
 import com.example.cirom.videogametime.tutorial.MainActivity;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.squareup.picasso.Picasso;
+
+import static com.example.cirom.videogametime.utilizzo.Account.acct;
 
 public class ImpostazioniActivity extends AppCompatActivity {
 
@@ -28,17 +31,20 @@ public class ImpostazioniActivity extends AppCompatActivity {
     private ImageView imgProfilo;
     private TextView nomeutente;
     private TextView email;
+    private Account account;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+        account = new Account(acct.getDisplayName(), acct.getId(), acct.getPhotoUrl().toString());
         setContentView(R.layout.activity_impostazioni);
         nomeutente = findViewById(R.id.nomeAccount);
         email = findViewById(R.id.nomeEmail);
-        nomeutente.setText(Account.getPersonName());
+        nomeutente.setText(account.getPersonName());
         email.setText(Account.getPersonEmail());
         imgProfilo = findViewById(R.id.profiloimg);
-        Picasso.with(this).load(Account.personPhoto).transform(new CircleTransform(35, 10)).into(imgProfilo);
+        Picasso.with(this).load(account.getPersonPhoto()).transform(new CircleTransform(35, 10)).into(imgProfilo);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {

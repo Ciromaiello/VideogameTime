@@ -152,7 +152,6 @@ public class PiattaformeFragment extends Fragment {
                         f++;
                         AggiungiGiochiPiattaforme(f);
                     }
-
                 });
     }
 }

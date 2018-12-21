@@ -15,9 +15,10 @@
         android:layout_marginBottom="8dp"
         android:clickable="true"
         app:backgroundTint="@color/verde2"
+        app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_add" />
+        app:srcCompat="@drawable/plus_white" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list"

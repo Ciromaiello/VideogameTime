@@ -12,12 +12,12 @@ import java.util.ArrayList;
 public class Account {
 
     public static GoogleApiClient mGoogleApiClient;
-    public static String personName ;
+    private String personName ;
     public static String personGivenName ;
     public static String personFamilyName;
     public static String personEmail;
-    public static String personId;
-    public static Uri personPhoto;
+    private String personId;
+    private String personPhoto;
     public static GoogleSignInAccount acct;
     public static ArrayList<String> consoleQuery;
     public static ArrayList<String> genQuery;
@@ -27,6 +27,15 @@ public class Account {
     public static boolean Accesso = false;
     public static SharedPreferences mSettings;
 
+    public Account(String personName, String personId, String personPhoto) {
+        this.personName = personName;
+        this.personId = personId;
+        this.personPhoto = personPhoto;
+    }
+
+    public Account() {
+    }
+
     public static ArrayList<String> getConsoleQuery() {
         return consoleQuery;
     }
@@ -35,12 +44,12 @@ public class Account {
         Account.consoleQuery = consoleQuery;
     }
 
-    public static String getPersonName() {
+    public String getPersonName() {
         return personName;
     }
 
-    public static void setPersonName(String personName) {
-        Account.personName = personName;
+    public void setPersonName(String personName) {
+        this.personName = personName;
     }
 
     public static String getPersonGivenName() {
@@ -67,20 +76,20 @@ public class Account {
         Account.personEmail = personEmail;
     }
 
-    public static String getPersonId() {
+    public String getPersonId() {
         return personId;
     }
 
-    public static void setPersonId(String personId) {
-        Account.personId = personId;
+    public void setPersonId(String personId) {
+        this.personId = personId;
     }
 
-    public static Uri getPersonPhoto() {
+    public  String getPersonPhoto() {
         return personPhoto;
     }
 
-    public static void setPersonPhoto(Uri personPhoto) {
-        Account.personPhoto = personPhoto;
+    public void setPersonPhoto(String personPhoto) {
+        this.personPhoto = personPhoto;
     }
 
     public static GoogleApiClient getmGoogleApiClient() {
