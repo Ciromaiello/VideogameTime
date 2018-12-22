@@ -20,7 +20,7 @@ public class GiochiActivity extends AppCompatActivity {
     private TextView nome;
     private ImageView img;
     private RatingBar stars;
-    static String Description, output1, output2;
+    static String Description, output1, output2, id_gioco;
 
 
     @Override
@@ -40,6 +40,7 @@ public class GiochiActivity extends AppCompatActivity {
         Description = intent.getExtras().getString("Description");
         String image = intent.getExtras().getString("Image") ;
         float numRating = intent.getExtras().getFloat("Rating");
+        String id = intent.getExtras().getString("id");
 
         // Setting values
         nome.setText(Title);
@@ -60,6 +61,8 @@ public class GiochiActivity extends AppCompatActivity {
         }
         Picasso.with(getApplicationContext()).load(image).into(img);
         stars.setRating(numRating);
+        Log.e("EEE", "L'id è " + id);
+        id_gioco = id;
         //Bundle per passare i dati a InfoFragment
         /**Bundle bundle = new Bundle();
         bundle.putString("descrizione", Description);

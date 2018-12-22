@@ -96,7 +96,6 @@ public class SearchGiochiActivity extends AppCompatActivity {
         reset_String.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 key.clear();
                 giochiNameList.clear();
                 giochiPicList.clear();
@@ -154,7 +153,6 @@ public class SearchGiochiActivity extends AppCompatActivity {
                            else{
                             for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                             Giochi g = document.toObject(Giochi.class);
-
                             String uid = document.getId();
                             String giochi_name = g.getNome();
                             String giochi_pic = g.getImmagine();

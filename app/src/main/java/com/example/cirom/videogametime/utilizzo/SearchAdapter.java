@@ -51,11 +51,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
             super(itemView);
             giocoImage = (ImageView) itemView.findViewById(R.id.giocoimg);
             gioco_name = (TextView) itemView.findViewById(R.id.gioco_name);
-
-
         }
-
-
     }
 
     public SearchAdapter(Context context, ArrayList<String> giochiNameList,ArrayList<String> giochiPicList, ArrayList<String> key) {
@@ -97,6 +93,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
                                intent.putExtra("Title",g.getNome());
                                intent.putExtra("Image",g.getImmagine());
                                intent.putExtra("Rating",g.getStars());
+                               intent.putExtra("id",g.getId_gioco());
                                context.startActivity(intent);
 
 
