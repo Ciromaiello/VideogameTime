@@ -44,7 +44,6 @@ public class SelectionGiochiActivity extends AppCompatActivity {
     private FloatingActionButton btnScelta;
     ArrayList<Giochi> giochi;
     private ArrayList<String> nomi;
-
     private DatabaseReference mDatabase;
     private FirebaseFirestore mFirestore;
     private CollectionReference mGiochi;

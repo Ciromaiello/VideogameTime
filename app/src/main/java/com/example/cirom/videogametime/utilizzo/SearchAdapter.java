@@ -92,7 +92,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
                                intent.putExtra("Description",g.getDescrizione());
                                intent.putExtra("Title",g.getNome());
                                intent.putExtra("Image",g.getImmagine());
-                               intent.putExtra("Rating",g.getStars());
                                intent.putExtra("id",g.getId_gioco());
                                context.startActivity(intent);
 

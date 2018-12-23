@@ -2,6 +2,7 @@ package com.example.cirom.videogametime.tutorial.selezione_giochi;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +11,12 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import com.example.cirom.videogametime.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -21,7 +27,11 @@ public class GiochiActivity extends AppCompatActivity {
     private ImageView img;
     private RatingBar stars;
     static String Description, output1, output2, id_gioco;
-
+    private FirebaseFirestore mFirestore;
+    private CollectionReference mGiochi;
+    GiochiActivity giochiActivity;
+    ArrayList<Float> numMedia;
+    float numRating = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +49,6 @@ public class GiochiActivity extends AppCompatActivity {
         ArrayList<String> Piattaforme = intent.getExtras().getStringArrayList("Piattaforme");
         Description = intent.getExtras().getString("Description");
         String image = intent.getExtras().getString("Image") ;
-        float numRating = intent.getExtras().getFloat("Rating");
         String id = intent.getExtras().getString("id");
 
         // Setting values
@@ -60,17 +69,33 @@ public class GiochiActivity extends AppCompatActivity {
             output2 += Piattaforme.get(j);
         }
         Picasso.with(getApplicationContext()).load(image).into(img);
-        stars.setRating(numRating);
-        Log.e("EEE", "L'id è " + id);
         id_gioco = id;
-        //Bundle per passare i dati a InfoFragment
-        /**Bundle bundle = new Bundle();
-        bundle.putString("descrizione", Description);
-        bundle.putString("piattaforme", output2);
-        bundle.putString("generi", output1);
-        InfoFragment infoFragment = new InfoFragment();
-        infoFragment.setArguments(bundle);*/
-        impostaPager();
+        mFirestore = FirebaseFirestore.getInstance();
+        mGiochi = mFirestore.collection("Giochi");
+        giochiActivity = new GiochiActivity();
+        numMedia = new ArrayList<>();
+        mGiochi.document(giochiActivity.id_gioco).collection("Recensioni")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        for(QueryDocumentSnapshot document : task.getResult()) {
+                            Recensione r = document.toObject(Recensione.class);
+                            numMedia.add(r.getStars());
+                        }
+                        Media();
+                        stars.setRating(numRating);
+                        impostaPager();
+                    }
+                });
+    }
+
+    private void Media() {
+        float sum = 0;
+        for(int i=0; i<numMedia.size(); i++) {
+            sum += numMedia.get(i);
+        }
+        numRating = sum/numMedia.size();
     }
 
     private void impostaPager() {
@@ -107,6 +132,5 @@ public class GiochiActivity extends AppCompatActivity {
 
             }
         });
-
     }
 }
