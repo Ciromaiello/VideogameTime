@@ -1,52 +1,32 @@
 package com.example.cirom.videogametime.utilizzo;
 
 import android.content.Context;
-import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.login.LoginActivity;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.Accounts;
-import com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.Gioco;
-import com.example.cirom.videogametime.tutorial.selezione_giochi.SceltaDalDatabase;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
+
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
-import static com.example.cirom.videogametime.utilizzo.Account.Accesso;
 import static com.example.cirom.videogametime.utilizzo.Account.acct;
 import static com.example.cirom.videogametime.utilizzo.Account.mSettings;
 
@@ -152,7 +132,7 @@ public class ProfiloActivity extends AppCompatActivity {
     private void Credenziali() {
         acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
         if (acct != null) {
-            account = new Account(acct.getDisplayName(),acct.getId(), acct.getPhotoUrl().toString());
+            account = new Account(acct.getDisplayName(), acct.getId(), acct.getPhotoUrl().toString());
             Account.personGivenName = acct.getGivenName();
             Account.personFamilyName = acct.getFamilyName();
             Account.personEmail = acct.getEmail();

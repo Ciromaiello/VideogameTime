@@ -43,7 +43,7 @@ public class NewRecensioneActivity extends AppCompatActivity {
                 title = titolo.getText().toString();
                 rece = recensione.getText().toString();
                 numStars = stars.getRating();
-                rec = new Recensione(numStars, rece, title, acct.getId());
+                rec = new Recensione(numStars, rece, title, acct.getId(), acct.getPhotoUrl().toString(), acct.getDisplayName());
                 giochiActivity = new GiochiActivity();
                 mCollection.document(giochiActivity.id_gioco).collection("Recensioni").document(acct.getId()).set(rec);
                 Intent intent = new Intent(NewRecensioneActivity.this, ProfiloActivity.class);

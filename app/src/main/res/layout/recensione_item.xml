@@ -13,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        card_view:cardBackgroundColor="@color/Vverde"
         card_view:cardCornerRadius="4dp">
 
         <RelativeLayout
@@ -31,21 +30,40 @@
                 android:id="@+id/textTitleRec"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/gettingStar2"
+                android:layout_below="@+id/textName"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="2dp"
                 android:layout_toEndOf="@+id/imageAccountRec"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium"
-                android:textColor="@color/verde2" />
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toEndOf="@+id/imageAccountRec"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="12sp" />
 
             <RatingBar
                 android:id="@+id/gettingStar2"
-                android:layout_width="167dp"
-                android:layout_height="25dp"
+                style="@android:style/Widget.Material.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="0dp"
-                android:layout_toEndOf="@+id/imageAccountRec" />
+                android:layout_marginTop="5dp"
+                android:layout_toEndOf="@+id/textName"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:progressBackgroundTint="@color/Vverde"
+                android:progressTint="#FF0E7C00"
+                android:stepSize="1" />
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>

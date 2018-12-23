@@ -2,13 +2,34 @@ package com.example.cirom.videogametime.tutorial.selezione_giochi;
 
 public class Recensione {
     private float stars;
-    private String recensione, titolo, id;
+    private String recensione, titolo, id, personImm, personName;
 
-    public Recensione(float stars, String recensione, String titolo, String id) {
+    public Recensione(float stars, String recensione, String titolo, String id, String personImm, String personName) {
         this.stars = stars;
         this.recensione = recensione;
         this.titolo = titolo;
         this.id = id;
+        this.personImm = personImm;
+        this.personName = personName;
+    }
+
+    public Recensione() {
+    }
+
+    public String getPersonImm() {
+        return personImm;
+    }
+
+    public void setPersonImm(String personImm) {
+        this.personImm = personImm;
+    }
+
+    public String getPersonName() {
+        return personName;
+    }
+
+    public void setPersonName(String personName) {
+        this.personName = personName;
     }
 
     public float getStars() {
