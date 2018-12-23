@@ -5,12 +5,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.cirom.videogametime.R;
+import com.example.cirom.videogametime.utilizzo.News;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
@@ -23,6 +25,8 @@ public class PiattaformeAdapter extends RecyclerView.Adapter<PiattaformeAdapter.
     ArrayList<Piattaforme> piattaforme;
     private FirebaseFirestore mFirestore;
     private CollectionReference mCollection;
+
+
 
     public PiattaformeAdapter(Context context, List<Piattaforme> piattaforme) {
         this.piattaforme= new ArrayList<>(piattaforme);
@@ -71,4 +75,6 @@ public class PiattaformeAdapter extends RecyclerView.Adapter<PiattaformeAdapter.
             Picasso.with(itemView.getContext()).load(console.getImage()).into(imageConsole);
         }
     }
+
+
 }

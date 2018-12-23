@@ -1,50 +1,31 @@
 package com.example.cirom.videogametime.utilizzo;
 
+import android.widget.ImageView;
+
+import com.example.cirom.videogametime.R;
+
 public class News {
-    private String titolo;
-    private String desc;
-    private String URL;
-    private String img;
+   private int img;
+   private String url;
 
-    public News(String titolo, String desc, String URL, String img) {
-        this.titolo = titolo;
-        this.desc = desc;
-        this.URL = URL;
-        this.img = img;
+    public News(int img, String url) {
+        this.img=img;
+        this.url = url;
     }
 
-    public News() {
-    }
-
-    public String getTitolo() {
-        return titolo;
-    }
-
-    public void setTitolo(String titolo) {
-        this.titolo = titolo;
-    }
-
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
-    public String getURL() {
-        return URL;
-    }
-
-    public void setURL(String URL) {
-        this.URL = URL;
-    }
-
-    public String getImg() {
+    public int getImg() {
         return img;
     }
 
-    public void setImg(String img) {
+    public void setImg(int img) {
         this.img = img;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
