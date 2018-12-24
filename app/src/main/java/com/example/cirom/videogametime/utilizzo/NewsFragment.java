@@ -30,7 +30,11 @@ import android.widget.TextView;
 
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.login.LoginActivity;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -40,10 +44,11 @@ import static com.example.cirom.videogametime.utilizzo.Account.Accesso;
 import static com.example.cirom.videogametime.utilizzo.Account.mSettings;
 
 public class NewsFragment extends Fragment {
-    private final String TAG = "DEMO_MISC";
     private RecyclerView newsList;
-    private int[] imgs={R.drawable.multiplayer,R.drawable.spaziogames,R.drawable.gamesvillage,R.drawable.gamespot};
-    private String[] urls={"https://multiplayer.it/","https://www.spaziogames.it/","http://www.gamesvillage.it/","https://www.gamespot.com/"};
+    private FirebaseFirestore mFirestore;
+    private CollectionReference mNews;
+    private String[] siti = {"multiplayer","spaziogames","gamesvilage","gamespot"};
+    private ArrayList<News> news;
 
 
     public NewsFragment() {
@@ -60,21 +65,45 @@ public class NewsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
+
         newsList = view.findViewById(R.id.newsList);
 
-        newsList.setLayoutManager(new LinearLayoutManager(getActivity()));
-        ArrayList<News> news=new ArrayList<>();
-        for(int i=0;i<imgs.length;i++){
-            news.add(new News(imgs[i],urls[i]));
-        }
+        mFirestore=FirebaseFirestore.getInstance();
+        mNews= mFirestore.collection("News");
 
-        NewsAdapter newsAdapter = new NewsAdapter(getContext(),news);
-        newsList.setAdapter(newsAdapter);
+        newsList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        news=new ArrayList<>();
+        int i=0;
+        AggiungiNews(i);
 
 
     }
 
 
+    private void AggiungiNews(int i) {
+
+        if(i<siti.length)
+            QueryNews(i);
+        else {
+            NewsAdapter newsAdapter = new NewsAdapter(getContext(),news);
+            newsList.setAdapter(newsAdapter);
+        }
+    }
+
+    private void QueryNews(final int i) {
+        mNews.document(siti[i])
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        News s = documentSnapshot.toObject(News.class);
+                        news.add(new News(s.getImg(),s.getUrl()));
+                        int f = i;
+                        f++;
+                        AggiungiNews(f);
+                    }
+                });
+    }
 
 
 }
