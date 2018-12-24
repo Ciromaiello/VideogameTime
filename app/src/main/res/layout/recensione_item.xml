@@ -50,6 +50,18 @@
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="12sp" />
 
+            <TextView
+                android:id="@+id/textDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="5dp"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textSize="8sp" />
+
             <RatingBar
                 android:id="@+id/gettingStar2"
                 style="@android:style/Widget.Material.RatingBar.Small"

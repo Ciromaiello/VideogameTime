@@ -1,19 +1,34 @@
 package com.example.cirom.videogametime.tutorial.selezione_giochi;
 
+import com.google.firebase.firestore.ServerTimestamp;
+
+import java.sql.Timestamp;
+import java.util.Date;
+
 public class Recensione {
     private float stars;
     private String recensione, titolo, id, personImm, personName;
+    private Date data;
 
-    public Recensione(float stars, String recensione, String titolo, String id, String personImm, String personName) {
+    public Recensione(float stars, String recensione, String titolo, String id, String personImm, String personName, Date data) {
         this.stars = stars;
         this.recensione = recensione;
         this.titolo = titolo;
         this.id = id;
         this.personImm = personImm;
         this.personName = personName;
+        this.data = data;
     }
 
     public Recensione() {
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
     }
 
     public String getPersonImm() {

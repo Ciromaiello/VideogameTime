@@ -44,7 +44,7 @@ public class RecensioniGiocoAdapter extends RecyclerView.Adapter<RecensioniGioco
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView rece_title, nome;
+        TextView rece_title, nome, data;
         ImageView personal_img;
         RatingBar stars;
         CardView cardView ;
@@ -53,6 +53,7 @@ public class RecensioniGiocoAdapter extends RecyclerView.Adapter<RecensioniGioco
             super(itemView);
             nome = (TextView) itemView.findViewById(R.id.textName);
             rece_title = (TextView) itemView.findViewById(R.id.textTitleRec);
+            data = (TextView) itemView.findViewById(R.id.textDate);
             stars = (RatingBar) itemView.findViewById(R.id.gettingStar2);
             personal_img = (ImageView) itemView.findViewById(R.id.imageAccountRec);
             cardView = (CardView) itemView.findViewById(R.id.card_view);
@@ -62,6 +63,7 @@ public class RecensioniGiocoAdapter extends RecyclerView.Adapter<RecensioniGioco
             stars.setRating(rece.getStars());
             nome.setText(rece.getPersonName());
             rece_title.setText(rece.getTitolo());
+            data.setText(rece.getData().toLocaleString());
             Picasso.with(itemView.getContext()).load(rece.getPersonImm()).into(personal_img);
         }
     }

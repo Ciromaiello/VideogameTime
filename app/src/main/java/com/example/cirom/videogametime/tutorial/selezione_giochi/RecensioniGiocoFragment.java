@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -64,6 +65,7 @@ public class RecensioniGiocoFragment extends Fragment {
         mGiochi = mFirestore.collection("Giochi");
         giochiActivity = new GiochiActivity();
         mGiochi.document(giochiActivity.id_gioco).collection("Recensioni")
+                .orderBy("data", Query.Direction.DESCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
