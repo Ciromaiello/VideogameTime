@@ -12,7 +12,9 @@ import android.widget.RatingBar;
 import com.example.cirom.videogametime.R;
 import static com.example.cirom.videogametime.utilizzo.Account.acct;
 import com.example.cirom.videogametime.utilizzo.ProfiloActivity;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class NewRecensioneActivity extends AppCompatActivity {
@@ -26,6 +28,7 @@ public class NewRecensioneActivity extends AppCompatActivity {
     Recensione rec;
     private String title, rece;
     private float numStars;
+    private Giochi giochi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class NewRecensioneActivity extends AppCompatActivity {
         inviaButton = (FloatingActionButton) findViewById(R.id.btnSendRece);
         mFirestore = FirebaseFirestore.getInstance();
         mCollection = mFirestore.collection("Giochi");
+        giochi = new Giochi();
         inviaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,8 +50,22 @@ public class NewRecensioneActivity extends AppCompatActivity {
                 rec = new Recensione(numStars, rece, title, acct.getId(), acct.getPhotoUrl().toString(), acct.getDisplayName());
                 giochiActivity = new GiochiActivity();
                 mCollection.document(giochiActivity.id_gioco).collection("Recensioni").document(acct.getId()).set(rec);
-                Intent intent = new Intent(NewRecensioneActivity.this, ProfiloActivity.class);
-                startActivity(intent);
+                mCollection.document(giochiActivity.id_gioco)
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        giochi = documentSnapshot.toObject(Giochi.class);
+                        Intent intent = new Intent(NewRecensioneActivity.this, GiochiActivity.class);
+                        intent.putExtra("Title",giochi.getNome());
+                        intent.putExtra("Description",giochi.getDescrizione());
+                        intent.putExtra("Generi",giochi.getGeneri());
+                        intent.putExtra("Piattaforme",giochi.getPiattaforme());
+                        intent.putExtra("Image",giochi.getImmagine());
+                        intent.putExtra("id", giochi.getId_gioco());
+                        startActivity(intent);
+                    }
+                });
             }
         });
     }
