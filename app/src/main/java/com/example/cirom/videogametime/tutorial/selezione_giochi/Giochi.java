@@ -4,6 +4,7 @@ package com.example.cirom.videogametime.tutorial.selezione_giochi;
 import java.util.ArrayList;
 
 public class Giochi {
+    private boolean selezionato=false;
     private String id_gioco;
     private String nome;
     private ArrayList<String> generi;
@@ -12,6 +13,14 @@ public class Giochi {
     private String immagine;
     //per ora salvo ciò che ci serve per salvare i giochi, successivamente si salveranno i commenti etc
 
+
+    public boolean isSelezionato() {
+        return selezionato;
+    }
+
+    public void setSelezionato(boolean selezionato) {
+        this.selezionato = selezionato;
+    }
 
     public String getId_gioco() {
         return id_gioco;

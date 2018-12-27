@@ -11,15 +11,25 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.cirom.videogametime.R;
+import com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 import static com.example.cirom.videogametime.utilizzo.Account.acct;
+import static com.example.cirom.videogametime.utilizzo.Account.giochiscelti;
 
 public class ProfiloFragment extends Fragment {
 
     private ImageView imgProfilo;
     private Account account;
+    private FirebaseFirestore mFirestore;
+    private CollectionReference mAccount;
+    public  ArrayList<Giochi> giochi ;
 
     public ProfiloFragment() {
     }
@@ -60,5 +70,20 @@ public class ProfiloFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+            mFirestore = FirebaseFirestore.getInstance();
+            mAccount = mFirestore.collection("Account");
+            giochi = new ArrayList<>();
+            if (giochiscelti != null) {
+
+                for (int i = 0; i < giochiscelti.size(); i++) {
+                    mAccount.document(acct.getId()).update("scelte", FieldValue.arrayUnion(giochiscelti.get(i).getId_gioco()));
+                }
+            } else {}
     }
 }

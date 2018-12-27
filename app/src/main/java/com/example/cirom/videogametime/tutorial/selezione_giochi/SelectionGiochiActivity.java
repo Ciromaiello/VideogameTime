@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.example.cirom.videogametime.R;
@@ -27,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.lang.reflect.Array;
@@ -35,14 +37,18 @@ import java.util.List;
 
 
 import static android.os.SystemClock.sleep;
+import static com.example.cirom.videogametime.utilizzo.Account.acct;
 import static com.example.cirom.videogametime.utilizzo.Account.consoleQuery;
 import static com.example.cirom.videogametime.utilizzo.Account.genQuery;
+import static com.example.cirom.videogametime.utilizzo.Account.giochiscelti;
 import static com.example.cirom.videogametime.utilizzo.Account.nomige;
 
 public class SelectionGiochiActivity extends AppCompatActivity {
 
+    CheckBox checkBox;
     private FloatingActionButton btnScelta;
     ArrayList<Giochi> giochi;
+    ArrayList<Giochi> giochiscelti;
     private ArrayList<String> nomi;
     private DatabaseReference mDatabase;
     private FirebaseFirestore mFirestore;
@@ -55,6 +61,8 @@ public class SelectionGiochiActivity extends AppCompatActivity {
         btnScelta = findViewById(R.id.btnGiochi);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         giochi = new ArrayList<>();
+        giochiscelti = new ArrayList<>();
+        Account.giochiscelti=new ArrayList<>();
         nomi = new ArrayList<>();
         mFirestore = FirebaseFirestore.getInstance();
         mGiochi = mFirestore.collection("Giochi");
@@ -65,8 +73,21 @@ public class SelectionGiochiActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(Account.utente) {
+                    int k=0;
+                    for(int j=0;j<nomi.size();j++){
+                        if(giochi.get(j).isSelezionato()) {
+                           Account.getGiochiscelti().add(k,giochi.get(j));
+                            Log.e("giochi scelti", giochi.get(j).getNome());
+                            k++;
+                        }
+                        else{}
+
+                    }
+
                     Intent intent = new Intent(SelectionGiochiActivity.this, ProfiloActivity.class);
+
                     startActivity(intent);
+                    finish();
                 }
                 else {
                     Toast.makeText(getApplication(),"Non puoi accedere al profilo come ospite", Toast.LENGTH_SHORT).show();
@@ -92,9 +113,10 @@ public class SelectionGiochiActivity extends AppCompatActivity {
         }
         else {
             RecyclerView myrv = findViewById(R.id.recyclerview_id);
-            RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(getApplicationContext(), giochi);
+            final RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(getApplicationContext(), giochi);
             myrv.setLayoutManager(new GridLayoutManager(getApplicationContext(), 3));
             myrv.setAdapter(myAdapter);
+
         }
     }
 

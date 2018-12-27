@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.login.LoginActivity;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.Accounts;
+import com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.Gioco;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -181,8 +182,11 @@ public class ProfiloActivity extends AppCompatActivity {
             });
         }
         else {
+
             mAccount.document(acct.getId()).set(account);
             mAccount.document("id_account").update("accounts", FieldValue.arrayUnion(acct.getId()));
+
+
         }
     }
 }

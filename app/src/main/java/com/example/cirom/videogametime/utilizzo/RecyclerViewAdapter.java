@@ -1,24 +1,21 @@
-package com.example.cirom.videogametime.tutorial.selezione_giochi;
+package com.example.cirom.videogametime.utilizzo;
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.cirom.videogametime.R;
-import com.example.cirom.videogametime.utilizzo.Account;
+import com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi;
+import com.example.cirom.videogametime.tutorial.selezione_giochi.GiochiActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-
-import static android.support.constraint.Constraints.TAG;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
@@ -33,11 +30,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_game, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_gamescelta, parent, false);
         return new MyViewHolder(v);
-
-
-
     }
 
     @Override
@@ -58,18 +52,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         });
 
 
-        holder.checkBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-              if(!giochi.get(position).isSelezionato()){
-                giochi.get(position).setSelezionato(true);
-                  Log.e("hai cliccato", "onClick: yes");}
-                  else{ giochi.get(position).setSelezionato(false);}
-
-            }
-        });
-
-
     }
 
     @Override
@@ -81,22 +63,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView game_title;
         ImageView game_img;
         CardView cardView ;
-        CheckBox checkBox;
 
-        public MyViewHolder(final View itemView) {
+        public MyViewHolder(View itemView) {
             super(itemView);
             game_title = (TextView) itemView.findViewById(R.id.game_title) ;
             game_img = (ImageView) itemView.findViewById(R.id.game_img);
             cardView = (CardView) itemView.findViewById(R.id.cardview_id);
-            checkBox =itemView.findViewById(R.id.checkBox4);
-
 
         }
 
         public void bindData(Giochi game) {
             game_title.setText(game.getNome());
             Picasso.with(itemView.getContext()).load(game.getImmagine()).into(game_img);
-
         }
+
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 
+import com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.GoogleApiClient;
 
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 
 public class Account {
 
+    public  static ArrayList<Giochi> giochiscelti;
     public static GoogleApiClient mGoogleApiClient;
     private String personName ;
     public static String personGivenName ;
@@ -26,6 +28,14 @@ public class Account {
     public static boolean utente = false;
     public static boolean Accesso = false;
     public static SharedPreferences mSettings;
+
+    public static ArrayList<Giochi> getGiochiscelti() {
+        return giochiscelti;
+    }
+
+    public static void setGiochiscelti(ArrayList<Giochi> giochiscelti) {
+        Account.giochiscelti = giochiscelti;
+    }
 
     public Account(String personName, String personId, String personPhoto) {
         this.personName = personName;
