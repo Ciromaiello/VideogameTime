@@ -36,6 +36,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthRegistrar;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FieldValue;
@@ -58,7 +59,11 @@ public class GestioneProfiloFragment extends Fragment {
     private final String TAG = "DEMO_MISC";
     private FirebaseFirestore mFirestore;
     private CollectionReference mAccount;
-    public  ArrayList<Giochi> giochi ;
+    private  ArrayList<Giochi> giochi ;
+    private ArrayList<String> idGiochiScelti;
+    private CollectionReference mGiochi;
+    private CollectionReference mScelte;
+
 
 
     public GestioneProfiloFragment() {
@@ -83,7 +88,15 @@ public class GestioneProfiloFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
-        scelta();
+        mFirestore=FirebaseFirestore.getInstance();
+        mGiochi=mFirestore.collection("Giochi");
+        mScelte=mFirestore.collection("Account");
+        idGiochiScelti = new ArrayList<>();
+        giochi = new ArrayList<>();
+
+        LetturaId();
+
+
         /*    Log.e(TAG, "account" + acct.getId());
             mAccount.document(acct.getId()).collection("Scelte")
                     .get()
@@ -108,11 +121,45 @@ public class GestioneProfiloFragment extends Fragment {
 */
         }
 
-    private void scelta(){
-      RecyclerView myr = (RecyclerView) getView().findViewById(R.id.cardgiochi);
-      final RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(getContext(), Account.getGiochiscelti());
-      myr.setLayoutManager(new GridLayoutManager(getActivity(), 3));
-      myr.setAdapter(myAdapter);
-                        }
+    private void AggiungiGiochi(int i) {
+        if(i<giochi.size()) {
+            Query(i);
+        }
+        else {
+            RecyclerView myr = (RecyclerView) getView().findViewById(R.id.cardgiochi);
+            final RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(getContext(), giochi);
+            myr.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+            myr.setAdapter(myAdapter);
 
+        }
+    }
+
+    private void Query(final int i) {
+        mGiochi.document(idGiochiScelti.get(i))
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        Giochi g = documentSnapshot.toObject(Giochi.class);
+                        giochi.add(g);
+                        int f = i;
+                        f++;
+                        AggiungiGiochi(f);
+                    }
+                });
+    }
+
+    private void LetturaId()
+    {
+        mScelte.document(acct.getId()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                GiochiScelti a = documentSnapshot.toObject(GiochiScelti.class);
+                idGiochiScelti = a.getScelte();
+                Log.e("WE", "le mie scelte sono "+a.getScelte());
+                int i=0;
+                Query(i);
+            }
+        });
+    }
 }

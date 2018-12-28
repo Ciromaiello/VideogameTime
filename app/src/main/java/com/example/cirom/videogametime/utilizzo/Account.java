@@ -20,6 +20,7 @@ public class Account {
     public static String personEmail;
     private String personId;
     private String personPhoto;
+    private ArrayList<String> idGiochiScelti;
     public static GoogleSignInAccount acct;
     public static ArrayList<String> consoleQuery;
     public static ArrayList<String> genQuery;
@@ -125,4 +126,14 @@ public class Account {
     public static void setAccesso(boolean accesso) {
         Accesso = accesso;
     }
+
+    public ArrayList<String> getIdGiochiScelti() {
+        return idGiochiScelti;
+    }
+
+    public void setIdGiochiScelti(ArrayList<String> idGiochiScelti) {
+        this.idGiochiScelti = idGiochiScelti;
+    }
+
+
 }

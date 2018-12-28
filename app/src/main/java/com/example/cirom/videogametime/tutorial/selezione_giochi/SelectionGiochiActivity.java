@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -53,6 +54,7 @@ public class SelectionGiochiActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private FirebaseFirestore mFirestore;
     private CollectionReference mGiochi;
+    private CollectionReference mScelte;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,34 +68,12 @@ public class SelectionGiochiActivity extends AppCompatActivity {
         nomi = new ArrayList<>();
         mFirestore = FirebaseFirestore.getInstance();
         mGiochi = mFirestore.collection("Giochi");
+        mScelte = mFirestore.collection("Account");
         Controllo();
         int i = 0;
         AggiungiGiochi(i);
-        btnScelta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(Account.utente) {
-                    int k=0;
-                    for(int j=0;j<nomi.size();j++){
-                        if(giochi.get(j).isSelezionato()) {
-                           Account.getGiochiscelti().add(k,giochi.get(j));
-                            Log.e("giochi scelti", giochi.get(j).getNome());
-                            k++;
-                        }
-                        else{}
+        AggiungiGiochiScelti();
 
-                    }
-
-                    Intent intent = new Intent(SelectionGiochiActivity.this, ProfiloActivity.class);
-
-                    startActivity(intent);
-                    finish();
-                }
-                else {
-                    Toast.makeText(getApplication(),"Non puoi accedere al profilo come ospite", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
     }
 
     public void Controllo() {
@@ -133,6 +113,25 @@ public class SelectionGiochiActivity extends AppCompatActivity {
                         AggiungiGiochi(f);
                     }
                 });
+    }
+    public void AggiungiGiochiScelti()
+    {
+        btnScelta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Account.utente) {
+
+
+                    Intent intent = new Intent(SelectionGiochiActivity.this, ProfiloActivity.class);
+
+                    startActivity(intent);
+                    finish();
+                }
+                else {
+                    Toast.makeText(getApplication(),"Non puoi accedere al profilo come ospite", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }
 

@@ -72,18 +72,5 @@ public class ProfiloFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
 
-            mFirestore = FirebaseFirestore.getInstance();
-            mAccount = mFirestore.collection("Account");
-            giochi = new ArrayList<>();
-            if (giochiscelti != null) {
-
-                for (int i = 0; i < giochiscelti.size(); i++) {
-                    mAccount.document(acct.getId()).update("scelte", FieldValue.arrayUnion(giochiscelti.get(i).getId_gioco()));
-                }
-            } else {}
-    }
 }

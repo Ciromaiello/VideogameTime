@@ -189,4 +189,15 @@ public class ProfiloActivity extends AppCompatActivity {
 
         }
     }
+
+    //questo dovrebbe essere il metodo che prende l'arraylist degli id da salvare sull'account
+    /*private void AggiungiGiochiScelti()
+    {
+        for (int j = 0; j < nomi.size(); j++) {
+            if (giochi.get(j).isSelezionato()) {
+                mScelte.document(acct.getId()).update("scelte", FieldValue.arrayUnion(giochi.get(j).getId_gioco()));
+            }
+
+        }
+    }*/
 }
