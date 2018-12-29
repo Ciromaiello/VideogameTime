@@ -20,7 +20,7 @@ public class Account {
     public static String personEmail;
     private String personId;
     private String personPhoto;
-    private ArrayList<String> idGiochiScelti;
+    public static ArrayList<String> idGiochiScelti;
     public static GoogleSignInAccount acct;
     public static ArrayList<String> consoleQuery;
     public static ArrayList<String> genQuery;
@@ -29,6 +29,7 @@ public class Account {
     public static boolean utente = false;
     public static boolean Accesso = false;
     public static SharedPreferences mSettings;
+    public static boolean fatto = false;
 
     public static ArrayList<Giochi> getGiochiscelti() {
         return giochiscelti;
@@ -126,14 +127,5 @@ public class Account {
     public static void setAccesso(boolean accesso) {
         Accesso = accesso;
     }
-
-    public ArrayList<String> getIdGiochiScelti() {
-        return idGiochiScelti;
-    }
-
-    public void setIdGiochiScelti(ArrayList<String> idGiochiScelti) {
-        this.idGiochiScelti = idGiochiScelti;
-    }
-
 
 }

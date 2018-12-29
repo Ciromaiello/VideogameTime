@@ -97,6 +97,7 @@ public class GestioneProfiloFragment extends Fragment {
         LetturaId();
 
 
+
         /*    Log.e(TAG, "account" + acct.getId());
             mAccount.document(acct.getId()).collection("Scelte")
                     .get()
@@ -122,15 +123,19 @@ public class GestioneProfiloFragment extends Fragment {
         }
 
     private void AggiungiGiochi(int i) {
-        if(i<giochi.size()) {
+        if(i<idGiochiScelti.size()) {
             Query(i);
         }
         else {
+            for (int u=0;u<giochi.size();u++)
+            {
+                Log.e("FINALMENTE", "GUARDA I TUOI GIOCHI : " +giochi.get(u).getNome());
+            }
+
             RecyclerView myr = (RecyclerView) getView().findViewById(R.id.cardgiochi);
             final RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(getContext(), giochi);
             myr.setLayoutManager(new GridLayoutManager(getActivity(), 3));
             myr.setAdapter(myAdapter);
-
         }
     }
 
@@ -151,15 +156,19 @@ public class GestioneProfiloFragment extends Fragment {
 
     private void LetturaId()
     {
-        mScelte.document(acct.getId()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        mScelte.document(acct.getId()).collection("Scelte").document("Giochi Scelti")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 GiochiScelti a = documentSnapshot.toObject(GiochiScelti.class);
                 idGiochiScelti = a.getScelte();
                 Log.e("WE", "le mie scelte sono "+a.getScelte());
                 int i=0;
-                Query(i);
+                AggiungiGiochi(i);
+
             }
         });
+
     }
 }

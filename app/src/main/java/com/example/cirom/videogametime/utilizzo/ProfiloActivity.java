@@ -29,6 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 
 import static com.example.cirom.videogametime.utilizzo.Account.acct;
+import static com.example.cirom.videogametime.utilizzo.Account.idGiochiScelti;
 import static com.example.cirom.videogametime.utilizzo.Account.mSettings;
 
 
@@ -40,6 +41,8 @@ public class ProfiloActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private CollectionReference mAccount;
     private FirebaseFirestore mFirestore;
+    private CollectionReference mScelte;
+    private ArrayList<String> giochiScelti;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,7 @@ public class ProfiloActivity extends AppCompatActivity {
         navigation = findViewById(R.id.navigation);
         getSupportFragmentManager().beginTransaction().replace(R.id.profilo_activity, new ProfiloFragment()).commit();
         mFirestore = FirebaseFirestore.getInstance();
+        mScelte=mFirestore.collection("Account");
         mAccount = mFirestore.collection("Account");
         navigation.setSelectedItemId(R.id.menu_account);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -70,6 +74,13 @@ public class ProfiloActivity extends AppCompatActivity {
             }
         });
         Credenziali();
+        if(Account.fatto) {
+            giochiScelti = new ArrayList<>(Account.idGiochiScelti);
+            for (int i = 0; i < giochiScelti.size(); i++) {
+                Log.e("GLI ID", "SCELTI SONO" + giochiScelti.get(i));
+                AggiungiGiochiScelti();
+            }
+        }
         mSettings = getBaseContext().getSharedPreferences("Settings", Context.MODE_PRIVATE);
 
     }
@@ -190,14 +201,15 @@ public class ProfiloActivity extends AppCompatActivity {
         }
     }
 
-    //questo dovrebbe essere il metodo che prende l'arraylist degli id da salvare sull'account
-    /*private void AggiungiGiochiScelti()
+
+    private void AggiungiGiochiScelti()
     {
-        for (int j = 0; j < nomi.size(); j++) {
-            if (giochi.get(j).isSelezionato()) {
-                mScelte.document(acct.getId()).update("scelte", FieldValue.arrayUnion(giochi.get(j).getId_gioco()));
+       {
+            {
+                GiochiScelti g= new GiochiScelti(idGiochiScelti);
+                mScelte.document(acct.getId()).collection("Scelte").document("Giochi Scelti").update("scelte",g.getScelte());
             }
 
         }
-    }*/
+    }
 }

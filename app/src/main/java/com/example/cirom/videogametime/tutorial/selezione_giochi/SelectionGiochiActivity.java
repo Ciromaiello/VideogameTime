@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.tutorial.selezione_generi.Generi;
 import com.example.cirom.videogametime.utilizzo.Account;
+import com.example.cirom.videogametime.utilizzo.GiochiScelti;
 import com.example.cirom.videogametime.utilizzo.ProfiloActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
@@ -42,6 +43,7 @@ import static com.example.cirom.videogametime.utilizzo.Account.acct;
 import static com.example.cirom.videogametime.utilizzo.Account.consoleQuery;
 import static com.example.cirom.videogametime.utilizzo.Account.genQuery;
 import static com.example.cirom.videogametime.utilizzo.Account.giochiscelti;
+import static com.example.cirom.videogametime.utilizzo.Account.idGiochiScelti;
 import static com.example.cirom.videogametime.utilizzo.Account.nomige;
 
 public class SelectionGiochiActivity extends AppCompatActivity {
@@ -69,6 +71,7 @@ public class SelectionGiochiActivity extends AppCompatActivity {
         mFirestore = FirebaseFirestore.getInstance();
         mGiochi = mFirestore.collection("Giochi");
         mScelte = mFirestore.collection("Account");
+        idGiochiScelti=new ArrayList<>();
         Controllo();
         int i = 0;
         AggiungiGiochi(i);
@@ -121,9 +124,21 @@ public class SelectionGiochiActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(Account.utente) {
 
+                    int k=0;
+                    for(int j=0;j<nomi.size();j++)
+                    {
+                        if(giochi.get(j).isSelezionato())
+                        {
+                            idGiochiScelti.add(k,giochi.get(j).getId_gioco());
+                            ++k;
+                        }
+                    }
+
+
+
 
                     Intent intent = new Intent(SelectionGiochiActivity.this, ProfiloActivity.class);
-
+                    Account.fatto=true;
                     startActivity(intent);
                     finish();
                 }
