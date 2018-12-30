@@ -70,6 +70,7 @@ public class NewRecensioneActivity extends AppCompatActivity {
                         intent.putExtra("Image",giochi.getImmagine());
                         intent.putExtra("id", giochi.getId_gioco());
                         startActivity(intent);
+                        finish();
                     }
                 });
             }

@@ -140,6 +140,7 @@ public class GeneriFragment extends Fragment{
             Query(i);
         else {
             startActivity(new Intent(getContext(), SelectionGiochiActivity.class));
+            getActivity().finish();
         }
     }
 

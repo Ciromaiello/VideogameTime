@@ -80,8 +80,9 @@ public class RecensioniGiocoFragment extends Fragment {
         aggiungiReceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Account.utente)
+                if (Account.utente) {
                     startActivity(new Intent(getContext(), NewRecensioneActivity.class));
+                    getActivity().finish();}
                 else {
                     Toast.makeText(getActivity(), "Non puoi recensire il gioco come ospite", Toast.LENGTH_SHORT).show();
                 }
