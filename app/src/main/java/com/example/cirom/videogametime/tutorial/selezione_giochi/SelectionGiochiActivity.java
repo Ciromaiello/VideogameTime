@@ -72,8 +72,7 @@ public class SelectionGiochiActivity extends AppCompatActivity {
         mFirestore = FirebaseFirestore.getInstance();
         mGiochi = mFirestore.collection("Giochi");
         mScelte = mFirestore.collection("Account");
-        if(!giàfatto){
-        idGiochiScelti=new ArrayList<>();}
+        idGiochiScelti=new ArrayList<>();
         Controllo();
         int i = 0;
         AggiungiGiochi(i);

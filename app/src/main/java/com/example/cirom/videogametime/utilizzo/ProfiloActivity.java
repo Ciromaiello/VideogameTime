@@ -189,6 +189,17 @@ public class ProfiloActivity extends AppCompatActivity {
                         Controllo(S,f);
                     }
                     else {
+                        if(Account.fatto) {
+                            Log.e("AGGIUNGISCELTE", "FATTO E'" + fatto);
+                            giochiScelti = new ArrayList<>(Account.idGiochiScelti);
+                            for (int k = 0; k < giochiScelti.size(); k++) {
+                                Log.e("GLI ID", "SCELTI SONO" + giochiScelti.get(k));
+                                AggiungiGiochiScelti();
+                                Account.fatto=false;
+                            }
+                        }
+
+
                         getSupportFragmentManager().beginTransaction().replace(R.id.profilo_activity, new ProfiloFragment()).commit();
                     }
                 }
@@ -201,15 +212,7 @@ public class ProfiloActivity extends AppCompatActivity {
             mAccount.document("id_account").update("accounts", FieldValue.arrayUnion(acct.getId()));
 
 
-            if(Account.fatto) {
-                Log.e("AGGIUNGISCELTE", "FATTO E'" + fatto);
-                giochiScelti = new ArrayList<>(Account.idGiochiScelti);
-                for (int k = 0; k < giochiScelti.size(); k++) {
-                    Log.e("GLI ID", "SCELTI SONO" + giochiScelti.get(k));
-                    AggiungiGiochiScelti();
-                    Account.fatto=false;
-                }
-            }
+
 
 
         }
@@ -222,7 +225,7 @@ public class ProfiloActivity extends AppCompatActivity {
 
         //PrendiGiochiScelti();
 
-            GiochiScelti g = new GiochiScelti(giochiScelti);
+            GiochiScelti g = new GiochiScelti(idGiochiScelti);
             mScelte.document(acct.getId()).collection("Scelte").document("Giochi Scelti").set(g);
             getSupportFragmentManager().beginTransaction().replace(R.id.profilo_activity, new ProfiloFragment()).commit();
 
