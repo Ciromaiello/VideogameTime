@@ -135,7 +135,7 @@ public class GestioneProfiloFragment extends Fragment {
 
             giàfatto=true;
             RecyclerView myr = (RecyclerView) getView().findViewById(R.id.cardgiochi);
-            final RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(getContext(), giochi);
+            final GiochiSceltiAdapter myAdapter = new GiochiSceltiAdapter(getContext(), giochi);
             myr.setLayoutManager(new GridLayoutManager(getActivity(), 3));
             myr.setAdapter(myAdapter);
         }

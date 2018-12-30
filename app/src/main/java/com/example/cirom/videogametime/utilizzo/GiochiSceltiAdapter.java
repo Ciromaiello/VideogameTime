@@ -17,13 +17,13 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
+public class GiochiSceltiAdapter extends RecyclerView.Adapter<GiochiSceltiAdapter.MyViewHolder> {
 
     private ArrayList<Giochi> giochi;
     private Context mContext;
 
 
-    public RecyclerViewAdapter(Context mContext, ArrayList<Giochi> giochi) {
+    public GiochiSceltiAdapter(Context mContext, ArrayList<Giochi> giochi) {
         this.giochi = giochi;
         this.mContext = mContext;
     }
