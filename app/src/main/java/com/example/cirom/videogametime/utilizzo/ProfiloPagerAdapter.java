@@ -14,7 +14,7 @@ public class ProfiloPagerAdapter extends FragmentPagerAdapter {
     /**
      * Numero di tab e quindi di fragment da visualizzare
      */
-    private int numeroDiTab = 3;
+    private int numeroDiTab = 2;
 
     /**
      * Costruttore
@@ -36,10 +36,6 @@ public class ProfiloPagerAdapter extends FragmentPagerAdapter {
                 return new GestioneProfiloFragment();
 
             case 1:
-                return new StatisticheFragment();
-
-
-            case 2:
                 return new RecensioneFragment();
 
             default:
@@ -64,10 +60,8 @@ public class ProfiloPagerAdapter extends FragmentPagerAdapter {
     public int getItemTabNameResourceId(int position) {
         switch (position) {
             case 0:
-                return R.string.tab_profilo;
+                return R.string.tab_seguiti;
             case 1:
-                return R.string.tab_statistiche;
-            case 2:
                 return R.string.tab_rece;
             default:
                 return R.string.tab_unknown;
