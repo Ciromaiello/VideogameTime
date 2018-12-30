@@ -71,6 +71,4 @@ public class ProfiloFragment extends Fragment {
         });
         return view;
     }
-
-
 }

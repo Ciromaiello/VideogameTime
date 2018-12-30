@@ -5,14 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.cirom.videogametime.R;
-import com.example.cirom.videogametime.utilizzo.News;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
@@ -67,7 +65,7 @@ public class PiattaformeAdapter extends RecyclerView.Adapter<PiattaformeAdapter.
             super(v);
             textpiattaforme= (TextView) v.findViewById(R.id.textTitleRec);
             checkbox2 = (CheckBox) v.findViewById(R.id.checkbox2);
-            imageConsole = (ImageView) v.findViewById(R.id.imageAccountRec);
+            imageConsole = (ImageView) v.findViewById(R.id.image_account_rec);
         }
 
         public void bindData(Piattaforme console) {

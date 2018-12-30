@@ -50,8 +50,8 @@ public class NewRecensioneActivity extends AppCompatActivity {
                 rece = recensione.getText().toString();
                 numStars = stars.getRating();
                 data = new Date();
-                rec = new Recensione(numStars, rece, title, acct.getId(), acct.getPhotoUrl().toString(), acct.getDisplayName(), data);
                 giochiActivity = new GiochiActivity();
+                rec = new Recensione(numStars, rece, title, acct.getId(), acct.getPhotoUrl().toString(), acct.getDisplayName(), data, giochiActivity.Title);
                 mCollection.document(giochiActivity.id_gioco)
                         .collection("Recensioni")
                         .document(acct.getId())

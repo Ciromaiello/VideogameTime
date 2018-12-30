@@ -21,7 +21,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imageAccountRec"
+                android:id="@+id/image_account_rec"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:clickable="true"
@@ -31,7 +31,7 @@
                 android:id="@+id/textTitleRec"
                 android:layout_width="282dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/imageAccountRec"
+                android:layout_below="@id/image_account_rec"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="17dp"
                 android:layout_marginTop="3dp"
@@ -42,7 +42,7 @@
                 android:id="@+id/checkbox2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/imageAccountRec"
+                android:layout_below="@+id/image_account_rec"
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="0dp"
                 android:layout_toEndOf="@+id/textTitleRec"

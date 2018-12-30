@@ -33,10 +33,10 @@ public class GiochiPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new InfoFragment();
+                return new RecensioniGiocoFragment();
 
             case 1:
-                return new RecensioniGiocoFragment();
+                return new InfoFragment();
 
             default:
                 return null;
@@ -60,9 +60,9 @@ public class GiochiPagerAdapter extends FragmentPagerAdapter {
     public int getItemTabNameResourceId(int position) {
         switch (position) {
             case 0:
-                return R.string.tab_info;
-            case 1:
                 return R.string.tab_rece;
+            case 1:
+                return R.string.tab_info;
             default:
                 return R.string.tab_unknown;
         }

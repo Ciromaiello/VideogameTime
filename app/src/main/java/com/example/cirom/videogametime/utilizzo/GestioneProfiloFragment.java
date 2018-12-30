@@ -172,6 +172,5 @@ public class GestioneProfiloFragment extends Fragment {
 
             }
         });
-
     }
 }

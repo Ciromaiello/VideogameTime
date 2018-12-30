@@ -26,7 +26,7 @@ public class GiochiActivity extends AppCompatActivity {
     private TextView nome;
     private ImageView img;
     private RatingBar stars;
-    static String Description, output1, output2, id_gioco;
+    static String Description, output1, output2, id_gioco, Title;
     private FirebaseFirestore mFirestore;
     private CollectionReference mGiochi;
     GiochiActivity giochiActivity;
@@ -44,7 +44,7 @@ public class GiochiActivity extends AppCompatActivity {
 
         // Recieve data
         Intent intent = getIntent();
-        String Title = intent.getExtras().getString("Title");
+        Title = intent.getExtras().getString("Title");
         ArrayList<String> Generi = intent.getExtras().getStringArrayList("Generi");
         ArrayList<String> Piattaforme = intent.getExtras().getStringArrayList("Piattaforme");
         Description = intent.getExtras().getString("Description");

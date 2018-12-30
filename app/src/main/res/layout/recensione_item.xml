@@ -20,7 +20,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imageAccountRec"
+                android:id="@+id/image_account_rec"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:clickable="true"
@@ -33,7 +33,7 @@
                 android:layout_below="@+id/textName"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="2dp"
-                android:layout_toEndOf="@+id/imageAccountRec"
+                android:layout_toEndOf="@+id/image_account_rec"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textStyle="bold" />
@@ -45,7 +45,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
-                android:layout_toEndOf="@+id/imageAccountRec"
+                android:layout_toEndOf="@+id/image_account_rec"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 android:textSize="12sp" />

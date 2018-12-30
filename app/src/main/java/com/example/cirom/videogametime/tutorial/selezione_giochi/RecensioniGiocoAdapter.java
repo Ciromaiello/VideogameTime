@@ -30,6 +30,20 @@ public class RecensioniGiocoAdapter extends RecyclerView.Adapter<RecensioniGioco
     @Override
     public void onBindViewHolder(RecensioniGiocoAdapter.MyViewHolder holder, final int position) {
         holder.bindData(recensiones.get(position));
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext,RecensioneCompletaActivity.class);
+                intent.putExtra("Title",recensiones.get(position).getTitolo());
+                intent.putExtra("Recensione",recensiones.get(position).getRecensione());
+                intent.putExtra("PersonImm",recensiones.get(position).getPersonImm());
+                intent.putExtra("PersonName",recensiones.get(position).getPersonName());
+                intent.putExtra("Stars",recensiones.get(position).getStars());
+                intent.putExtra("Time", recensiones.get(position).getData().toLocaleString());
+                intent.putExtra("Gioco", recensiones.get(position).getTitle());
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -55,7 +69,7 @@ public class RecensioniGiocoAdapter extends RecyclerView.Adapter<RecensioniGioco
             rece_title = (TextView) itemView.findViewById(R.id.textTitleRec);
             data = (TextView) itemView.findViewById(R.id.textDate);
             stars = (RatingBar) itemView.findViewById(R.id.gettingStar2);
-            personal_img = (ImageView) itemView.findViewById(R.id.imageAccountRec);
+            personal_img = (ImageView) itemView.findViewById(R.id.image_account_rec);
             cardView = (CardView) itemView.findViewById(R.id.card_view);
         }
 

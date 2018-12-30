@@ -7,10 +7,10 @@ import java.util.Date;
 
 public class Recensione {
     private float stars;
-    private String recensione, titolo, id, personImm, personName;
+    private String recensione, titolo, id, personImm, personName, title;
     private Date data;
 
-    public Recensione(float stars, String recensione, String titolo, String id, String personImm, String personName, Date data) {
+    public Recensione(float stars, String recensione, String titolo, String id, String personImm, String personName, Date data, String title) {
         this.stars = stars;
         this.recensione = recensione;
         this.titolo = titolo;
@@ -18,9 +18,18 @@ public class Recensione {
         this.personImm = personImm;
         this.personName = personName;
         this.data = data;
+        this.title = title;
     }
 
     public Recensione() {
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Date getData() {
