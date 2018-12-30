@@ -43,6 +43,7 @@ public class ProfiloActivity extends AppCompatActivity {
     private FirebaseFirestore mFirestore;
     private CollectionReference mScelte;
     private ArrayList<String> giochiScelti;
+    private  ArrayList<String> ids;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,11 +75,13 @@ public class ProfiloActivity extends AppCompatActivity {
             }
         });
         Credenziali();
+
         if(Account.fatto) {
             giochiScelti = new ArrayList<>(Account.idGiochiScelti);
             for (int i = 0; i < giochiScelti.size(); i++) {
                 Log.e("GLI ID", "SCELTI SONO" + giochiScelti.get(i));
                 AggiungiGiochiScelti();
+                Account.fatto=false;
             }
         }
         mSettings = getBaseContext().getSharedPreferences("Settings", Context.MODE_PRIVATE);
@@ -202,14 +205,35 @@ public class ProfiloActivity extends AppCompatActivity {
     }
 
 
-    private void AggiungiGiochiScelti()
-    {
-       {
-            {
-                GiochiScelti g= new GiochiScelti(idGiochiScelti);
-                mScelte.document(acct.getId()).collection("Scelte").document("Giochi Scelti").update("scelte",g.getScelte());
-            }
+    private void AggiungiGiochiScelti() {
 
-        }
+        PrendiGiochiScelti();
+
+            GiochiScelti g = new GiochiScelti(idGiochiScelti);
+            mScelte.document(acct.getId()).collection("Scelte").document("Giochi Scelti").update("scelte", g.getScelte());
+
+
+    }
+
+    private void PrendiGiochiScelti()
+    {
+        ids = new ArrayList<>();
+        mScelte.document(acct.getId()).collection("Scelte").document("Giochi Scelti")
+                .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                GiochiScelti g= documentSnapshot.toObject(GiochiScelti.class);
+                if(g.getScelte()!=null) {
+                    Log.e("NULL" ,"STO QUA DENTRO");
+                    ids = g.getScelte();
+                    if (ids != null)
+                    {
+                        Log.e("NULL" ,"PURE IO");
+                    idGiochiScelti.addAll(ids);}
+
+                }
+
+            }
+        });
     }
 }

@@ -50,6 +50,8 @@ import java.util.ArrayList;
 import static com.example.cirom.videogametime.utilizzo.Account.genQuery;
 import static com.example.cirom.videogametime.utilizzo.Account.getPersonEmail;
 import static com.example.cirom.videogametime.utilizzo.Account.giochiscelti;
+import static com.example.cirom.videogametime.utilizzo.Account.giàfatto;
+import static com.example.cirom.videogametime.utilizzo.Account.idGiochiScelti;
 import static com.example.cirom.videogametime.utilizzo.Account.mSettings;
 import static com.example.cirom.videogametime.utilizzo.Account.Accesso;
 import static com.example.cirom.videogametime.utilizzo.Account.acct;
@@ -60,7 +62,6 @@ public class GestioneProfiloFragment extends Fragment {
     private FirebaseFirestore mFirestore;
     private CollectionReference mAccount;
     private  ArrayList<Giochi> giochi ;
-    private ArrayList<String> idGiochiScelti;
     private CollectionReference mGiochi;
     private CollectionReference mScelte;
 
@@ -132,6 +133,7 @@ public class GestioneProfiloFragment extends Fragment {
                 Log.e("FINALMENTE", "GUARDA I TUOI GIOCHI : " +giochi.get(u).getNome());
             }
 
+            giàfatto=true;
             RecyclerView myr = (RecyclerView) getView().findViewById(R.id.cardgiochi);
             final RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(getContext(), giochi);
             myr.setLayoutManager(new GridLayoutManager(getActivity(), 3));

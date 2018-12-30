@@ -30,6 +30,7 @@ public class Account {
     public static boolean Accesso = false;
     public static SharedPreferences mSettings;
     public static boolean fatto = false;
+    public static boolean giàfatto = false;
 
     public static ArrayList<Giochi> getGiochiscelti() {
         return giochiscelti;
