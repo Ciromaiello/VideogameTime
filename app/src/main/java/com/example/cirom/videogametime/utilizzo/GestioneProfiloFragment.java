@@ -163,6 +163,7 @@ public class GestioneProfiloFragment extends Fragment {
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Log.e("WE", "VOGLIO SCRIVERE SUL DB");
                 GiochiScelti a = documentSnapshot.toObject(GiochiScelti.class);
                 idGiochiScelti = a.getScelte();
                 Log.e("WE", "le mie scelte sono "+a.getScelte());

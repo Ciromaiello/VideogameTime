@@ -29,6 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 
 import static com.example.cirom.videogametime.utilizzo.Account.acct;
+import static com.example.cirom.videogametime.utilizzo.Account.fatto;
 import static com.example.cirom.videogametime.utilizzo.Account.idGiochiScelti;
 import static com.example.cirom.videogametime.utilizzo.Account.mSettings;
 
@@ -52,7 +53,8 @@ public class ProfiloActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         navigation = findViewById(R.id.navigation);
-        getSupportFragmentManager().beginTransaction().replace(R.id.profilo_activity, new ProfiloFragment()).commit();
+
+
         mFirestore = FirebaseFirestore.getInstance();
         mScelte=mFirestore.collection("Account");
         mAccount = mFirestore.collection("Account");
@@ -76,15 +78,9 @@ public class ProfiloActivity extends AppCompatActivity {
         });
         Credenziali();
 
-        if(Account.fatto) {
-            giochiScelti = new ArrayList<>(Account.idGiochiScelti);
-            for (int i = 0; i < giochiScelti.size(); i++) {
-                Log.e("GLI ID", "SCELTI SONO" + giochiScelti.get(i));
-                AggiungiGiochiScelti();
-                Account.fatto=false;
-            }
-        }
+
         mSettings = getBaseContext().getSharedPreferences("Settings", Context.MODE_PRIVATE);
+
 
     }
 
@@ -192,30 +188,48 @@ public class ProfiloActivity extends AppCompatActivity {
                         f++;
                         Controllo(S,f);
                     }
+                    else {
+                        getSupportFragmentManager().beginTransaction().replace(R.id.profilo_activity, new ProfiloFragment()).commit();
+                    }
                 }
             });
         }
         else {
 
+            Log.e("PRIMA DELL'IF", "FATTO E'" + fatto);
             mAccount.document(acct.getId()).set(account);
             mAccount.document("id_account").update("accounts", FieldValue.arrayUnion(acct.getId()));
 
 
+            if(Account.fatto) {
+                Log.e("AGGIUNGISCELTE", "FATTO E'" + fatto);
+                giochiScelti = new ArrayList<>(Account.idGiochiScelti);
+                for (int k = 0; k < giochiScelti.size(); k++) {
+                    Log.e("GLI ID", "SCELTI SONO" + giochiScelti.get(k));
+                    AggiungiGiochiScelti();
+                    Account.fatto=false;
+                }
+            }
+
+
         }
+
+
     }
 
 
     private void AggiungiGiochiScelti() {
 
-        PrendiGiochiScelti();
+        //PrendiGiochiScelti();
 
-            GiochiScelti g = new GiochiScelti(idGiochiScelti);
-            mScelte.document(acct.getId()).collection("Scelte").document("Giochi Scelti").update("scelte", g.getScelte());
+            GiochiScelti g = new GiochiScelti(giochiScelti);
+            mScelte.document(acct.getId()).collection("Scelte").document("Giochi Scelti").set(g);
+            getSupportFragmentManager().beginTransaction().replace(R.id.profilo_activity, new ProfiloFragment()).commit();
 
 
     }
 
-    private void PrendiGiochiScelti()
+   /* private void PrendiGiochiScelti()
     {
         ids = new ArrayList<>();
         mScelte.document(acct.getId()).collection("Scelte").document("Giochi Scelti")
@@ -235,5 +249,5 @@ public class ProfiloActivity extends AppCompatActivity {
 
             }
         });
-    }
+    }*/
 }
