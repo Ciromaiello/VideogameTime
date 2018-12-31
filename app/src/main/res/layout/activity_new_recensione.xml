@@ -77,7 +77,8 @@
             android:maxLength="26"
             android:textAlignment="center"
             android:textColorLink="@color/verde2"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:inputType="textCapSentences"/>
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -96,7 +97,8 @@
             android:layout_height="wrap_content"
             android:maxLength="350"
             android:hint="@string/recensione"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:inputType="textCapSentences"/>
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.FloatingActionButton

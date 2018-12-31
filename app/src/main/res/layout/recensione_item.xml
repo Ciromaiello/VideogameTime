@@ -48,7 +48,8 @@
                 android:layout_toEndOf="@+id/image_account_rec"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:maxLength="21" />
 
             <TextView
                 android:id="@+id/textDate"
