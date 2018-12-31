@@ -7,10 +7,10 @@ import java.util.Date;
 
 public class Recensione {
     private float stars;
-    private String recensione, titolo, id, personImm, personName, title;
+    private String recensione, titolo, id, personImm, personName, title, image;
     private Date data;
 
-    public Recensione(float stars, String recensione, String titolo, String id, String personImm, String personName, Date data, String title) {
+    public Recensione(float stars, String recensione, String titolo, String id, String personImm, String personName, Date data, String title, String image) {
         this.stars = stars;
         this.recensione = recensione;
         this.titolo = titolo;
@@ -19,9 +19,18 @@ public class Recensione {
         this.personName = personName;
         this.data = data;
         this.title = title;
+        this.image = image;
     }
 
     public Recensione() {
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getTitle() {

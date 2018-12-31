@@ -20,6 +20,7 @@ public class Account {
     public static String personEmail;
     private String personId;
     private String personPhoto;
+    public static ArrayList<String> nomire;
     public static ArrayList<String> idGiochiScelti;
     public static GoogleSignInAccount acct;
     public static ArrayList<String> consoleQuery;

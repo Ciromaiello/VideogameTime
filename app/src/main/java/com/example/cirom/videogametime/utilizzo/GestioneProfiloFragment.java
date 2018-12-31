@@ -96,43 +96,16 @@ public class GestioneProfiloFragment extends Fragment {
         giochi = new ArrayList<>();
 
         LetturaId();
-
-
-
-        /*    Log.e(TAG, "account" + acct.getId());
-            mAccount.document(acct.getId()).collection("Scelte")
-                    .get()
-                    .(new OnSuccessListener<DocumentSnapshot>() {
-                        @Override
-                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-
-                                    SceltaDalDatabase g = documentSnapshot.toObject(SceltaDalDatabase.class);
-                                    ArrayList<String> S = g.getGiochi();
-
-                        }
-                    });
-
-            RecyclerView myr = (RecyclerView) view.findViewById(R.id.cardgiochi);
-            final RecyclerViewAdapter myAdapter1 = new RecyclerViewAdapter(getContext(), giochi);
-            myr.setLayoutManager(new GridLayoutManager(getActivity(), 3));
-            myr.setAdapter(myAdapter1);
-
-        }
     }
-
-*/
-        }
 
     private void AggiungiGiochi(int i) {
         if(i<idGiochiScelti.size()) {
             Query(i);
         }
         else {
-            for (int u=0;u<giochi.size();u++)
-            {
-                Log.e("FINALMENTE", "GUARDA I TUOI GIOCHI : " +giochi.get(u).getNome());
+            for (int u=0;u<giochi.size();u++) {
+                Log.e("FINALMENTE", "GUARDA I TUOI GIOCHI : " + giochi.get(u).getNome());
             }
-
             giàfatto=true;
             RecyclerView myr = (RecyclerView) getView().findViewById(R.id.cardgiochi);
             final GiochiSceltiAdapter myAdapter = new GiochiSceltiAdapter(getContext(), giochi);

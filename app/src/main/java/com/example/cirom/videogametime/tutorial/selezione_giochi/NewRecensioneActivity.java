@@ -13,6 +13,7 @@ import static com.example.cirom.videogametime.utilizzo.Account.acct;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.sql.Timestamp;
@@ -24,6 +25,7 @@ public class NewRecensioneActivity extends AppCompatActivity {
     private RatingBar stars;
     private FloatingActionButton inviaButton;
     private CollectionReference mCollection;
+    private CollectionReference mAccount;
     private FirebaseFirestore mFirestore;
     GiochiActivity giochiActivity;
     Recensione rec;
@@ -42,6 +44,7 @@ public class NewRecensioneActivity extends AppCompatActivity {
         inviaButton = (FloatingActionButton) findViewById(R.id.btnSendRece);
         mFirestore = FirebaseFirestore.getInstance();
         mCollection = mFirestore.collection("Giochi");
+        mAccount = mFirestore.collection("Account");
         giochi = new Giochi();
         inviaButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,11 +54,12 @@ public class NewRecensioneActivity extends AppCompatActivity {
                 numStars = stars.getRating();
                 data = new Date();
                 giochiActivity = new GiochiActivity();
-                rec = new Recensione(numStars, rece, title, acct.getId(), acct.getPhotoUrl().toString(), acct.getDisplayName(), data, giochiActivity.Title);
+                rec = new Recensione(numStars, rece, title, acct.getId(), acct.getPhotoUrl().toString(), acct.getDisplayName(), data, giochiActivity.Title, giochiActivity.image);
                 mCollection.document(giochiActivity.id_gioco)
                         .collection("Recensioni")
                         .document(acct.getId())
                         .set(rec);
+                mAccount.document(acct.getId()).update("Giochi", FieldValue.arrayUnion(giochiActivity.id_gioco));
                 mCollection.document(giochiActivity.id_gioco)
                         .get()
                         .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
