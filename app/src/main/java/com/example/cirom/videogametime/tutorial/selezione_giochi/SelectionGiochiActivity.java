@@ -77,7 +77,6 @@ public class SelectionGiochiActivity extends AppCompatActivity {
         int i = 0;
         AggiungiGiochi(i);
         AggiungiGiochiScelti();
-
     }
 
     public void Controllo() {
@@ -100,7 +99,6 @@ public class SelectionGiochiActivity extends AppCompatActivity {
             final RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(getApplicationContext(), giochi);
             myrv.setLayoutManager(new GridLayoutManager(getApplicationContext(), 3));
             myrv.setAdapter(myAdapter);
-
         }
     }
 
@@ -123,19 +121,13 @@ public class SelectionGiochiActivity extends AppCompatActivity {
         btnScelta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.e("FFFFF", " Account.utente è " + Account.utente);
                 if(Account.utente) {
-
-                    for(int j=0;j<nomi.size();j++)
-                    {
-                        if(giochi.get(j).isSelezionato())
-                        {
+                    for(int j=0;j<nomi.size();j++) {
+                        if(giochi.get(j).isSelezionato()) {
                             idGiochiScelti.add(giochi.get(j).getId_gioco());
                         }
                     }
-
-
-
-
                     Intent intent = new Intent(SelectionGiochiActivity.this, ProfiloActivity.class);
                     Account.fatto=true;
                     startActivity(intent);

@@ -98,7 +98,7 @@
             android:maxLength="350"
             android:hint="@string/recensione"
             android:textAlignment="center"
-            android:inputType="textCapSentences"/>
+            android:inputType="textCapSentences|textMultiLine"/>
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.FloatingActionButton

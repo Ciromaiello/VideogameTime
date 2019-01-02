@@ -67,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
         btnOspite = findViewById(R.id.ospite_btn);
         button = findViewById(R.id.button);
         checkBox = findViewById(R.id.checkBox_login);
+        Account.utente = false;
 
         //tutto il codice seguente serve per l'accesso con google
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -80,16 +81,6 @@ public class LoginActivity extends AppCompatActivity {
                 .build();
 
         Account.setmGoogleApiClient(mGoogleApiClient);
-
-        //editor.putBoolean("NuovoAccesso",false);
-        //editor.apply();
-
-        /*istanziamo un nuovo oggetto GoogleSignInOptions con il parametro di default
-        DEFAULT_SIGN_IN che permette di ottenere le informazioni di base dell’utente
-        e passiamo questo oggetto al metodo addAPI() per la creazione di un nuovo oggetto
-        GoogleApiClient che permetterà di accedere.
-        */
-
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,10 +89,6 @@ public class LoginActivity extends AppCompatActivity {
             }
 
         });
-
-
-
-
         btnOspite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,7 +96,6 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,39 +110,16 @@ public class LoginActivity extends AppCompatActivity {
     private void handleSignInResult(GoogleSignInResult result) {
         if (result.isSuccess()) {
             GoogleSignInAccount acct = result.getSignInAccount();
-
-            // updateUI(true);
-     /*   } else {
-            updateUI(false);
-        }*/
         }
-
     }
 
     //metodo che gestisce l'accesso vero e proprio
     private void signIn() {
-        /*if (mSettings.getBoolean("NuovoAccesso", false)) {
-            {
-                startActivity(new Intent(this, MainActivity.class));
-                editor.putBoolean("NuovoAccesso", true);
-            }*/
         Log.d("signIn", "start");
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(Account.mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
         Log.d("signIn", "finish");
     }
-
-    //metodo che all'accesso nasconde il bottone e alla disconnessione lo fa apparire
-    /*
-    private void updateUI(boolean signedIn) {
-        if (signedIn) {
-            button.setVisibility(View.GONE);
-            //ipotetico tasto bottone logout button.setVisibility(View.VISIBLE);
-        } else {
-            button.setVisibility(View.VISIBLE);
-            //bottone logout  button.setVisibility(View.GONE);
-        }
-    }*/
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -177,18 +140,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
-    /* codice che serve a prendere informazioni sull'account
-    GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getActivity());
-if (acct != null) {
-        String personName = acct.getDisplayName();
-        String personGivenName = acct.getGivenName();
-        String personFamilyName = acct.getFamilyName();
-        String personEmail = acct.getEmail();
-        String personId = acct.getId();
-        Uri personPhoto = acct.getPhotoUrl();
-    }
-
-*/
 
     @Override
     public void onStart() {
@@ -201,16 +152,13 @@ if (acct != null) {
         if(mSettings.getBoolean("Checked",true)){
             checkBox.setChecked(true);
         }
-        else
-        {
+        else {
             checkBox.setChecked(false);
         }
     }
 
-
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d("signIn", "firebaseAuthWithGoogle:" + acct.getId());
-
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -237,19 +185,17 @@ if (acct != null) {
 
        private void signOut(){
            Account.utente = false;
-            mGoogleSignInClient.signOut()
+           mGoogleSignInClient.signOut()
                     .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             // ...
                         }
                     });
-
-
     }
 
     public void FirstLogin()
-    {//FTI se è true significa che è il primo login, false significa che non è il primo login
+    {//se è true significa che è il primo login, false significa che non è il primo login
 
         if(mSettings.getBoolean(mAuth.getUid(),true))
         {

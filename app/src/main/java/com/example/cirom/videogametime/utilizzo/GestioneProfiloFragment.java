@@ -142,7 +142,6 @@ public class GestioneProfiloFragment extends Fragment {
                 Log.e("WE", "le mie scelte sono "+a.getScelte());
                 int i=0;
                 AggiungiGiochi(i);
-
             }
         });
     }

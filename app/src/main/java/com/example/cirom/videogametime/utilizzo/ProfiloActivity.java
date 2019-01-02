@@ -44,8 +44,6 @@ public class ProfiloActivity extends AppCompatActivity {
     private FirebaseFirestore mFirestore;
     private CollectionReference mScelte;
     private ArrayList<String> giochiScelti;
-    private  ArrayList<String> ids;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,8 +51,6 @@ public class ProfiloActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         navigation = findViewById(R.id.navigation);
-
-
         mFirestore = FirebaseFirestore.getInstance();
         mScelte=mFirestore.collection("Account");
         mAccount = mFirestore.collection("Account");
@@ -73,15 +69,10 @@ public class ProfiloActivity extends AppCompatActivity {
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.profilo_activity, selectedFragment).commit();
                 return true;
-
             }
         });
         Credenziali();
-
-
         mSettings = getBaseContext().getSharedPreferences("Settings", Context.MODE_PRIVATE);
-
-
     }
 
     @Override
@@ -115,7 +106,6 @@ public class ProfiloActivity extends AppCompatActivity {
                 Log.v("e", "Menu-> Logout");
                 LogoutDialog newFragment = new LogoutDialog();
                 newFragment.show(getSupportFragmentManager(), "Scelta");
-
                 return true;
 
             default:
@@ -123,7 +113,6 @@ public class ProfiloActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
 
     @Override
     protected void onStart() {
@@ -169,7 +158,8 @@ public class ProfiloActivity extends AppCompatActivity {
                 Accounts s = documentSnapshot.toObject(Accounts.class);
                 Log.e("FFF", "la stringa è " + s.getAccounts());
                 ArrayList<String> S = s.getAccounts();
-                Controllo(S,i);
+                if(Account.utente)
+                    Controllo(S,i);
             }
         });
     }
@@ -198,59 +188,25 @@ public class ProfiloActivity extends AppCompatActivity {
                                 Account.fatto=false;
                             }
                         }
-
-
-                        getSupportFragmentManager().beginTransaction().replace(R.id.profilo_activity, new ProfiloFragment()).commit();
+                        else {
+                            Log.e("FFFF", " Sono nell'else");
+                            getSupportFragmentManager().beginTransaction().replace(R.id.profilo_activity, new ProfiloFragment()).commit();
+                        }
                     }
                 }
             });
         }
         else {
-
             Log.e("PRIMA DELL'IF", "FATTO E'" + fatto);
             mAccount.document(acct.getId()).set(account);
             mAccount.document("id_account").update("accounts", FieldValue.arrayUnion(acct.getId()));
-
-
-
-
-
+            AggiungiGiochiScelti();
         }
-
-
     }
-
 
     private void AggiungiGiochiScelti() {
-
-        //PrendiGiochiScelti();
-
-            GiochiScelti g = new GiochiScelti(idGiochiScelti);
-            mScelte.document(acct.getId()).collection("Scelte").document("Giochi Scelti").set(g);
-            getSupportFragmentManager().beginTransaction().replace(R.id.profilo_activity, new ProfiloFragment()).commit();
-
-
+        GiochiScelti g = new GiochiScelti(idGiochiScelti);
+        mScelte.document(acct.getId()).collection("Scelte").document("Giochi Scelti").set(g);
+        getSupportFragmentManager().beginTransaction().replace(R.id.profilo_activity, new ProfiloFragment()).commit();
     }
-
-   /* private void PrendiGiochiScelti()
-    {
-        ids = new ArrayList<>();
-        mScelte.document(acct.getId()).collection("Scelte").document("Giochi Scelti")
-                .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                GiochiScelti g= documentSnapshot.toObject(GiochiScelti.class);
-                if(g.getScelte()!=null) {
-                    Log.e("NULL" ,"STO QUA DENTRO");
-                    ids = g.getScelte();
-                    if (ids != null)
-                    {
-                        Log.e("NULL" ,"PURE IO");
-                    idGiochiScelti.addAll(ids);}
-
-                }
-
-            }
-        });
-    }*/
 }

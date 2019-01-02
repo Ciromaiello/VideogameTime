@@ -82,7 +82,6 @@ public class RecensioneFragment extends Fragment {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         ArrayList<String> S = (ArrayList<String>) documentSnapshot.get("Giochi");
-                        Log.e("UEUEUEU", "Questo sto prendendo " + S);
                         if(S!=null) {
                             Account.nomire.addAll(S);
                             int i = Account.nomire.size()-1;
@@ -93,7 +92,6 @@ public class RecensioneFragment extends Fragment {
     }
 
     private void prendiRecensione(final int i) {
-        Log.e("UEUEUEU", "Sono la i  " + i);
         if(i<0){
             aggiungiRecensione();
         }
