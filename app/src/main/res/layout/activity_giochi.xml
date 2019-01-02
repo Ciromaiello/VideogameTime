@@ -75,7 +75,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout4"
-        app:tabIndicatorColor="@color/cardview_light_background"
+        app:tabIndicatorColor="#FF0E7C00"
         app:tabTextColor="@color/Vverde" />
 
     <RelativeLayout

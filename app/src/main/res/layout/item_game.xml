@@ -39,6 +39,7 @@
                 android:gravity="center"
                 android:textColor="@color/verde2"
                 android:textSize="12sp"
+                android:maxLines = "2"
                 android:textStyle="bold" />
 
             <CheckBox

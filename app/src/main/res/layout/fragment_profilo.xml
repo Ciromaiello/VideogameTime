@@ -40,7 +40,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:tabIndicatorColor="@color/cardview_light_background"
+        app:tabIndicatorColor="#FF0E7C00"
+        app:tabTextColor="@color/Vverde"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <ImageView

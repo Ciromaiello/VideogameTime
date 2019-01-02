@@ -130,13 +130,10 @@ public class LoginActivity extends AppCompatActivity {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account);
-
-
-            } catch (ApiException e) {
+            }
+            catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
                 Log.w("signIn", "Google sign in failed", e);
-                // ...
-
             }
         }
     }
@@ -176,20 +173,17 @@ public class LoginActivity extends AppCompatActivity {
                             //   Snackbar.make(findViewById(R.id.main_layout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
                             // updateUI(null);
                         }
-
-                        // ...
                     }
                 });
     }
 
 
-       private void signOut(){
+       private void signOut() {
            Account.utente = false;
            mGoogleSignInClient.signOut()
                     .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            // ...
                         }
                     });
     }
@@ -197,23 +191,18 @@ public class LoginActivity extends AppCompatActivity {
     public void FirstLogin()
     {//se è true significa che è il primo login, false significa che non è il primo login
 
-        if(mSettings.getBoolean(mAuth.getUid(),true))
-        {
+        if(mSettings.getBoolean(mAuth.getUid(),true)) {
             Account.utente = true;
             mSettings.edit().putBoolean(mAuth.getUid(),false).apply();
             mSettings.edit().putBoolean("cont",false).apply();
             startActivity(new Intent(this,MainActivity.class));
             finish();
         }
-        else
-        {
+        else {
             Account.utente = true;
             mSettings.edit().putBoolean("cont",false).apply();
             startActivity(new Intent(this,ProfiloActivity.class));
             finish();
         }
     }
-
-
-
 }

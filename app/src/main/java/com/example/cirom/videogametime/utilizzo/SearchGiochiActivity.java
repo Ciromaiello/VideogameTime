@@ -122,9 +122,6 @@ public class SearchGiochiActivity extends AppCompatActivity {
                 if (!s.toString().isEmpty()) {
                     setAdapter(s.toString());
                 } else {
-                    /*
-                     * Clear the list when editText is empty
-                     * */
                     key.clear();
                     giochiNameList.clear();
                     giochiPicList.clear();
@@ -134,9 +131,6 @@ public class SearchGiochiActivity extends AppCompatActivity {
         });
 
     }
-
-
-
 
     private void setAdapter(final String searchedString) {
         key.clear();

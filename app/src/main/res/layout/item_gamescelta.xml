@@ -39,6 +39,7 @@
                 android:gravity="center"
                 android:textColor="@color/verde2"
                 android:textSize="12sp"
+                android:maxLength="36"
                 android:textStyle="bold" />
 
 

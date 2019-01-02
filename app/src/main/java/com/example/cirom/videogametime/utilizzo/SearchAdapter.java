@@ -79,7 +79,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
        holder.itemView.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show();
                mGiochi.document(key.get(position))
                        .get()
                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -94,8 +93,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
                                intent.putExtra("Image",g.getImmagine());
                                intent.putExtra("id",g.getId_gioco());
                                context.startActivity(intent);
-
-
                            }
                        });
            }
