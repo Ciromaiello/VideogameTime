@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi;
@@ -26,6 +27,7 @@ import static com.example.cirom.videogametime.utilizzo.Account.giochiscelti;
 public class ProfiloFragment extends Fragment {
 
     private ImageView imgProfilo;
+    private TextView nome;
     private Account account;
     private FirebaseFirestore mFirestore;
     private CollectionReference mAccount;
@@ -40,6 +42,8 @@ public class ProfiloFragment extends Fragment {
         account = new Account(acct.getDisplayName(), acct.getId(), acct.getPhotoUrl().toString());
         View view = inflater.inflate(R.layout.fragment_profilo, container, false);
         imgProfilo = view.findViewById(R.id.profiloimg);
+        nome = view.findViewById(R.id.id_nome);
+        nome.setText(account.getPersonName());
         Picasso.with(getContext()).load(account.getPersonPhoto()).transform(new CircleTransform(35,10)).into(imgProfilo);
         TabLayout  tabLayout = view.findViewById(R.id.tab_layout);
         final ViewPager viewPager = view.findViewById(R.id.pager);
