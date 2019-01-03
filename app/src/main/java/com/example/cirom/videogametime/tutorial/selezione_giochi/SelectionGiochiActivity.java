@@ -123,18 +123,25 @@ public class SelectionGiochiActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.e("FFFFF", " Account.utente è " + Account.utente);
                 if(Account.utente) {
+                    int i = 0;
                     for(int j=0;j<nomi.size();j++) {
-                        if(giochi.get(j).isSelezionato()) {
+                        if(giochi.get(j).isSelezionato())
                             idGiochiScelti.add(giochi.get(j).getId_gioco());
-                        }
+                        else
+                            i++;
                     }
-                    Intent intent = new Intent(SelectionGiochiActivity.this, ProfiloActivity.class);
-                    Account.fatto=true;
-                    startActivity(intent);
-                    finish();
+                    if(i==nomi.size()) {
+                        Toast.makeText(getApplication(),R.string.un_gioco, Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Intent intent = new Intent(SelectionGiochiActivity.this, ProfiloActivity.class);
+                        Account.fatto=true;
+                        startActivity(intent);
+                        finish();
+                    }
                 }
                 else {
-                    Toast.makeText(getApplication(),"Non puoi accedere al profilo come ospite", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplication(),R.string.blocco_ospite, Toast.LENGTH_SHORT).show();
                 }
             }
         });

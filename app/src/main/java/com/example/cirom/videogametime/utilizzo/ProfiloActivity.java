@@ -136,8 +136,7 @@ public class ProfiloActivity extends AppCompatActivity {
             Account.personGivenName = acct.getGivenName();
             Account.personFamilyName = acct.getFamilyName();
             Account.personEmail = acct.getEmail();
-            int i = 0;
-            prendiIdAccount(i);
+            prendiIdAccount();
         }
         else {
             Intent intent = new Intent(this, LoginActivity.class);
@@ -151,7 +150,7 @@ public class ProfiloActivity extends AppCompatActivity {
         //giochiref.add(g);
     }
 
-    private void prendiIdAccount(final int i){
+    private void prendiIdAccount(){
         mAccount.document("id_account").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -159,45 +158,23 @@ public class ProfiloActivity extends AppCompatActivity {
                 Log.e("FFF", "la stringa è " + s.getAccounts());
                 ArrayList<String> S = s.getAccounts();
                 if(Account.utente)
-                    Controllo(S,i);
+                    Controllo(S);
             }
         });
     }
 
-    private void Controllo(final ArrayList<String> S, final int i) {
-        Log.e("FFF", "Sono i = " + i);
-        if(i<S.size()) {
-            mAccount.document(S.get(i)).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    Account a = documentSnapshot.toObject(Account.class);
-                    String id = a.getPersonId();
-                    Log.e("FFF", id);
-                    if(!id.equals(acct.getId())) {
-                        int f = i;
-                        f++;
-                        Controllo(S,f);
-                    }
-                    else {
-                        if(Account.fatto) {
-                            Log.e("AGGIUNGISCELTE", "FATTO E'" + fatto);
-                            giochiScelti = new ArrayList<>(Account.idGiochiScelti);
-                            for (int k = 0; k < giochiScelti.size(); k++) {
-                                Log.e("GLI ID", "SCELTI SONO" + giochiScelti.get(k));
-                                AggiungiGiochiScelti();
-                                Account.fatto=false;
-                            }
-                        }
-                        else {
-                            Log.e("FFFF", " Sono nell'else");
-                            getSupportFragmentManager().beginTransaction().replace(R.id.profilo_activity, new ProfiloFragment()).commit();
-                        }
-                    }
-                }
-            });
+    private void Controllo(final ArrayList<String> S) {
+        if(S.contains(acct.getId())) {
+            if(Account.fatto) {
+                giochiScelti = new ArrayList<>(Account.idGiochiScelti);
+                AggiungiGiochiScelti();
+                Account.fatto = false;
+            }
+            else {
+                getSupportFragmentManager().beginTransaction().replace(R.id.profilo_activity, new ProfiloFragment()).commit();
+            }
         }
         else {
-            Log.e("PRIMA DELL'IF", "FATTO E'" + fatto);
             mAccount.document(acct.getId()).set(account);
             mAccount.document("id_account").update("accounts", FieldValue.arrayUnion(acct.getId()));
             AggiungiGiochiScelti();

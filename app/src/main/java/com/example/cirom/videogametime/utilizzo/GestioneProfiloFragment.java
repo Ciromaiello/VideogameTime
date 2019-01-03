@@ -13,41 +13,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.cirom.videogametime.R;
-import com.example.cirom.videogametime.login.LoginActivity;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi;
-import com.example.cirom.videogametime.tutorial.selezione_giochi.Recensione;
-import com.example.cirom.videogametime.tutorial.selezione_giochi.RecyclerViewAdapter;
-import com.example.cirom.videogametime.tutorial.selezione_giochi.SceltaDalDatabase;
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthRegistrar;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.ArrayList;
-
-import static com.example.cirom.videogametime.utilizzo.Account.genQuery;
-import static com.example.cirom.videogametime.utilizzo.Account.getPersonEmail;
-import static com.example.cirom.videogametime.utilizzo.Account.giochiscelti;
-import static com.example.cirom.videogametime.utilizzo.Account.giàfatto;
 import static com.example.cirom.videogametime.utilizzo.Account.idGiochiScelti;
-import static com.example.cirom.videogametime.utilizzo.Account.mSettings;
-import static com.example.cirom.videogametime.utilizzo.Account.Accesso;
 import static com.example.cirom.videogametime.utilizzo.Account.acct;
-import static com.example.cirom.videogametime.utilizzo.Account.mGoogleApiClient;
 
 public class GestioneProfiloFragment extends Fragment {
     private final String TAG = "DEMO_MISC";
@@ -56,8 +29,6 @@ public class GestioneProfiloFragment extends Fragment {
     private  ArrayList<Giochi> giochi ;
     private CollectionReference mGiochi;
     private CollectionReference mScelte;
-
-
 
     public GestioneProfiloFragment() {
     }
@@ -69,9 +40,7 @@ public class GestioneProfiloFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
-
         return  inflater.inflate(R.layout.fragment_gestioneprofilo, container, false);
-
     }
 
     @Override
@@ -90,7 +59,6 @@ public class GestioneProfiloFragment extends Fragment {
             Query(i);
         }
         else {
-            giàfatto=true;
             RecyclerView myr = (RecyclerView) getView().findViewById(R.id.cardgiochi);
             final GiochiSceltiAdapter myAdapter = new GiochiSceltiAdapter(getContext(), giochi);
             myr.setLayoutManager(new GridLayoutManager(getActivity(), 3));

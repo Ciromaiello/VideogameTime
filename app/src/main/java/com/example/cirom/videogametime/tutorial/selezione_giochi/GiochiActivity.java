@@ -117,15 +117,15 @@ public class GiochiActivity extends AppCompatActivity {
                             mScelte.document(acct.getId()).collection("Scelte").document("Giochi Scelti")
                                     .update("scelte", FieldValue.arrayUnion(id_gioco));
                             idGiochiScelti.add(id_gioco);
-                            Toast.makeText(getApplication(), "Ora segui " + Title, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplication(), R.string.segui_titolo + Title, Toast.LENGTH_SHORT).show();
                         }
                     }
                     else {
-                        Toast.makeText(getApplication(), "Dal tutorial non puoi utilizzare questa funzionalità", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplication(), R.string.funzionalità_tutorial, Toast.LENGTH_SHORT).show();
                     }
                 }
                 else {
-                    Toast.makeText(getApplication(), "Non puoi seguire un gioco da ospite", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplication(), R.string.segui_ospite, Toast.LENGTH_SHORT).show();
                 }
             }
         });

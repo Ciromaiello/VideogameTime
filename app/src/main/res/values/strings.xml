@@ -31,6 +31,12 @@
     <string name="Title">Titolo (max 26 caratteri)</string>
     <string name="recensione">Recensione (max 350 caratteri)</string>
     <string name="segui">Segui</string>
+    <string name="funzionalità_tutorial">Non puoi accedere a questa funzionalità dal tutorial</string>
+    <string name="segui_ospite">Non puoi seguire un gioco come ospite</string>
+    <string name="recensione_ospite">Non puoi recensire un gioco come ospite</string>
+    <string name="blocco_ospite">Non puoi proseguire come ospite</string>
+    <string name="un_gioco">Seleziona almeno un gioco per proseguire</string>
+    <string name="segui_titolo">Ora segui </string>
     <string-array name="info">
         <item>Cambia scelte</item>
         <item>Info</item>
