@@ -7,13 +7,22 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.cirom.videogametime.R;
+import com.example.cirom.videogametime.utilizzo.Account;
+import com.example.cirom.videogametime.utilizzo.GiochiScelti;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -21,17 +30,22 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import static com.example.cirom.videogametime.utilizzo.Account.acct;
+import static com.example.cirom.videogametime.utilizzo.Account.idGiochiScelti;
+
 public class GiochiActivity extends AppCompatActivity {
 
     private TextView nome;
     private ImageView img;
     private RatingBar stars;
+    private Button segui;
     static String Description, output1, output2, id_gioco, Title, image;
     private FirebaseFirestore mFirestore;
     private CollectionReference mGiochi;
     GiochiActivity giochiActivity;
     ArrayList<Float> numMedia;
     float numRating = 0;
+    private CollectionReference mScelte;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +55,7 @@ public class GiochiActivity extends AppCompatActivity {
         nome = (TextView) findViewById(R.id.title);
         img = (ImageView) findViewById(R.id.gameimg);
         stars = (RatingBar) findViewById(R.id.gettingStar);
+        segui = (Button) findViewById(R.id.id_segui);
 
         // Recieve data
         Intent intent = getIntent();
@@ -48,7 +63,7 @@ public class GiochiActivity extends AppCompatActivity {
         ArrayList<String> Generi = intent.getExtras().getStringArrayList("Generi");
         ArrayList<String> Piattaforme = intent.getExtras().getStringArrayList("Piattaforme");
         Description = intent.getExtras().getString("Description");
-        image = intent.getExtras().getString("Image") ;
+        image = intent.getExtras().getString("Image");
         String id = intent.getExtras().getString("id");
 
         // Setting values
@@ -88,6 +103,32 @@ public class GiochiActivity extends AppCompatActivity {
                         impostaPager();
                     }
                 });
+        mScelte = mFirestore.collection("Account");
+        segui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Account.utente) {
+                    if(Account.fatto) {
+                        if(idGiochiScelti.contains(id_gioco)) {
+                            UnfollowDialog newFragment = new UnfollowDialog();
+                            newFragment.show(getSupportFragmentManager(), "Scelta");
+                        }
+                        else {
+                            mScelte.document(acct.getId()).collection("Scelte").document("Giochi Scelti")
+                                    .update("scelte", FieldValue.arrayUnion(id_gioco));
+                            idGiochiScelti.add(id_gioco);
+                            Toast.makeText(getApplication(), "Ora segui " + Title, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    else {
+                        Toast.makeText(getApplication(), "Dal tutorial non puoi utilizzare questa funzionalità", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else {
+                    Toast.makeText(getApplication(), "Non puoi seguire un gioco da ospite", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private void Media() {

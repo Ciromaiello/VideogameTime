@@ -40,6 +40,7 @@ public class GiochiSceltiAdapter extends RecyclerView.Adapter<GiochiSceltiAdapte
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Account.fatto = true;
                 Intent intent = new Intent(mContext,GiochiActivity.class);
                 intent.putExtra("Title",giochi.get(position).getNome());
                 intent.putExtra("Description",giochi.get(position).getDescrizione());

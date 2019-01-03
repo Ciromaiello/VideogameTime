@@ -2,24 +2,16 @@ package com.example.cirom.videogametime.utilizzo;
 
 
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.login.LoginActivity;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi;
@@ -73,10 +65,7 @@ public class GestioneProfiloFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
@@ -87,14 +76,12 @@ public class GestioneProfiloFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
         super.onViewCreated(view, savedInstanceState);
         mFirestore=FirebaseFirestore.getInstance();
         mGiochi=mFirestore.collection("Giochi");
         mScelte=mFirestore.collection("Account");
         idGiochiScelti = new ArrayList<>();
         giochi = new ArrayList<>();
-
         LetturaId();
     }
 
@@ -103,9 +90,6 @@ public class GestioneProfiloFragment extends Fragment {
             Query(i);
         }
         else {
-            for (int u=0;u<giochi.size();u++) {
-                Log.e("FINALMENTE", "GUARDA I TUOI GIOCHI : " + giochi.get(u).getNome());
-            }
             giàfatto=true;
             RecyclerView myr = (RecyclerView) getView().findViewById(R.id.cardgiochi);
             final GiochiSceltiAdapter myAdapter = new GiochiSceltiAdapter(getContext(), giochi);
@@ -136,7 +120,6 @@ public class GestioneProfiloFragment extends Fragment {
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                Log.e("WE", "VOGLIO SCRIVERE SUL DB");
                 GiochiScelti a = documentSnapshot.toObject(GiochiScelti.class);
                 idGiochiScelti = a.getScelte();
                 Log.e("WE", "le mie scelte sono "+a.getScelte());

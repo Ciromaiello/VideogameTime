@@ -62,7 +62,7 @@ public class ImpostazioniActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-
+                        Account.fatto=false;
                         Intent i = new Intent(view.getContext(),MainActivity.class);
                         startActivityForResult(i,0);
                         Log.e("tag","sei nel caso 0 ");
