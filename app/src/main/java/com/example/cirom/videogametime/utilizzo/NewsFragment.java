@@ -47,7 +47,7 @@ public class NewsFragment extends Fragment {
     private RecyclerView newsList;
     private FirebaseFirestore mFirestore;
     private CollectionReference mNews;
-    private String[] siti = {"multiplayer","spaziogames","gamesvilage","gamespot"};
+    private String[] siti = {"multiplayer","spaziogames","gamesvilage","gamespot","calcionapoli24"};
     private ArrayList<News> news;
 
 
