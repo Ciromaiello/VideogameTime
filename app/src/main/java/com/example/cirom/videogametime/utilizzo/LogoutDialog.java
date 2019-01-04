@@ -30,7 +30,6 @@ public class LogoutDialog extends DialogFragment {
                 })
                 .setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-
                         if(mSettings.getBoolean("Checked",true)){Accesso=false;}
                              else{Accesso=true;
                                    FirebaseAuth.getInstance().signOut();}

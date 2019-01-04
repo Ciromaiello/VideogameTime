@@ -1,10 +1,5 @@
 package com.example.cirom.videogametime.utilizzo;
 
-import android.media.Image;
-import android.widget.ImageView;
-
-import com.example.cirom.videogametime.R;
-
 public class News {
    private String img;
    private String url;

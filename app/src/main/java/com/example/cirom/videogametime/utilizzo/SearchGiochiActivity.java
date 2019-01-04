@@ -1,8 +1,6 @@
 package com.example.cirom.videogametime.utilizzo;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,44 +10,24 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import java.util.ArrayList;
-import java.util.List;
-
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.cirom.videogametime.R;
-import com.example.cirom.videogametime.tutorial.selezione_generi.GeneriFragment;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi;
-import com.example.cirom.videogametime.tutorial.selezione_giochi.GiochiActivity;
-import com.example.cirom.videogametime.tutorial.selezione_giochi.SceltaDalDatabase;
-import com.example.cirom.videogametime.tutorial.selezione_piattaforme.Piattaforme;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
+
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firestore.v1beta1.Document;
-import com.google.firestore.v1beta1.WriteResult;
-
 import javax.annotation.Nullable;
 
-import static com.example.cirom.videogametime.utilizzo.Account.consoleQuery;
 
 public class SearchGiochiActivity extends AppCompatActivity {
     EditText search_edit_text;
@@ -137,32 +115,29 @@ public class SearchGiochiActivity extends AppCompatActivity {
         giochiNameList.clear();
         giochiPicList.clear();
         recyclerView.removeAllViews();
-
-        mGiochi
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                        if(e!=null){
-                            Log.w("errore",e);}
-                           else{
-                            for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                            Giochi g = document.toObject(Giochi.class);
-                            String uid = document.getId();
-                            String giochi_name = g.getNome();
-                            String giochi_pic = g.getImmagine();
-
-                            if (giochi_name.toLowerCase().contains(searchedString.toLowerCase())) {
-                                giochiNameList.add(giochi_name);
-                                giochiPicList.add(giochi_pic);
-                                key.add(uid);
-                                searchAdapter = new SearchAdapter(SearchGiochiActivity.this, giochiNameList, giochiPicList,key);
-                                recyclerView.setAdapter(searchAdapter);
-                            }}
+        mGiochi.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    Log.w("errore", e);
+                    } else {
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                        Giochi g = document.toObject(Giochi.class);
+                        String uid = document.getId();
+                        String giochi_name = g.getNome();
+                        String giochi_pic = g.getImmagine();
+                        if (giochi_name.toLowerCase().contains(searchedString.toLowerCase())) {
+                            giochiNameList.add(giochi_name);
+                            giochiPicList.add(giochi_pic);
+                            key.add(uid);
+                            searchAdapter = new SearchAdapter(SearchGiochiActivity.this, giochiNameList, giochiPicList, key);
+                            recyclerView.setAdapter(searchAdapter);
+                            }
                     }
                 }
-                });
-
             }
+        });
     }
+}
 
 

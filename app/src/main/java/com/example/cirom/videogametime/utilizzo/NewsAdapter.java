@@ -29,7 +29,6 @@ import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>
 {
-
     private ArrayList<News>  news;
 
     public NewsAdapter(Context context,List<News> news)
@@ -52,7 +51,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>
     public int getItemCount() {
         return news.size();
     }
-
     public  class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private ImageView img;
 
@@ -74,8 +72,4 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>
             v.getContext().startActivity(i);
         }
     }
-
 }
-
-
-

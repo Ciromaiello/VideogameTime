@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.login.LoginActivity;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.Accounts;
-import com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.Gioco;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -29,7 +28,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 
 import static com.example.cirom.videogametime.utilizzo.Account.acct;
-import static com.example.cirom.videogametime.utilizzo.Account.fatto;
 import static com.example.cirom.videogametime.utilizzo.Account.idGiochiScelti;
 import static com.example.cirom.videogametime.utilizzo.Account.mSettings;
 
@@ -37,7 +35,6 @@ import static com.example.cirom.videogametime.utilizzo.Account.mSettings;
 public class ProfiloActivity extends AppCompatActivity {
 
     private Account account;
-    private final String TAG = "DEMO_MISC";
     private BottomNavigationView navigation;
     private FirebaseAuth firebaseAuth;
     private CollectionReference mAccount;
@@ -183,7 +180,7 @@ public class ProfiloActivity extends AppCompatActivity {
 
     private void AggiungiGiochiScelti() {
         GiochiScelti g = new GiochiScelti(idGiochiScelti);
-        mScelte.document(acct.getId()).collection("Scelte").document("Giochi Scelti").set(g);
+        mScelte.document(acct.getId()).set(g);
         getSupportFragmentManager().beginTransaction().replace(R.id.profilo_activity, new ProfiloFragment()).commit();
     }
 }

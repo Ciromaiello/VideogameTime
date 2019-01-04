@@ -17,7 +17,6 @@ public class ImpostazioniUtility {
     private ImpostazioniUtility(Context context){
         this.context=context;
         info =context.getResources().getStringArray(R.array.info);
-
         lista=new ArrayList<Impostazioni>();
         for(int i=0;i<info.length;i++){
             Impostazioni imp =new Impostazioni(info[i]);
@@ -34,7 +33,6 @@ public class ImpostazioniUtility {
     public List<Impostazioni> getImpostazioni(){
         return this.lista;
     }
-
     public String[] getInfo() {
         return info;
     }

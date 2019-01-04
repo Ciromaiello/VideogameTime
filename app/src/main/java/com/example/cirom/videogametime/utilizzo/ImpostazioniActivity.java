@@ -1,6 +1,5 @@
 package com.example.cirom.videogametime.utilizzo;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,7 +15,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.cirom.videogametime.R;
-import com.example.cirom.videogametime.login.LoginActivity;
 import com.example.cirom.videogametime.tutorial.MainActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.squareup.picasso.Picasso;
@@ -73,13 +71,9 @@ public class ImpostazioniActivity extends AppCompatActivity {
                         startActivityForResult(l,0);
                         Log.e("tag","sei nel caso 1 ");
                         break;
-
                 }
             }
         });
-
-
-
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {

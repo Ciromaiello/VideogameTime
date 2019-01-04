@@ -15,22 +15,18 @@ import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import static com.example.cirom.videogametime.utilizzo.Account.acct;
-import static com.example.cirom.videogametime.utilizzo.Account.giochiscelti;
 
 public class ProfiloFragment extends Fragment {
 
     private ImageView imgProfilo;
     private TextView nome;
     private Account account;
-    private FirebaseFirestore mFirestore;
-    private CollectionReference mAccount;
     public  ArrayList<Giochi> giochi ;
 
     public ProfiloFragment() {

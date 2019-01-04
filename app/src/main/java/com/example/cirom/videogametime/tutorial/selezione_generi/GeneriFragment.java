@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +16,6 @@ import android.widget.Toast;
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.SceltaDalDatabase;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.SelectionGiochiActivity;
-import com.example.cirom.videogametime.tutorial.selezione_piattaforme.Piattaforme;
-import com.example.cirom.videogametime.tutorial.selezione_piattaforme.PiattaformeAdapter;
 import com.example.cirom.videogametime.tutorial.selezione_piattaforme.PiattaformeFragment;
 import com.example.cirom.videogametime.utilizzo.Account;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -27,17 +24,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
-
-import static android.os.SystemClock.sleep;
-import static android.support.constraint.Constraints.TAG;
-import static com.example.cirom.videogametime.utilizzo.Account.consoleQuery;
 import static com.example.cirom.videogametime.utilizzo.Account.genQuery;
 
 public class GeneriFragment extends Fragment{

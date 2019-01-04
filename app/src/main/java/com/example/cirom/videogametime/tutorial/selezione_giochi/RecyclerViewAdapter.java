@@ -13,12 +13,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.cirom.videogametime.R;
-import com.example.cirom.videogametime.utilizzo.Account;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import static android.support.constraint.Constraints.TAG;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 

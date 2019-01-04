@@ -23,9 +23,8 @@ import static com.example.cirom.videogametime.utilizzo.Account.idGiochiScelti;
 import static com.example.cirom.videogametime.utilizzo.Account.acct;
 
 public class GestioneProfiloFragment extends Fragment {
-    private final String TAG = "DEMO_MISC";
+
     private FirebaseFirestore mFirestore;
-    private CollectionReference mAccount;
     private  ArrayList<Giochi> giochi ;
     private CollectionReference mGiochi;
     private CollectionReference mScelte;
@@ -83,7 +82,7 @@ public class GestioneProfiloFragment extends Fragment {
 
     private void LetturaId()
     {
-        mScelte.document(acct.getId()).collection("Scelte").document("Giochi Scelti")
+        mScelte.document(acct.getId())
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override

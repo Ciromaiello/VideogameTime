@@ -16,12 +16,9 @@ import android.widget.Toast;
 
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.utilizzo.Account;
-import com.example.cirom.videogametime.utilizzo.GiochiScelti;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -114,8 +111,7 @@ public class GiochiActivity extends AppCompatActivity {
                             newFragment.show(getSupportFragmentManager(), "Scelta");
                         }
                         else {
-                            mScelte.document(acct.getId()).collection("Scelte").document("Giochi Scelti")
-                                    .update("scelte", FieldValue.arrayUnion(id_gioco));
+                            mScelte.document(acct.getId()).update("scelte", FieldValue.arrayUnion(id_gioco));
                             idGiochiScelti.add(id_gioco);
                             Toast.makeText(getApplication(), R.string.segui_titolo + Title, Toast.LENGTH_SHORT).show();
                         }

@@ -16,7 +16,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 public class NewRecensioneActivity extends AppCompatActivity {

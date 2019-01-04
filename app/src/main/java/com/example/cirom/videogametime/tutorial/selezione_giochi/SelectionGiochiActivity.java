@@ -1,77 +1,48 @@
 package com.example.cirom.videogametime.tutorial.selezione_giochi;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.ContextThemeWrapper;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.example.cirom.videogametime.R;
-import com.example.cirom.videogametime.tutorial.selezione_generi.Generi;
 import com.example.cirom.videogametime.utilizzo.Account;
-import com.example.cirom.videogametime.utilizzo.GiochiScelti;
 import com.example.cirom.videogametime.utilizzo.ProfiloActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
-
-import static android.os.SystemClock.sleep;
-import static com.example.cirom.videogametime.utilizzo.Account.acct;
-import static com.example.cirom.videogametime.utilizzo.Account.consoleQuery;
-import static com.example.cirom.videogametime.utilizzo.Account.genQuery;
-import static com.example.cirom.videogametime.utilizzo.Account.giochiscelti;
-import static com.example.cirom.videogametime.utilizzo.Account.giàfatto;
 import static com.example.cirom.videogametime.utilizzo.Account.idGiochiScelti;
-import static com.example.cirom.videogametime.utilizzo.Account.nomige;
+
 
 public class SelectionGiochiActivity extends AppCompatActivity {
 
-    CheckBox checkBox;
     private FloatingActionButton btnScelta;
     ArrayList<Giochi> giochi;
     ArrayList<Giochi> giochiscelti;
     private ArrayList<String> nomi;
-    private DatabaseReference mDatabase;
     private FirebaseFirestore mFirestore;
     private CollectionReference mGiochi;
-    private CollectionReference mScelte;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selection_giochi);
         btnScelta = findViewById(R.id.btnGiochi);
-        mDatabase = FirebaseDatabase.getInstance().getReference();
         giochi = new ArrayList<>();
         giochiscelti = new ArrayList<>();
         Account.giochiscelti=new ArrayList<>();
         nomi = new ArrayList<>();
         mFirestore = FirebaseFirestore.getInstance();
         mGiochi = mFirestore.collection("Giochi");
-        mScelte = mFirestore.collection("Account");
         idGiochiScelti=new ArrayList<>();
         Controllo();
         int i = 0;

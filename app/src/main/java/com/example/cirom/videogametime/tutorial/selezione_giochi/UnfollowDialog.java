@@ -2,7 +2,6 @@ package com.example.cirom.videogametime.tutorial.selezione_giochi;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
@@ -30,17 +29,14 @@ public class UnfollowDialog extends DialogFragment {
         builder.setView(inflater.inflate(R.layout.fragment_dialog, null))
                 .setMessage(R.string.richiesta_unfollow)
                 .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-
-                    }
+                    public void onClick(DialogInterface dialog, int id) {}
                 })
                 .setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         mFirestore = FirebaseFirestore.getInstance();
                         mScelte = mFirestore.collection("Account");
                         Account.idGiochiScelti.remove(GiochiActivity.id_gioco);
-                        mScelte.document(acct.getId()).collection("Scelte").document("Giochi Scelti")
-                                .update("scelte", FieldValue.arrayRemove(GiochiActivity.id_gioco));
+                        mScelte.document(acct.getId()).update("scelte", FieldValue.arrayRemove(GiochiActivity.id_gioco));
                         Toast.makeText(getContext(), R.string.non_segui_titolo + Title, Toast.LENGTH_SHORT).show();
                     }
                 });

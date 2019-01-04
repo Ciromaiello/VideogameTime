@@ -9,12 +9,8 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.example.cirom.videogametime.R;
-import com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
