@@ -36,8 +36,10 @@ public class UnfollowDialog extends DialogFragment {
                         mFirestore = FirebaseFirestore.getInstance();
                         mScelte = mFirestore.collection("Account");
                         Account.idGiochiScelti.remove(GiochiActivity.id_gioco);
-                        mScelte.document(acct.getId()).update("scelte", FieldValue.arrayRemove(GiochiActivity.id_gioco));
-                        Toast.makeText(getContext(), R.string.non_segui_titolo + Title, Toast.LENGTH_SHORT).show();
+                        mScelte.document(acct.getId()).collection("Scelte")
+                                .document("GiochiScelti")
+                                .update("scelte", FieldValue.arrayRemove(GiochiActivity.id_gioco));
+                        Toast.makeText(getContext(), R.string.non_segui_titolo, Toast.LENGTH_SHORT).show();
                     }
                 });
         // Create the AlertDialog object and return it

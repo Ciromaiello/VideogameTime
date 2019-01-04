@@ -111,9 +111,11 @@ public class GiochiActivity extends AppCompatActivity {
                             newFragment.show(getSupportFragmentManager(), "Scelta");
                         }
                         else {
-                            mScelte.document(acct.getId()).update("scelte", FieldValue.arrayUnion(id_gioco));
+                            mScelte.document(acct.getId()).collection("Scelte")
+                                    .document("GiochiScelti")
+                                    .update("scelte", FieldValue.arrayUnion(id_gioco));
                             idGiochiScelti.add(id_gioco);
-                            Toast.makeText(getApplication(), R.string.segui_titolo + Title, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplication(), R.string.segui_titolo, Toast.LENGTH_SHORT).show();
                         }
                     }
                     else {

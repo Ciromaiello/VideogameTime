@@ -36,8 +36,8 @@
     <string name="recensione_ospite">Non puoi recensire un gioco come ospite</string>
     <string name="blocco_ospite">Non puoi proseguire come ospite</string>
     <string name="un_gioco">Seleziona almeno un gioco per proseguire</string>
-    <string name="segui_titolo">Ora segui </string>
-    <string name="non_segui_titolo">Non segui più </string>
+    <string name="segui_titolo">Ora segui questo gioco</string>
+    <string name="non_segui_titolo">Non segui più questo gioco</string>
     <string name="copyright">© All rights reserved</string>
     <string name="peppe">Giuseppe Cacace</string>
     <string name="toni">Antonio Nogarotto</string>

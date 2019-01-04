@@ -82,7 +82,7 @@ public class GestioneProfiloFragment extends Fragment {
 
     private void LetturaId()
     {
-        mScelte.document(acct.getId())
+        mScelte.document(acct.getId()).collection("Scelte").document("GiochiScelti")
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override

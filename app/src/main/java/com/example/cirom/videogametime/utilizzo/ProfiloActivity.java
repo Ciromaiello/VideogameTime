@@ -180,7 +180,7 @@ public class ProfiloActivity extends AppCompatActivity {
 
     private void AggiungiGiochiScelti() {
         GiochiScelti g = new GiochiScelti(idGiochiScelti);
-        mScelte.document(acct.getId()).set(g);
+        mScelte.document(acct.getId()).collection("Scelte").document("GiochiScelti").set(g);
         getSupportFragmentManager().beginTransaction().replace(R.id.profilo_activity, new ProfiloFragment()).commit();
     }
 }
