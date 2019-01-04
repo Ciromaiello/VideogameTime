@@ -41,8 +41,7 @@ public class UnfollowDialog extends DialogFragment {
                         Account.idGiochiScelti.remove(GiochiActivity.id_gioco);
                         mScelte.document(acct.getId()).collection("Scelte").document("Giochi Scelti")
                                 .update("scelte", FieldValue.arrayRemove(GiochiActivity.id_gioco));
-                        Toast.makeText(getContext(), "Non segui più " + Title, Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(getContext(), R.string.non_segui_titolo + Title, Toast.LENGTH_SHORT).show();
                     }
                 });
         // Create the AlertDialog object and return it

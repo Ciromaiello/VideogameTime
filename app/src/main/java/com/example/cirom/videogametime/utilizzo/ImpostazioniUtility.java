@@ -11,9 +11,7 @@ public class ImpostazioniUtility {
 
     private String [] info;
     private Context context;
-
     private List<Impostazioni> lista;
-
     private static ImpostazioniUtility impostazioniUtility;
 
     private ImpostazioniUtility(Context context){
@@ -24,7 +22,6 @@ public class ImpostazioniUtility {
         for(int i=0;i<info.length;i++){
             Impostazioni imp =new Impostazioni(info[i]);
         }
-
     }
 
     public static ImpostazioniUtility getImpostazioniUtility(Context context){
@@ -41,8 +38,6 @@ public class ImpostazioniUtility {
     public String[] getInfo() {
         return info;
     }
-
-
 }
 
 

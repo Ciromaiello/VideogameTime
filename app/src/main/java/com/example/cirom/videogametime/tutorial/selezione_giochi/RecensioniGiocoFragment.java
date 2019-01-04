@@ -80,11 +80,16 @@ public class RecensioniGiocoFragment extends Fragment {
         aggiungiReceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Account.utente) {
-                    startActivity(new Intent(getContext(), NewRecensioneActivity.class));
-                    getActivity().finish();}
+                if(Account.fatto) {
+                    if (Account.utente) {
+                        startActivity(new Intent(getContext(), NewRecensioneActivity.class));
+                        getActivity().finish();}
+                    else {
+                        Toast.makeText(getActivity(), R.string.recensione_ospite, Toast.LENGTH_SHORT).show();
+                    }
+                }
                 else {
-                    Toast.makeText(getActivity(), R.string.recensione_ospite, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.funzionalità_tutorial, Toast.LENGTH_SHORT).show();
                 }
             }
         });
