@@ -27,6 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
+import static com.example.cirom.videogametime.utilizzo.Account.Accesso;
 import static com.example.cirom.videogametime.utilizzo.Account.acct;
 import static com.example.cirom.videogametime.utilizzo.Account.idGiochiScelti;
 import static com.example.cirom.videogametime.utilizzo.Account.mSettings;
@@ -120,6 +121,13 @@ public class ProfiloActivity extends AppCompatActivity {
             finish();
         }
         else if(FirebaseAuth.getInstance().getCurrentUser() != null && mSettings.getBoolean("cont",true)){
+            startActivity(new Intent(this,LoginActivity.class));
+            finish();
+        }
+        else if(FirebaseAuth.getInstance().getCurrentUser() != null && mSettings.getBoolean(FirebaseAuth.getInstance().getUid(),true)){
+            if(mSettings.getBoolean("Checked",true)){Accesso=false;}
+            else{Accesso=true;
+                FirebaseAuth.getInstance().signOut();}
             startActivity(new Intent(this,LoginActivity.class));
             finish();
         }

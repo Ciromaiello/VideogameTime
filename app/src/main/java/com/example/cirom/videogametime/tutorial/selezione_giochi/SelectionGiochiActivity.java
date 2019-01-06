@@ -14,6 +14,7 @@ import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.utilizzo.Account;
 import com.example.cirom.videogametime.utilizzo.ProfiloActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -21,10 +22,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 
 import static com.example.cirom.videogametime.utilizzo.Account.idGiochiScelti;
+import static com.example.cirom.videogametime.utilizzo.Account.mSettings;
 
 
 public class SelectionGiochiActivity extends AppCompatActivity {
 
+    private FirebaseAuth mAuth;
     private FloatingActionButton btnScelta;
     ArrayList<Giochi> giochi;
     ArrayList<Giochi> giochiscelti;
@@ -41,6 +44,7 @@ public class SelectionGiochiActivity extends AppCompatActivity {
         giochiscelti = new ArrayList<>();
         Account.giochiscelti=new ArrayList<>();
         nomi = new ArrayList<>();
+        mAuth = FirebaseAuth.getInstance();
         mFirestore = FirebaseFirestore.getInstance();
         mGiochi = mFirestore.collection("Giochi");
         idGiochiScelti=new ArrayList<>();
@@ -107,6 +111,7 @@ public class SelectionGiochiActivity extends AppCompatActivity {
                     else {
                         Intent intent = new Intent(SelectionGiochiActivity.this, ProfiloActivity.class);
                         Account.fatto=true;
+                        mSettings.edit().putBoolean(mAuth.getUid(),false).apply();
                         startActivity(intent);
                         finish();
                     }

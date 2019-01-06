@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class Account {
 
+
     public  static ArrayList<Giochi> giochiscelti;
     public static GoogleApiClient mGoogleApiClient;
     private String personName ;

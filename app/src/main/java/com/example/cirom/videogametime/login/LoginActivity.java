@@ -178,7 +178,6 @@ public class LoginActivity extends AppCompatActivity {
 
         if(mSettings.getBoolean(mAuth.getUid(),true)) {
             Account.utente = true;
-            mSettings.edit().putBoolean(mAuth.getUid(),false).apply();
             mSettings.edit().putBoolean("cont",false).apply();
             startActivity(new Intent(this,MainActivity.class));
             finish();
