@@ -121,4 +121,34 @@
         app:layout_constraintBottom_toBottomOf="@+id/nome_account"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/nome_account" />
+
+    <Button
+        android:id="@+id/id_modifica"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/verde2"
+        android:text="@string/modifica"
+        android:textColor="#2d2d2d"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/id_elimina"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/verde2"
+        android:text="@string/elimina"
+        android:textColor="#2d2d2d"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/id_modifica"
+        android:visibility="invisible" />
 </android.support.constraint.ConstraintLayout>

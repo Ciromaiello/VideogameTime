@@ -51,7 +51,7 @@ public class NewRecensioneActivity extends AppCompatActivity {
                 numStars = stars.getRating();
                 data = new Date();
                 giochiActivity = new GiochiActivity();
-                rec = new Recensione(numStars, rece, title, acct.getId(), acct.getPhotoUrl().toString(), acct.getDisplayName(), data, giochiActivity.Title, giochiActivity.image);
+                rec = new Recensione(numStars, rece, title, acct.getId(), acct.getPhotoUrl().toString(), acct.getDisplayName(), data, giochiActivity.Title, giochiActivity.image, giochiActivity.id_gioco);
                 mCollection.document(giochiActivity.id_gioco)
                         .collection("Recensioni")
                         .document(acct.getId())

@@ -33,10 +33,11 @@ public class GiochiActivity extends AppCompatActivity {
     private ImageView img;
     private RatingBar stars;
     private Button segui;
-    static String Description, output1, output2, id_gioco, Title, image;
+    static String Description, output1, output2, id_gioco, Title, image, id;
     private FirebaseFirestore mFirestore;
     private CollectionReference mGiochi;
     GiochiActivity giochiActivity;
+    static ArrayList<String> Piattaforme, Generi;
     ArrayList<Float> numMedia;
     float numRating = 0;
     private CollectionReference mScelte;
@@ -54,11 +55,11 @@ public class GiochiActivity extends AppCompatActivity {
         // Recieve data
         Intent intent = getIntent();
         Title = intent.getExtras().getString("Title");
-        ArrayList<String> Generi = intent.getExtras().getStringArrayList("Generi");
-        ArrayList<String> Piattaforme = intent.getExtras().getStringArrayList("Piattaforme");
+        Generi = intent.getExtras().getStringArrayList("Generi");
+        Piattaforme = intent.getExtras().getStringArrayList("Piattaforme");
         Description = intent.getExtras().getString("Description");
         image = intent.getExtras().getString("Image");
-        String id = intent.getExtras().getString("id");
+        id = intent.getExtras().getString("id");
 
         // Setting values
         nome.setText(Title);

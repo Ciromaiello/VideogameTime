@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import com.example.cirom.videogametime.R;
+import com.example.cirom.videogametime.utilizzo.Account;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
@@ -31,7 +32,10 @@ public class RecensioniGiocoAdapter extends RecyclerView.Adapter<RecensioniGioco
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Account.posizione_recensione = true;
                 Intent intent = new Intent(mContext,RecensioneCompletaActivity.class);
+                intent.putExtra("idgioco", recensiones.get(position).getIdgioco());
+                intent.putExtra("id", recensiones.get(position).getId());
                 intent.putExtra("Title",recensiones.get(position).getTitolo());
                 intent.putExtra("Recensione",recensiones.get(position).getRecensione());
                 intent.putExtra("PersonImm",recensiones.get(position).getPersonImm());

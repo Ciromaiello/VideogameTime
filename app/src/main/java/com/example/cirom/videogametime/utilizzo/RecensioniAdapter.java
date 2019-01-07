@@ -33,7 +33,10 @@ public class RecensioniAdapter extends RecyclerView.Adapter<RecensioniAdapter.My
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Account.posizione_recensione = false;
                 Intent intent = new Intent(mContext,RecensioneCompletaActivity.class);
+                intent.putExtra("idgioco", recensiones.get(position).getIdgioco());
+                intent.putExtra("id", recensiones.get(position).getId());
                 intent.putExtra("Title",recensiones.get(position).getTitolo());
                 intent.putExtra("Recensione",recensiones.get(position).getRecensione());
                 intent.putExtra("PersonImm",recensiones.get(position).getPersonImm());

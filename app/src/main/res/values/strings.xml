@@ -25,6 +25,8 @@
     <string name="Remember_me">Remember me</string>
     <string name="richiesta_logout">Sicuro di voler uscire?</string>
     <string name="richiesta_unfollow">Gioco già seguito. Vuoi smettere di seguirlo?</string>
+    <string name="richiesta_modifica">Vuoi modificare la recensione?</string>
+    <string name="richiesta_elimina">Sicuro di voler eliminare la recensione?</string>
     <string name="richiesta_sostituzione">Hai già recensito questo gioco. Sostituire la recensione esistente?</string>
     <string name="si">Sì</string>
     <string name="no">No</string>
@@ -43,6 +45,8 @@
     <string name="peppe">Giuseppe Cacace</string>
     <string name="toni">Antonio Nogarotto</string>
     <string name="ciro">Ciro Maiello</string>
+    <string name="modifica">Modifica</string>
+    <string name="elimina">Elimina</string>
     <string-array name="info">
         <item>Cambia scelte</item>
         <item>Info</item>
