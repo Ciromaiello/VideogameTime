@@ -49,12 +49,14 @@ public class RecensioneFragment extends Fragment {
     GiochiActivity giochiActivity;
     ArrayList<Recensione> recensiones;
 
+
     public RecensioneFragment() {
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.fragment_recensione, container, false);
     }
 
@@ -71,8 +73,18 @@ public class RecensioneFragment extends Fragment {
         mGiochi = mFirestore.collection("Giochi");
         mAccount = mFirestore.collection("Account");
         giochiActivity = new GiochiActivity();
+
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        recensiones.clear();
         Query();
     }
+
+
 
     private void Query() {
         Account.nomire = new ArrayList<>();
@@ -104,20 +116,24 @@ public class RecensioneFragment extends Fragment {
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             Recensione r = documentSnapshot.toObject(Recensione.class);
                             Log.e("FFFFF", "la recensione è " + r.getTitolo());
-                            recensiones.add(r);
-                            int f = i;
-                            f--;
-                            prendiRecensione(f);
+                            if(!recensiones.contains(r)) {
+                                recensiones.add(r);
+                                int f = i;
+                                f--;
+                                prendiRecensione(f);
+                            }
                         }
                     });
         }
     }
 
     private void aggiungiRecensione() {
+
         list = (RecyclerView) getView().findViewById(R.id.list);
-        RecensioniAdapter myAdapter = new RecensioniAdapter(getContext(), recensiones);
         list.setLayoutManager(new LinearLayoutManager(getActivity()));
         list.setHasFixedSize(true);
+        RecensioniAdapter myAdapter = new RecensioniAdapter(getContext(), recensiones);
         list.setAdapter(myAdapter);
+
     }
 }
