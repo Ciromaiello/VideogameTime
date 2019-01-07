@@ -78,6 +78,7 @@ public class RecensioniGiocoFragment extends Fragment {
         aggiungiReceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Account.posizione_recensione = true;
                 if(Account.fatto) {
                     if(ids.contains(acct.getId())) {
                         SostituisciRecensioneDialog newFragment = new SostituisciRecensioneDialog();

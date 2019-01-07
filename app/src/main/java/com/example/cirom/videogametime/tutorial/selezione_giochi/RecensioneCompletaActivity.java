@@ -20,7 +20,7 @@ public class RecensioneCompletaActivity extends AppCompatActivity {
     private RatingBar stars;
     private ImageView img_account;
     private Button elimina, modifica;
-    static String Idgioco;
+    static String Idgioco, Gioco, Immagine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,7 @@ public class RecensioneCompletaActivity extends AppCompatActivity {
         modifica = findViewById(R.id.id_modifica);
 
         Intent intent = getIntent();
+        Immagine = intent.getExtras().getString("img");
         Idgioco = intent.getExtras().getString("idgioco");
         String Id = intent.getExtras().getString("id");
         String Title = intent.getExtras().getString("Title");
@@ -46,7 +47,7 @@ public class RecensioneCompletaActivity extends AppCompatActivity {
         String PersonName = intent.getExtras().getString("PersonName");
         String Time = intent.getExtras().getString("Time");
         float Stars = intent.getExtras().getFloat("Stars");
-        String Gioco = intent.getExtras().getString("Gioco");
+        Gioco = intent.getExtras().getString("Gioco");
 
         titolo.setText(Title);
         recensione.setText(Recensione);

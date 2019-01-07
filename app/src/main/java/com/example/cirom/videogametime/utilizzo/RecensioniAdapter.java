@@ -35,6 +35,7 @@ public class RecensioniAdapter extends RecyclerView.Adapter<RecensioniAdapter.My
             public void onClick(View v) {
                 Account.posizione_recensione = false;
                 Intent intent = new Intent(mContext,RecensioneCompletaActivity.class);
+                intent.putExtra("img", recensiones.get(position).getImage());
                 intent.putExtra("idgioco", recensiones.get(position).getIdgioco());
                 intent.putExtra("id", recensiones.get(position).getId());
                 intent.putExtra("Title",recensiones.get(position).getTitolo());
