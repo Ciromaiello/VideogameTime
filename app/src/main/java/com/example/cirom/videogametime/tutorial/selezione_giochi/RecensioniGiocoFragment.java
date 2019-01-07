@@ -23,6 +23,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
+import static com.example.cirom.videogametime.utilizzo.Account.acct;
+
 
 public class RecensioniGiocoFragment extends Fragment {
 
@@ -32,6 +34,7 @@ public class RecensioniGiocoFragment extends Fragment {
     private CollectionReference mGiochi;
     GiochiActivity giochiActivity;
     ArrayList<Recensione> recensiones;
+    ArrayList<String> ids;
 
     public RecensioniGiocoFragment() {
     }
@@ -55,6 +58,7 @@ public class RecensioniGiocoFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mFirestore = FirebaseFirestore.getInstance();
         recensiones = new ArrayList<>();
+        ids = new ArrayList<>();
         mGiochi = mFirestore.collection("Giochi");
         giochiActivity = new GiochiActivity();
         mGiochi.document(giochiActivity.id_gioco).collection("Recensioni")
@@ -65,6 +69,7 @@ public class RecensioniGiocoFragment extends Fragment {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         for(QueryDocumentSnapshot document : task.getResult()) {
                             Recensione r = document.toObject(Recensione.class);
+                            ids.add(r.getId());
                             recensiones.add(r);
                         }
                         aggiungiRecensione();
@@ -74,11 +79,17 @@ public class RecensioniGiocoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(Account.fatto) {
-                    if (Account.utente) {
-                        startActivity(new Intent(getContext(), NewRecensioneActivity.class));
-                        getActivity().finish();}
+                    if(ids.contains(acct.getId())) {
+                        SostituisciRecensioneDialog newFragment = new SostituisciRecensioneDialog();
+                        newFragment.show(getFragmentManager(), "Scelta");
+                    }
                     else {
-                        Toast.makeText(getActivity(), R.string.recensione_ospite, Toast.LENGTH_SHORT).show();
+                        if (Account.utente) {
+                            startActivity(new Intent(getContext(), NewRecensioneActivity.class));
+                            getActivity().finish();}
+                        else {
+                            Toast.makeText(getActivity(), R.string.recensione_ospite, Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
                 else {

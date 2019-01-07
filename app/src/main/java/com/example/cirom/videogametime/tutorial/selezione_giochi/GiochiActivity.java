@@ -135,7 +135,6 @@ public class GiochiActivity extends AppCompatActivity {
     }
 
     private void impostaPager() {
-
         // Riferimento al pager
         final ViewPager viewPager = findViewById(R.id.pager);
 
@@ -159,14 +158,10 @@ public class GiochiActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
+            public void onTabUnselected(TabLayout.Tab tab) {}
 
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
+            public void onTabReselected(TabLayout.Tab tab) {}
         });
     }
 }

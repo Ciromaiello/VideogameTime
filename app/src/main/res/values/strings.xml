@@ -25,6 +25,7 @@
     <string name="Remember_me">Remember me</string>
     <string name="richiesta_logout">Sicuro di voler uscire?</string>
     <string name="richiesta_unfollow">Gioco già seguito. Vuoi smettere di seguirlo?</string>
+    <string name="richiesta_sostituzione">Hai già recensito questo gioco. Sostituire la recensione esistente?</string>
     <string name="si">Sì</string>
     <string name="no">No</string>
     <string name="scrrecensione">Scrivi la tua recensione</string>
@@ -46,8 +47,4 @@
         <item>Cambia scelte</item>
         <item>Info</item>
     </string-array>
-
-
-
-
 </resources>

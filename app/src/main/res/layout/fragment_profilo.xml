@@ -26,6 +26,7 @@
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="279dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,9 +41,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:tabIndicatorColor="#FF0E7C00"
-        app:tabTextColor="@color/Vverde"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:tabTextColor="@color/Vverde" />
 
     <ImageView
         android:id="@+id/profiloimg"
@@ -74,5 +75,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profiloimg" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="524dp" />
 
 </android.support.constraint.ConstraintLayout>
