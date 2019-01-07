@@ -17,16 +17,12 @@ import com.example.cirom.videogametime.tutorial.selezione_giochi.Accounts;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.Gioco;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.tasks.OnSuccessListener;
-
 import com.google.firebase.auth.FirebaseAuth;
-
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.ArrayList;
-
 import static com.example.cirom.videogametime.utilizzo.Account.Accesso;
 import static com.example.cirom.videogametime.utilizzo.Account.acct;
 import static com.example.cirom.videogametime.utilizzo.Account.idGiochiScelti;
@@ -37,7 +33,6 @@ public class ProfiloActivity extends AppCompatActivity {
 
     private Account account;
     private BottomNavigationView navigation;
-    private FirebaseAuth firebaseAuth;
     private CollectionReference mAccount;
     private FirebaseFirestore mFirestore;
     private CollectionReference mScelte;

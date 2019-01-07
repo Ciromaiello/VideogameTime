@@ -13,18 +13,12 @@ import android.widget.TextView;
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.GiochiActivity;
-
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
-
-/**
- * Created by Dushyant Mainwal on 29-Oct-17.
- */
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchViewHolder> {
     Context context;
@@ -33,10 +27,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     ArrayList<String> giochiNameList;
     ArrayList<String> giochiPicList;
     ArrayList<String> key;
-    ArrayList<String> piattaforme;
-    ArrayList<String> generi;
-    static String description;
-    float NumRating;
 
     class SearchViewHolder extends RecyclerView.ViewHolder {
         ImageView giocoImage;
@@ -44,8 +34,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
         public SearchViewHolder(View itemView) {
             super(itemView);
-            giocoImage = (ImageView) itemView.findViewById(R.id.giocoimg);
-            gioco_name = (TextView) itemView.findViewById(R.id.gioco_name);
+            giocoImage = itemView.findViewById(R.id.giocoimg);
+            gioco_name = itemView.findViewById(R.id.gioco_name);
         }
     }
 

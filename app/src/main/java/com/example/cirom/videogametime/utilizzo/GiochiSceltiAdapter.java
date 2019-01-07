@@ -9,19 +9,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.GiochiActivity;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 
 public class GiochiSceltiAdapter extends RecyclerView.Adapter<GiochiSceltiAdapter.MyViewHolder> {
 
     private ArrayList<Giochi> giochi;
     private Context mContext;
-
 
     public GiochiSceltiAdapter(Context mContext, ArrayList<Giochi> giochi) {
         this.giochi = giochi;

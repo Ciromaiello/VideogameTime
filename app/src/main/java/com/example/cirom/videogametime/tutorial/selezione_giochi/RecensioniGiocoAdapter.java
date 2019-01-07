@@ -11,10 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
 import com.example.cirom.videogametime.R;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 
 public class RecensioniGiocoAdapter extends RecyclerView.Adapter<RecensioniGiocoAdapter.MyViewHolder> {
@@ -65,12 +63,12 @@ public class RecensioniGiocoAdapter extends RecyclerView.Adapter<RecensioniGioco
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            nome = (TextView) itemView.findViewById(R.id.textName);
-            rece_title = (TextView) itemView.findViewById(R.id.textTitleRec);
-            data = (TextView) itemView.findViewById(R.id.textDate);
-            stars = (RatingBar) itemView.findViewById(R.id.gettingStar2);
-            personal_img = (ImageView) itemView.findViewById(R.id.image_account_rec);
-            cardView = (CardView) itemView.findViewById(R.id.card_view);
+            nome = itemView.findViewById(R.id.textName);
+            rece_title = itemView.findViewById(R.id.textTitleRec);
+            data = itemView.findViewById(R.id.textDate);
+            stars = itemView.findViewById(R.id.gettingStar2);
+            personal_img = itemView.findViewById(R.id.image_account_rec);
+            cardView = itemView.findViewById(R.id.card_view);
         }
 
         public void bindData(Recensione rece) {

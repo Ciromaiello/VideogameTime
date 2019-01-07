@@ -1,8 +1,5 @@
 package com.example.cirom.videogametime.tutorial.selezione_piattaforme;
 
-/**
-* Classe dei get e dei set delle piattaforme
- */
 public class Piattaforme {
     private String nome;
     private boolean isSelected1;

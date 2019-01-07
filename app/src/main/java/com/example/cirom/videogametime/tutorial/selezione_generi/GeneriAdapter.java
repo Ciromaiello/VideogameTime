@@ -7,11 +7,9 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
-
 import com.example.cirom.videogametime.R;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.ArrayList;
 import java.util.List;
 

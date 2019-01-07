@@ -2,7 +2,6 @@ package com.example.cirom.videogametime.tutorial;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.tutorial.selezione_piattaforme.PiattaformeFragment;
 

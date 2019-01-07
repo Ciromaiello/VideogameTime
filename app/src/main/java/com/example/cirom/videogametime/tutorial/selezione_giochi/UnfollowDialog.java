@@ -7,14 +7,11 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.widget.Toast;
-
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.utilizzo.Account;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import static com.example.cirom.videogametime.tutorial.selezione_giochi.GiochiActivity.Title;
 import static com.example.cirom.videogametime.utilizzo.Account.acct;
 
 public class UnfollowDialog extends DialogFragment {

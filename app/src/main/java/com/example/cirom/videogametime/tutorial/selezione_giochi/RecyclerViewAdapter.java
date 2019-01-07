@@ -11,10 +11,8 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.cirom.videogametime.R;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 
 

@@ -8,9 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-
 import com.example.cirom.videogametime.R;
-
 import com.example.cirom.videogametime.tutorial.MainActivity;
 import com.example.cirom.videogametime.utilizzo.Account;
 import com.example.cirom.videogametime.utilizzo.ProfiloActivity;
@@ -23,7 +21,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
-
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;

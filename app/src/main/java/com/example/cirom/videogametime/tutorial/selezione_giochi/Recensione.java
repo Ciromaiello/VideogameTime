@@ -1,8 +1,5 @@
 package com.example.cirom.videogametime.tutorial.selezione_giochi;
 
-import com.google.firebase.firestore.ServerTimestamp;
-
-import java.sql.Timestamp;
 import java.util.Date;
 
 public class Recensione {

@@ -13,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.utilizzo.Account;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,9 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
-
 import static com.example.cirom.videogametime.utilizzo.Account.acct;
 import static com.example.cirom.videogametime.utilizzo.Account.idGiochiScelti;
 

@@ -10,16 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
-
 import static com.example.cirom.videogametime.utilizzo.Account.acct;
 
 public class ProfiloFragment extends Fragment {

@@ -9,12 +9,10 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.cirom.videogametime.R;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,6 +71,4 @@ public class PiattaformeAdapter extends RecyclerView.Adapter<PiattaformeAdapter.
             Picasso.with(itemView.getContext()).load(console.getImage()).into(imageConsole);
         }
     }
-
-
 }

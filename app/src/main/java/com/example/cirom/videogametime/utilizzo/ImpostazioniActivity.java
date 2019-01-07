@@ -13,12 +13,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.tutorial.MainActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.squareup.picasso.Picasso;
-
 import static com.example.cirom.videogametime.utilizzo.Account.acct;
 
 public class ImpostazioniActivity extends AppCompatActivity {

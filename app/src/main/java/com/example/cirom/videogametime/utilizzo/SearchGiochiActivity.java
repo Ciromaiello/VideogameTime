@@ -13,14 +13,12 @@ import java.util.ArrayList;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
-
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.CollectionReference;
-
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -39,11 +37,8 @@ public class SearchGiochiActivity extends AppCompatActivity {
     ArrayList<String> giochiNameList;
     ArrayList<String> giochiPicList;
     ArrayList<String> key;
-
-
     SearchAdapter searchAdapter;
     public ImageView reset_String;
-
 
     public SearchGiochiActivity() {
     }
@@ -54,8 +49,8 @@ public class SearchGiochiActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        search_edit_text = (EditText) findViewById(R.id.search_edit_text);
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        search_edit_text = findViewById(R.id.search_edit_text);
+        recyclerView =  findViewById(R.id.recyclerView);
         reset_String = findViewById(R.id.id_remove);
         mFirestore = FirebaseFirestore.getInstance();
         mGiochi = mFirestore.collection("Giochi");

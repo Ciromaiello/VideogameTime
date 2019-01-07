@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.tutorial.selezione_generi.GeneriFragment;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.SceltaDalDatabase;
@@ -26,7 +25,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.ArrayList;
 
 import static com.example.cirom.videogametime.utilizzo.Account.consoleQuery;

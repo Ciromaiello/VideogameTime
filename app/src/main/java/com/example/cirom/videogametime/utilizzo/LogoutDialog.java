@@ -7,11 +7,9 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
-
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.login.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
-
 import static com.example.cirom.videogametime.utilizzo.Account.Accesso;
 import static com.example.cirom.videogametime.utilizzo.Account.mSettings;
 

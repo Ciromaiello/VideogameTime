@@ -1,8 +1,5 @@
 package com.example.cirom.videogametime.tutorial.selezione_generi;
 
-/**
- * Classe dei get e set dei generi
- */
 public class Generi {
     private String genere;
     private boolean isSelected;

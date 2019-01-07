@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.utilizzo.Account;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,7 +21,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.ArrayList;
 
 

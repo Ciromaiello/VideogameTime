@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
-
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.utilizzo.Account;
 import com.example.cirom.videogametime.utilizzo.ProfiloActivity;
@@ -18,9 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.ArrayList;
-
 import static com.example.cirom.videogametime.utilizzo.Account.idGiochiScelti;
 import static com.example.cirom.videogametime.utilizzo.Account.mSettings;
 

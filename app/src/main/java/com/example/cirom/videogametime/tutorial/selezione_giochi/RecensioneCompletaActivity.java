@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
 import com.example.cirom.videogametime.R;
 import com.example.cirom.videogametime.utilizzo.CircleTransform;
 import com.squareup.picasso.Picasso;
@@ -22,13 +21,13 @@ public class RecensioneCompletaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recensione_completa);
 
-        titolo = (TextView) findViewById(R.id.titolo);
-        recensione = (TextView) findViewById(R.id.recensione_id);
-        nome_account = (TextView) findViewById(R.id.nome_account);
-        time = (TextView) findViewById(R.id.time_id);
-        gioco = (TextView) findViewById(R.id.nome_gioco);
-        stars = (RatingBar) findViewById(R.id.stelline_id);
-        img_account = (ImageView) findViewById(R.id.image_account_rec);
+        titolo = findViewById(R.id.titolo);
+        recensione = findViewById(R.id.recensione_id);
+        nome_account = findViewById(R.id.nome_account);
+        time =findViewById(R.id.time_id);
+        gioco = findViewById(R.id.nome_gioco);
+        stars = findViewById(R.id.stelline_id);
+        img_account =findViewById(R.id.image_account_rec);
 
         Intent intent = getIntent();
         String Title = intent.getExtras().getString("Title");

@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RatingBar;
-
 import com.example.cirom.videogametime.R;
 import static com.example.cirom.videogametime.utilizzo.Account.acct;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -15,7 +14,6 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.Date;
 
 public class NewRecensioneActivity extends AppCompatActivity {

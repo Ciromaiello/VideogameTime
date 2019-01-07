@@ -11,8 +11,6 @@ public class Giochi {
     private ArrayList<String> piattaforme;
     private String descrizione;
     private String immagine;
-    //per ora salvo ciò che ci serve per salvare i giochi, successivamente si salveranno i commenti etc
-
 
     public boolean isSelezionato() {
         return selezionato;

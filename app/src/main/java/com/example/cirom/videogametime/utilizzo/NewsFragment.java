@@ -6,20 +6,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.cirom.videogametime.R;
-
 import com.google.android.gms.tasks.OnSuccessListener;
-
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-
 import java.util.ArrayList;
 
 
@@ -29,7 +23,6 @@ public class NewsFragment extends Fragment {
     private CollectionReference mNews;
     private String[] siti = {"multiplayer","spaziogames","gamesvilage","gamespot","calcionapoli24"};
     private ArrayList<News> news;
-
 
     public NewsFragment() {}
 

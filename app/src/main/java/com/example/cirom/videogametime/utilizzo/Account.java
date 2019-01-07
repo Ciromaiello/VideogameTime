@@ -1,13 +1,10 @@
 package com.example.cirom.videogametime.utilizzo;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.net.Uri;
 
+import android.content.SharedPreferences;
 import com.example.cirom.videogametime.tutorial.selezione_giochi.Giochi;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.GoogleApiClient;
-
 import java.util.ArrayList;
 
 public class Account {
