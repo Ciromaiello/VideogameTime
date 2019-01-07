@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,11 +32,6 @@ public class GestioneProfiloFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
         return  inflater.inflate(R.layout.fragment_gestioneprofilo, container, false);
     }
@@ -43,11 +39,21 @@ public class GestioneProfiloFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         mFirestore=FirebaseFirestore.getInstance();
         mGiochi=mFirestore.collection("Giochi");
         mScelte=mFirestore.collection("Account");
         idGiochiScelti = new ArrayList<>();
         giochi = new ArrayList<>();
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        giochi.clear();
         LetturaId();
     }
 

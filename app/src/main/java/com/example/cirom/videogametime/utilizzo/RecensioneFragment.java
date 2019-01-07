@@ -36,7 +36,6 @@ public class RecensioneFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         return inflater.inflate(R.layout.fragment_recensione, container, false);
     }
 
@@ -53,8 +52,6 @@ public class RecensioneFragment extends Fragment {
         mGiochi = mFirestore.collection("Giochi");
         mAccount = mFirestore.collection("Account");
         giochiActivity = new GiochiActivity();
-
-
     }
 
     @Override
@@ -111,9 +108,7 @@ public class RecensioneFragment extends Fragment {
     }
 
     private void aggiungiRecensione() {
-
         RecensioniAdapter myAdapter = new RecensioniAdapter(getContext(), recensiones);
         list.setAdapter(myAdapter);
-
     }
 }
