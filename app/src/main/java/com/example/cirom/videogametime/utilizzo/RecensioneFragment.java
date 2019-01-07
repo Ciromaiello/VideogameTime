@@ -81,6 +81,9 @@ public class RecensioneFragment extends Fragment {
     public void onStart() {
         super.onStart();
         recensiones.clear();
+        list = (RecyclerView) getView().findViewById(R.id.list);
+        list.setLayoutManager(new LinearLayoutManager(getActivity()));
+        list.setHasFixedSize(true);
         Query();
     }
 
@@ -129,9 +132,6 @@ public class RecensioneFragment extends Fragment {
 
     private void aggiungiRecensione() {
 
-        list = (RecyclerView) getView().findViewById(R.id.list);
-        list.setLayoutManager(new LinearLayoutManager(getActivity()));
-        list.setHasFixedSize(true);
         RecensioniAdapter myAdapter = new RecensioniAdapter(getContext(), recensiones);
         list.setAdapter(myAdapter);
 
