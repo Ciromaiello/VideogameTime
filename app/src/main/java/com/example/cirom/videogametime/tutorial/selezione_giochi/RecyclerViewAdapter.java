@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private ArrayList<Giochi> giochi;
     private Context mContext;
-
+    private final SparseBooleanArray array = new SparseBooleanArray();
 
     public RecyclerViewAdapter(Context mContext, ArrayList<Giochi> giochi) {
         this.giochi = giochi;
@@ -38,6 +39,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
+
+        if(array.get(position)){
+            holder.checkBox.setChecked(true);
+        }else{
+            holder.checkBox.setChecked(false);
+        }
+
         holder.bindData(giochi.get(position));
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +58,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 intent.putExtra("Image",giochi.get(position).getImmagine());
                 intent.putExtra("id", giochi.get(position).getId_gioco());
                 mContext.startActivity(intent);
+
+
             }
         });
 
@@ -57,6 +67,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                array.put(position,true);
               if(!giochi.get(position).isSelezionato()){
                 giochi.get(position).setSelezionato(true);
                   Log.e("hai cliccato", "onClick: yes");}
