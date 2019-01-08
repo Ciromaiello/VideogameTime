@@ -48,8 +48,6 @@ public class GiochiSceltiAdapter extends RecyclerView.Adapter<GiochiSceltiAdapte
                 mContext.startActivity(intent);
             }
         });
-
-
     }
 
     @Override

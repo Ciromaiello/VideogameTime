@@ -24,7 +24,6 @@
     <string name="menu_account">Account</string>
     <string name="Remember_me">Remember me</string>
     <string name="richiesta_logout">Sicuro di voler uscire?</string>
-    <string name="richiesta_unfollow">Gioco già seguito. Vuoi smettere di seguirlo?</string>
     <string name="richiesta_modifica">Vuoi modificare la recensione?</string>
     <string name="richiesta_elimina">Sicuro di voler eliminare la recensione?</string>
     <string name="richiesta_sostituzione">Hai già recensito questo gioco. Sostituire la recensione esistente?</string>
@@ -33,6 +32,7 @@
     <string name="scrrecensione">Scrivi la tua recensione</string>
     <string name="Title">Titolo (max 26 caratteri)</string>
     <string name="recensione">Recensione (max 350 caratteri)</string>
+    <string name="seguito">Seguito</string>
     <string name="segui">Segui</string>
     <string name="funzionalità_tutorial">Non puoi accedere a questa funzionalità dal tutorial</string>
     <string name="segui_ospite">Non puoi seguire un gioco come ospite</string>

@@ -80,6 +80,16 @@ public class GiochiActivity extends AppCompatActivity {
         }
         Picasso.with(getApplicationContext()).load(image).into(img);
         id_gioco = id;
+        if(Account.utente && Account.fatto && idGiochiScelti.contains(id_gioco)) {
+            segui.setBackgroundColor(getResources().getColor(R.color.Grigio));
+            segui.setText(R.string.seguito);
+            segui.setTextColor(getResources().getColor(R.color.verde2));
+        }
+        else {
+            segui.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+            segui.setText(R.string.segui);
+            segui.setTextColor(getResources().getColor(R.color.cardview_light_background));
+        }
         mFirestore = FirebaseFirestore.getInstance();
         mGiochi = mFirestore.collection("Giochi");
         giochiActivity = new GiochiActivity();
@@ -105,10 +115,21 @@ public class GiochiActivity extends AppCompatActivity {
                 if(Account.utente) {
                     if(Account.fatto) {
                         if(idGiochiScelti.contains(id_gioco)) {
-                            UnfollowDialog newFragment = new UnfollowDialog();
-                            newFragment.show(getSupportFragmentManager(), "Scelta");
+                            segui.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                            segui.setText(R.string.segui);
+                            segui.setTextColor(getResources().getColor(R.color.cardview_light_background));
+                            mFirestore = FirebaseFirestore.getInstance();
+                            mScelte = mFirestore.collection("Account");
+                            Account.idGiochiScelti.remove(GiochiActivity.id_gioco);
+                            mScelte.document(acct.getId()).collection("Scelte")
+                                    .document("GiochiScelti")
+                                    .update("scelte", FieldValue.arrayRemove(GiochiActivity.id_gioco));
+                            Toast.makeText(getApplication(), R.string.non_segui_titolo, Toast.LENGTH_SHORT).show();
                         }
                         else {
+                            segui.setBackgroundColor(getResources().getColor(R.color.Grigio));
+                            segui.setText(R.string.seguito);
+                            segui.setTextColor(getResources().getColor(R.color.verde2));
                             mScelte.document(acct.getId()).collection("Scelte")
                                     .document("GiochiScelti")
                                     .update("scelte", FieldValue.arrayUnion(id_gioco));
