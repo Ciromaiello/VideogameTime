@@ -57,6 +57,7 @@ public class NewRecensioneActivity extends AppCompatActivity {
                 rec1 = new Recensione(numStars, rece, title, acct.getId(), acct.getPhotoUrl().toString(), acct.getDisplayName(), data, giochiActivity.Title, giochiActivity.image, giochiActivity.id_gioco);
                 rec2 = new Recensione(numStars, rece, title, acct.getId(), acct.getPhotoUrl().toString(), acct.getDisplayName(), data, RecensioneCompletaActivity.Gioco, RecensioneCompletaActivity.Immagine, RecensioneCompletaActivity.Idgioco);
                 if(Account.posizione_recensione) {
+                    Account.refresh_recensioni = true;
                     mCollection.document(giochiActivity.id_gioco)
                             .collection("Recensioni")
                             .document(acct.getId())

@@ -52,16 +52,25 @@ public class RecensioneFragment extends Fragment {
         mGiochi = mFirestore.collection("Giochi");
         mAccount = mFirestore.collection("Account");
         giochiActivity = new GiochiActivity();
+        if(!Account.refresh_recensioni) {
+            list = (RecyclerView) getView().findViewById(R.id.list);
+            list.setLayoutManager(new LinearLayoutManager(getActivity()));
+            list.setHasFixedSize(true);
+            Query();
+        }
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        recensiones.clear();
-        list = (RecyclerView) getView().findViewById(R.id.list);
-        list.setLayoutManager(new LinearLayoutManager(getActivity()));
-        list.setHasFixedSize(true);
-        Query();
+        if(Account.refresh_recensioni) {
+            Account.refresh_recensioni = false;
+            recensiones.clear();
+            list = (RecyclerView) getView().findViewById(R.id.list);
+            list.setLayoutManager(new LinearLayoutManager(getActivity()));
+            list.setHasFixedSize(true);
+            Query();
+        }
     }
 
 

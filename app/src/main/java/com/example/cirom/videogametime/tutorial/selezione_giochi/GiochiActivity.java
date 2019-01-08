@@ -118,6 +118,7 @@ public class GiochiActivity extends AppCompatActivity {
                             segui.setBackgroundColor(getResources().getColor(R.color.colorAccent));
                             segui.setText(R.string.segui);
                             segui.setTextColor(getResources().getColor(R.color.cardview_light_background));
+                            Account.refresh_seguiti = true;
                             mFirestore = FirebaseFirestore.getInstance();
                             mScelte = mFirestore.collection("Account");
                             Account.idGiochiScelti.remove(GiochiActivity.id_gioco);
@@ -130,6 +131,7 @@ public class GiochiActivity extends AppCompatActivity {
                             segui.setBackgroundColor(getResources().getColor(R.color.Grigio));
                             segui.setText(R.string.seguito);
                             segui.setTextColor(getResources().getColor(R.color.verde2));
+                            Account.refresh_seguiti = true;
                             mScelte.document(acct.getId()).collection("Scelte")
                                     .document("GiochiScelti")
                                     .update("scelte", FieldValue.arrayUnion(id_gioco));

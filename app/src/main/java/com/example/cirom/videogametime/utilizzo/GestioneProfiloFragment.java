@@ -50,14 +50,22 @@ public class GestioneProfiloFragment extends Fragment {
         mScelte=mFirestore.collection("Account");
         idGiochiScelti = new ArrayList<>();
         giochi = new ArrayList<>();
+        if(!Account.refresh_seguiti) {
+            myr = (RecyclerView) getView().findViewById(R.id.cardgiochi);
+            myr.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+            LetturaId();
+        }
     }
     @Override
     public void onStart() {
         super.onStart();
-        giochi.clear();
-        myr = (RecyclerView) getView().findViewById(R.id.cardgiochi);
-        myr.setLayoutManager(new GridLayoutManager(getActivity(), 3));
-        LetturaId();
+        if(Account.refresh_seguiti) {
+            Account.refresh_seguiti = false;
+            giochi.clear();
+            myr = (RecyclerView) getView().findViewById(R.id.cardgiochi);
+            myr.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+            LetturaId();
+        }
     }
 
     private void AggiungiGiochi(int i) {

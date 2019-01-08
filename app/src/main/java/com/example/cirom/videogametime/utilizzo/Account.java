@@ -30,6 +30,8 @@ public class Account {
     public static SharedPreferences mSettings;
     public static boolean fatto = false;
     public static boolean posizione_recensione = false;
+    public static boolean refresh_seguiti = false;
+    public static boolean refresh_recensioni = false;
 
     public static ArrayList<Giochi> getGiochiscelti() {
         return giochiscelti;

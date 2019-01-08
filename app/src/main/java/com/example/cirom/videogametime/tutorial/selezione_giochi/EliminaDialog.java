@@ -48,6 +48,7 @@ public class EliminaDialog extends DialogFragment {
                         mGiochi.document(RecensioneCompletaActivity.Idgioco)
                                 .collection("Recensioni").document(acct.getId()).delete();
                         if(Account.posizione_recensione) {
+                            Account.refresh_recensioni = true;
                             intent = new Intent(getActivity(), GiochiActivity.class);
                             intent.putExtra("Title",GiochiActivity.Title);
                             intent.putExtra("Description",GiochiActivity.Description);
