@@ -23,6 +23,7 @@ import static com.example.cirom.videogametime.utilizzo.Account.acct;
 
 public class GestioneProfiloFragment extends Fragment {
 
+    private RecyclerView myr;
     private FirebaseFirestore mFirestore;
     private  ArrayList<Giochi> giochi ;
     private CollectionReference mGiochi;
@@ -54,6 +55,8 @@ public class GestioneProfiloFragment extends Fragment {
     public void onStart() {
         super.onStart();
         giochi.clear();
+        myr = (RecyclerView) getView().findViewById(R.id.cardgiochi);
+        myr.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         LetturaId();
     }
 
@@ -62,9 +65,7 @@ public class GestioneProfiloFragment extends Fragment {
             Query(i);
         }
         else {
-            RecyclerView myr = (RecyclerView) getView().findViewById(R.id.cardgiochi);
             final GiochiSceltiAdapter myAdapter = new GiochiSceltiAdapter(getContext(), giochi);
-            myr.setLayoutManager(new GridLayoutManager(getActivity(), 3));
             myr.setAdapter(myAdapter);
         }
     }
