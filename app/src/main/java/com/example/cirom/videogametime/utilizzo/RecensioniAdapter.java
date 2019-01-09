@@ -33,6 +33,7 @@ public class RecensioniAdapter extends RecyclerView.Adapter<RecensioniAdapter.My
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Account.fatto = true;
                 Account.posizione_recensione = false;
                 Intent intent = new Intent(mContext,RecensioneCompletaActivity.class);
                 intent.putExtra("img", recensiones.get(position).getImage());

@@ -107,7 +107,7 @@ public class SelectionGiochiActivity extends AppCompatActivity {
                     }
                     else {
                         Intent intent = new Intent(SelectionGiochiActivity.this, ProfiloActivity.class);
-                        Account.fatto=true;
+                        Account.fatto = true;
                         mSettings.edit().putBoolean(mAuth.getUid(),false).apply();
                         startActivity(intent);
                         finish();

@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import com.example.cirom.videogametime.R;
+import com.example.cirom.videogametime.utilizzo.Account;
 import com.example.cirom.videogametime.utilizzo.CircleTransform;
 import com.squareup.picasso.Picasso;
 import static com.example.cirom.videogametime.utilizzo.Account.acct;
@@ -56,7 +57,7 @@ public class RecensioneCompletaActivity extends AppCompatActivity {
         time.setText(Time);
         gioco.setText(Gioco);
         Picasso.with(getApplicationContext()).load(PersonImm).transform(new CircleTransform(35,10)).into(img_account);
-        if(Id.equals(acct.getId())) {
+        if(Id.equals(acct.getId()) && Account.utente && Account.fatto) {
             elimina.setVisibility(View.VISIBLE);
             modifica.setVisibility(View.VISIBLE);
             modifica.setOnClickListener(new View.OnClickListener() {

@@ -29,10 +29,8 @@ public class RecensioneFragment extends Fragment {
     GiochiActivity giochiActivity;
     ArrayList<Recensione> recensiones;
 
-
     public RecensioneFragment() {
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
