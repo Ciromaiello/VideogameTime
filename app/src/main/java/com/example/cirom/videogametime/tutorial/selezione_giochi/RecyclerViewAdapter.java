@@ -67,16 +67,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                array.put(position,true);
+
               if(!giochi.get(position).isSelezionato()){
+                  array.put(position,true);
                 giochi.get(position).setSelezionato(true);
                   Log.e("hai cliccato", "onClick: yes");}
-                  else{ giochi.get(position).setSelezionato(false);}
+                  else{ giochi.get(position).setSelezionato(false);
+                  array.put(position,false);}
 
             }
         });
-
-
     }
 
     @Override
