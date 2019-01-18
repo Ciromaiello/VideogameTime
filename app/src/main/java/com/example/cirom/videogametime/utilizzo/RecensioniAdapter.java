@@ -1,6 +1,7 @@
 package com.example.cirom.videogametime.utilizzo;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
@@ -47,6 +48,7 @@ public class RecensioniAdapter extends RecyclerView.Adapter<RecensioniAdapter.My
                 intent.putExtra("Time", recensiones.get(position).getData().toLocaleString());
                 intent.putExtra("Gioco", recensiones.get(position).getTitle());
                 mContext.startActivity(intent);
+                ((Activity)mContext).finish();
             }
         });
     }

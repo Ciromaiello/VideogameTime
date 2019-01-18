@@ -1,5 +1,6 @@
 package com.example.cirom.videogametime.tutorial.selezione_giochi;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
@@ -58,7 +59,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 intent.putExtra("Image",giochi.get(position).getImmagine());
                 intent.putExtra("id", giochi.get(position).getId_gioco());
                 mContext.startActivity(intent);
-
 
             }
         });
